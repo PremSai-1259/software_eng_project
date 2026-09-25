@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import json
+from contextlib import asynccontextmanager
 from datetime import datetime, timezone
 from pathlib import Path
 from uuid import uuid4
@@ -20,7 +21,22 @@ from app.services.storage import ProjectStore
 
 ROOT = Path(__file__).resolve().parent
 store = ProjectStore()
-app = FastAPI(title="FinReq Studio", version="0.1.0")
+
+
+@asynccontextmanager
+async def lifespan(_: FastAPI):
+    print("\n" + "=" * 56)
+    print("  FinReq Studio is running")
+    print("  App:      http://127.0.0.1:8000")
+    print("  API docs: http://127.0.0.1:8000/docs")
+    print("  Storage:  local JSON project data")
+    print("  Stop:     press Ctrl+C")
+    print("=" * 56 + "\n")
+    yield
+    print("FinReq Studio stopped.")
+
+
+app = FastAPI(title="FinReq Studio", version="0.1.0", lifespan=lifespan)
 app.mount("/static", StaticFiles(directory=ROOT / "static"), name="static")
 
 
