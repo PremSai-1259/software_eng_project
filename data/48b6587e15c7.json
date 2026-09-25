@@ -1,0 +1,681 @@
+{
+  "id": "48b6587e15c7",
+  "functionality": "Online loan application and approval",
+  "created_at": "2026-09-25T09:17:05.166069Z",
+  "documents": [
+    {
+      "id": "DOC-001",
+      "name": "Financial_Loan_Processing_Source_Requirements.docx",
+      "chunks": [
+        {
+          "id": "chunk-001",
+          "text": "Financial Sector – Online Loan Processing System Source Requirement Document Synthetic requirement document for testing an evidence-grounded requirement engineering system. 1. System Overview The proposed system is an online loan processing platform for a financial institution. Customers should be able to submit loan applications digitally. The platform will collect customer information, verify identity, assess eligibility, process supporting documents, and route applications for approval or rejection. 2. Business Requirements BR-001: The system shall allow eligible customers to submit loan applications online. BR-002: The system shall reduce manual processing of loan applications."
+        },
+        {
+          "id": "chunk-002",
+          "text": "BR-003: The system shall provide customers with the current status of their loan application. BR-004: The system shall support authorized employees in reviewing and processing loan applications. 3. Functional Requirements FR-001: The system shall allow a customer to create and submit a loan application. FR-002: The system shall collect applicant identity, contact, employment, income, and financial information. FR-003: The system shall allow applicants to upload documents required for loan processing. FR-004: The system shall verify the applicant's identity before the application proceeds to further processing."
+        },
+        {
+          "id": "chunk-003",
+          "text": "FR-005: The system shall perform an eligibility or credit assessment using the available applicant information. FR-006: The system shall route eligible applications to an authorized loan officer for review. FR-007: The system shall record the approval or rejection decision for each completed application. FR-008: The system shall notify the customer when the application status changes. FR-009: The system shall integrate with the institution's existing customer information system. FR-010: The system shall prevent an application from proceeding when mandatory information or documents are missing. 4."
+        },
+        {
+          "id": "chunk-004",
+          "text": "Security and Privacy Requirements SEC-001: Only authenticated users shall be allowed to access their loan applications. SEC-002: Only authorized employees shall be allowed to view or modify customer loan information. SEC-003: Sensitive customer and financial information shall be protected from unauthorized access. SEC-004: The system shall maintain appropriate access controls for customer and employee roles. SEC-005: Communication between the loan platform and external or internal services shall be protected. PRI-001: Customer personal and financial information shall only be used for authorized loan-processing purposes. 5."
+        },
+        {
+          "id": "chunk-005",
+          "text": "Audit and Compliance Requirements AUD-001: The system shall maintain an audit trail of important loan-processing activities. AUD-002: The audit trail shall record significant changes to application status and decisions. AUD-003: Access to sensitive loan information shall be traceable to the responsible user or service. COMP-001: The system shall support applicable financial-institution policies and compliance requirements. COMP-002: Compliance-related requirements shall be reviewed by an authorized compliance or legal representative before final approval. 6."
+        },
+        {
+          "id": "chunk-006",
+          "text": "Performance and Availability Requirements PERF-001: The system should provide timely responses during normal loan application activities. PERF-002: The system should process submitted applications without unnecessary delay. AVL-001: The loan application service should be available during the institution's defined service hours. AVL-002: Failures in external verification or credit-assessment services shall be handled without losing the customer's application data. 7. Integration and Legacy Constraints INT-001: The system shall integrate with the existing customer information system. INT-002: The system shall integrate with an identity-verification service."
+        },
+        {
+          "id": "chunk-007",
+          "text": "INT-003: The system shall integrate with an approved credit-assessment or scoring service where required. CON-001: Existing customer data and interfaces may impose constraints on the design of the new platform. 8. Open Issues and Assumptions The exact loan eligibility rules have not yet been finalized. The exact response-time targets have not yet been defined. The specific external identity-verification provider has not yet been selected. The applicable regulatory requirements depend on the institution's jurisdiction and must be verified by authorized personnel. The final loan approval authority and escalation rules require confirmation from the business and compliance teams. 9."
+        },
+        {
+          "id": "chunk-008",
+          "text": "Purpose of This Document This synthetic document is intended to provide source material for testing an AI-based requirement engineering workflow. The system should use the information in this document as evidence when generating additional structured requirements for a specified loan-processing functionality. Unsupported assumptions should be identified rather than presented as established facts."
+        }
+      ]
+    }
+  ],
+  "requirements": [
+    {
+      "id": "REQ-001",
+      "statement": "Customers should be able to submit loan applications digitally.",
+      "categories": [
+        "Functional"
+      ],
+      "evidence": [
+        {
+          "document_id": "DOC-001",
+          "document_name": "Financial_Loan_Processing_Source_Requirements.docx",
+          "chunk_id": "chunk-001",
+          "excerpt": "Customers should be able to submit loan applications digitally.",
+          "relevance": 0.8
+        }
+      ],
+      "business_justification": "Supports the documented Online loan application and approval need.",
+      "priority": "Should",
+      "dependencies": [],
+      "assumptions": [],
+      "acceptance_criteria": [
+        "A reviewer must confirm measurable acceptance criteria before baseline approval."
+      ],
+      "applicable_policy": null,
+      "risk_level": "Medium",
+      "confidence": 0.8,
+      "reasoning": "Evidence-only draft derived verbatim from the cited source; human refinement is required.",
+      "approval_status": "Rejected"
+    },
+    {
+      "id": "REQ-002",
+      "statement": "The platform will collect customer information, verify identity, assess eligibility, process supporting documents, and route applications for approval or rejection.",
+      "categories": [
+        "Data management"
+      ],
+      "evidence": [
+        {
+          "document_id": "DOC-001",
+          "document_name": "Financial_Loan_Processing_Source_Requirements.docx",
+          "chunk_id": "chunk-001",
+          "excerpt": "The platform will collect customer information, verify identity, assess eligibility, process supporting documents, and route applications for approval or rejection.",
+          "relevance": 0.8
+        }
+      ],
+      "business_justification": "Supports the documented Online loan application and approval need.",
+      "priority": "Should",
+      "dependencies": [],
+      "assumptions": [],
+      "acceptance_criteria": [
+        "A reviewer must confirm measurable acceptance criteria before baseline approval."
+      ],
+      "applicable_policy": null,
+      "risk_level": "Medium",
+      "confidence": 0.8,
+      "reasoning": "Evidence-only draft derived verbatim from the cited source; human refinement is required.",
+      "approval_status": "Rejected"
+    },
+    {
+      "id": "REQ-003",
+      "statement": "Business Requirements BR-001: The system shall allow eligible customers to submit loan applications online.",
+      "categories": [
+        "Functional"
+      ],
+      "evidence": [
+        {
+          "document_id": "DOC-001",
+          "document_name": "Financial_Loan_Processing_Source_Requirements.docx",
+          "chunk_id": "chunk-001",
+          "excerpt": "Business Requirements BR-001: The system shall allow eligible customers to submit loan applications online.",
+          "relevance": 0.8
+        }
+      ],
+      "business_justification": "Supports the documented Online loan application and approval need.",
+      "priority": "Should",
+      "dependencies": [],
+      "assumptions": [],
+      "acceptance_criteria": [
+        "A reviewer must confirm measurable acceptance criteria before baseline approval."
+      ],
+      "applicable_policy": null,
+      "risk_level": "Medium",
+      "confidence": 0.8,
+      "reasoning": "Evidence-only draft derived verbatim from the cited source; human refinement is required.",
+      "approval_status": "Rejected"
+    },
+    {
+      "id": "REQ-004",
+      "statement": "BR-002: The system shall reduce manual processing of loan applications.",
+      "categories": [
+        "Functional"
+      ],
+      "evidence": [
+        {
+          "document_id": "DOC-001",
+          "document_name": "Financial_Loan_Processing_Source_Requirements.docx",
+          "chunk_id": "chunk-001",
+          "excerpt": "BR-002: The system shall reduce manual processing of loan applications.",
+          "relevance": 0.8
+        }
+      ],
+      "business_justification": "Supports the documented Online loan application and approval need.",
+      "priority": "Should",
+      "dependencies": [],
+      "assumptions": [],
+      "acceptance_criteria": [
+        "A reviewer must confirm measurable acceptance criteria before baseline approval."
+      ],
+      "applicable_policy": null,
+      "risk_level": "Medium",
+      "confidence": 0.8,
+      "reasoning": "Evidence-only draft derived verbatim from the cited source; human refinement is required.",
+      "approval_status": "Rejected"
+    },
+    {
+      "id": "REQ-005",
+      "statement": "Audit and Compliance Requirements AUD-001: The system shall maintain an audit trail of important loan-processing activities.",
+      "categories": [
+        "Regulatory",
+        "Audit / reporting"
+      ],
+      "evidence": [
+        {
+          "document_id": "DOC-001",
+          "document_name": "Financial_Loan_Processing_Source_Requirements.docx",
+          "chunk_id": "chunk-005",
+          "excerpt": "Audit and Compliance Requirements AUD-001: The system shall maintain an audit trail of important loan-processing activities.",
+          "relevance": 0.8
+        }
+      ],
+      "business_justification": "Supports the documented Online loan application and approval need.",
+      "priority": "Should",
+      "dependencies": [],
+      "assumptions": [],
+      "acceptance_criteria": [
+        "A reviewer must confirm measurable acceptance criteria before baseline approval."
+      ],
+      "applicable_policy": null,
+      "risk_level": "Medium",
+      "confidence": 0.8,
+      "reasoning": "Evidence-only draft derived verbatim from the cited source; human refinement is required.",
+      "approval_status": "Approved"
+    },
+    {
+      "id": "REQ-006",
+      "statement": "AUD-002: The audit trail shall record significant changes to application status and decisions.",
+      "categories": [
+        "Audit / reporting",
+        "Data management"
+      ],
+      "evidence": [
+        {
+          "document_id": "DOC-001",
+          "document_name": "Financial_Loan_Processing_Source_Requirements.docx",
+          "chunk_id": "chunk-005",
+          "excerpt": "AUD-002: The audit trail shall record significant changes to application status and decisions.",
+          "relevance": 0.8
+        }
+      ],
+      "business_justification": "Supports the documented Online loan application and approval need.",
+      "priority": "Should",
+      "dependencies": [],
+      "assumptions": [],
+      "acceptance_criteria": [
+        "A reviewer must confirm measurable acceptance criteria before baseline approval."
+      ],
+      "applicable_policy": null,
+      "risk_level": "Medium",
+      "confidence": 0.8,
+      "reasoning": "Evidence-only draft derived verbatim from the cited source; human refinement is required.",
+      "approval_status": "Needs review"
+    },
+    {
+      "id": "REQ-007",
+      "statement": "AUD-003: Access to sensitive loan information shall be traceable to the responsible user or service.",
+      "categories": [
+        "Security",
+        "Audit / reporting"
+      ],
+      "evidence": [
+        {
+          "document_id": "DOC-001",
+          "document_name": "Financial_Loan_Processing_Source_Requirements.docx",
+          "chunk_id": "chunk-005",
+          "excerpt": "AUD-003: Access to sensitive loan information shall be traceable to the responsible user or service.",
+          "relevance": 0.8
+        }
+      ],
+      "business_justification": "Supports the documented Online loan application and approval need.",
+      "priority": "Should",
+      "dependencies": [],
+      "assumptions": [],
+      "acceptance_criteria": [
+        "A reviewer must confirm measurable acceptance criteria before baseline approval."
+      ],
+      "applicable_policy": null,
+      "risk_level": "Medium",
+      "confidence": 0.8,
+      "reasoning": "Evidence-only draft derived verbatim from the cited source; human refinement is required.",
+      "approval_status": "Needs review"
+    },
+    {
+      "id": "REQ-008",
+      "statement": "COMP-001: The system shall support applicable financial-institution policies and compliance requirements.",
+      "categories": [
+        "Regulatory"
+      ],
+      "evidence": [
+        {
+          "document_id": "DOC-001",
+          "document_name": "Financial_Loan_Processing_Source_Requirements.docx",
+          "chunk_id": "chunk-005",
+          "excerpt": "COMP-001: The system shall support applicable financial-institution policies and compliance requirements.",
+          "relevance": 0.8
+        }
+      ],
+      "business_justification": "Supports the documented Online loan application and approval need.",
+      "priority": "Should",
+      "dependencies": [],
+      "assumptions": [],
+      "acceptance_criteria": [
+        "A reviewer must confirm measurable acceptance criteria before baseline approval."
+      ],
+      "applicable_policy": null,
+      "risk_level": "Medium",
+      "confidence": 0.8,
+      "reasoning": "Evidence-only draft derived verbatim from the cited source; human refinement is required.",
+      "approval_status": "Needs review"
+    },
+    {
+      "id": "REQ-009",
+      "statement": "COMP-002: Compliance-related requirements shall be reviewed by an authorized compliance or legal representative before final approval.",
+      "categories": [
+        "Regulatory"
+      ],
+      "evidence": [
+        {
+          "document_id": "DOC-001",
+          "document_name": "Financial_Loan_Processing_Source_Requirements.docx",
+          "chunk_id": "chunk-005",
+          "excerpt": "COMP-002: Compliance-related requirements shall be reviewed by an authorized compliance or legal representative before final approval.",
+          "relevance": 0.8
+        }
+      ],
+      "business_justification": "Supports the documented Online loan application and approval need.",
+      "priority": "Should",
+      "dependencies": [],
+      "assumptions": [],
+      "acceptance_criteria": [
+        "A reviewer must confirm measurable acceptance criteria before baseline approval."
+      ],
+      "applicable_policy": null,
+      "risk_level": "Medium",
+      "confidence": 0.8,
+      "reasoning": "Evidence-only draft derived verbatim from the cited source; human refinement is required.",
+      "approval_status": "Needs review"
+    },
+    {
+      "id": "REQ-010",
+      "statement": "BR-003: The system shall provide customers with the current status of their loan application.",
+      "categories": [
+        "Functional"
+      ],
+      "evidence": [
+        {
+          "document_id": "DOC-001",
+          "document_name": "Financial_Loan_Processing_Source_Requirements.docx",
+          "chunk_id": "chunk-002",
+          "excerpt": "BR-003: The system shall provide customers with the current status of their loan application.",
+          "relevance": 0.6
+        }
+      ],
+      "business_justification": "Supports the documented Online loan application and approval need.",
+      "priority": "Should",
+      "dependencies": [],
+      "assumptions": [],
+      "acceptance_criteria": [
+        "A reviewer must confirm measurable acceptance criteria before baseline approval."
+      ],
+      "applicable_policy": null,
+      "risk_level": "Medium",
+      "confidence": 0.6,
+      "reasoning": "Evidence-only draft derived verbatim from the cited source; human refinement is required.",
+      "approval_status": "Needs review"
+    }
+  ],
+  "quality_issues": [
+    {
+      "id": "QI-001",
+      "requirement_id": "REQ-001",
+      "check": "Missing security or compliance requirements",
+      "severity": "Low",
+      "message": "This item has no linked security, privacy, or regulatory control.",
+      "recommendation": "Confirm whether a control is not applicable or add an evidence-backed control."
+    },
+    {
+      "id": "QI-002",
+      "requirement_id": "REQ-002",
+      "check": "Missing security or compliance requirements",
+      "severity": "Low",
+      "message": "This item has no linked security, privacy, or regulatory control.",
+      "recommendation": "Confirm whether a control is not applicable or add an evidence-backed control."
+    },
+    {
+      "id": "QI-003",
+      "requirement_id": "REQ-003",
+      "check": "Missing security or compliance requirements",
+      "severity": "Low",
+      "message": "This item has no linked security, privacy, or regulatory control.",
+      "recommendation": "Confirm whether a control is not applicable or add an evidence-backed control."
+    },
+    {
+      "id": "QI-004",
+      "requirement_id": "REQ-004",
+      "check": "Missing security or compliance requirements",
+      "severity": "Low",
+      "message": "This item has no linked security, privacy, or regulatory control.",
+      "recommendation": "Confirm whether a control is not applicable or add an evidence-backed control."
+    },
+    {
+      "id": "QI-005",
+      "requirement_id": "REQ-006",
+      "check": "Missing security or compliance requirements",
+      "severity": "Low",
+      "message": "This item has no linked security, privacy, or regulatory control.",
+      "recommendation": "Confirm whether a control is not applicable or add an evidence-backed control."
+    },
+    {
+      "id": "QI-006",
+      "requirement_id": "REQ-010",
+      "check": "Missing security or compliance requirements",
+      "severity": "Low",
+      "message": "This item has no linked security, privacy, or regulatory control.",
+      "recommendation": "Confirm whether a control is not applicable or add an evidence-backed control."
+    }
+  ],
+  "sdlc": {
+    "recommended_sdlc": "Spiral",
+    "factors": [
+      {
+        "name": "Requirement stability",
+        "value": "Needs validation",
+        "score": 2,
+        "rationale": "Draft or unapproved requirements indicate that stability has not yet been demonstrated.",
+        "requirement_ids": [
+          "REQ-001",
+          "REQ-002",
+          "REQ-003",
+          "REQ-004",
+          "REQ-006",
+          "REQ-007",
+          "REQ-008",
+          "REQ-009",
+          "REQ-010"
+        ]
+      },
+      {
+        "name": "Requirement clarity",
+        "value": "Low",
+        "score": 2,
+        "rationale": "Measured from the presence of concrete, non-placeholder acceptance criteria.",
+        "requirement_ids": [
+          "REQ-001",
+          "REQ-002",
+          "REQ-003",
+          "REQ-004",
+          "REQ-005",
+          "REQ-006",
+          "REQ-007",
+          "REQ-008",
+          "REQ-009",
+          "REQ-010"
+        ]
+      },
+      {
+        "name": "Risk",
+        "value": "High",
+        "score": 5,
+        "rationale": "Derived from stated high risk and security, privacy, regulatory, or audit classifications.",
+        "requirement_ids": [
+          "REQ-005",
+          "REQ-006",
+          "REQ-007",
+          "REQ-008",
+          "REQ-009"
+        ]
+      },
+      {
+        "name": "Complexity",
+        "value": "High",
+        "score": 4,
+        "rationale": "Integration and data-management requirements increase coordination and technical complexity.",
+        "requirement_ids": [
+          "REQ-002",
+          "REQ-006"
+        ]
+      },
+      {
+        "name": "Need for early prototype",
+        "value": "Likely",
+        "score": 4,
+        "rationale": "Unclear requirements or integration complexity make early learning and validation valuable.",
+        "requirement_ids": []
+      },
+      {
+        "name": "Time constraints",
+        "value": "Not evidenced",
+        "score": 3,
+        "rationale": "No schedule or deadline evidence is available in the generated requirements; confirm this with the project sponsor.",
+        "requirement_ids": []
+      },
+      {
+        "name": "Customer involvement",
+        "value": "Not evidenced",
+        "score": 3,
+        "rationale": "Derived only from business, stakeholder, or usability requirements; otherwise this must be confirmed.",
+        "requirement_ids": []
+      },
+      {
+        "name": "Frequency of changes",
+        "value": "Not evidenced",
+        "score": 3,
+        "rationale": "Requirement documents do not establish the expected change rate; confirm with product and business stakeholders.",
+        "requirement_ids": []
+      },
+      {
+        "name": "Need for iterative development",
+        "value": "Likely",
+        "score": 4,
+        "rationale": "Unapproved or unclear requirements benefit from repeated review and validation cycles.",
+        "requirement_ids": []
+      },
+      {
+        "name": "Need for risk analysis",
+        "value": "High",
+        "score": 5,
+        "rationale": "Security/compliance concerns or complex integration warrant explicit risk analysis.",
+        "requirement_ids": [
+          "REQ-002",
+          "REQ-005",
+          "REQ-006",
+          "REQ-007",
+          "REQ-008",
+          "REQ-009"
+        ]
+      }
+    ],
+    "options": [
+      {
+        "name": "Spiral",
+        "score": 100,
+        "suitability": "Best when risk analysis, prototypes, and repeated risk-reduction cycles are central."
+      },
+      {
+        "name": "Prototyping",
+        "score": 97,
+        "suitability": "Best for validating uncertain user needs, workflows, and interfaces before committing to a full build."
+      },
+      {
+        "name": "Agile",
+        "score": 92,
+        "suitability": "Best for frequent feedback and evolving requirements, with planned governance for high-risk work."
+      },
+      {
+        "name": "Incremental",
+        "score": 86,
+        "suitability": "Best when value can be divided into validated, independently testable increments."
+      },
+      {
+        "name": "V-Shape",
+        "score": 44,
+        "suitability": "Best when each specification stage needs a linked verification and validation activity."
+      },
+      {
+        "name": "RAD",
+        "score": 37,
+        "suitability": "Best for time-boxed delivery with available users and modular, lower-risk scope."
+      },
+      {
+        "name": "Waterfall",
+        "score": 27,
+        "suitability": "Best when requirements are stable, fully specified, and changes are controlled."
+      }
+    ],
+    "justification": "Spiral has the highest transparent score because requirement stability is needs validation, requirement clarity is low, risk is high, complexity is high, need for early prototype is likely. Factors marked 'Not evidenced' are deliberately neutral and require stakeholder confirmation before the SDLC is approved.",
+    "workflow": [
+      {
+        "phase": "Validate requirements",
+        "activities": [
+          "Resolve quality issues",
+          "Confirm stability, time constraints, and expected changes",
+          "Prioritise requirement baseline"
+        ],
+        "roles": [
+          "Business analyst",
+          "Customer representative"
+        ],
+        "deliverables": [
+          "Validated requirements",
+          "SDLC factor assessment"
+        ],
+        "gate": "Stakeholder confirms project assumptions"
+      },
+      {
+        "phase": "Plan the model",
+        "activities": [
+          "Review ranked SDLC options",
+          "Plan risk analysis",
+          "Define iteration or stage gates"
+        ],
+        "roles": [
+          "Project manager",
+          "Architect",
+          "Risk owner"
+        ],
+        "deliverables": [
+          "Approved SDLC decision",
+          "Risk register"
+        ],
+        "gate": "Engineering and business approval"
+      },
+      {
+        "phase": "Develop and validate",
+        "activities": [
+          "Build planned scope",
+          "Test against acceptance criteria",
+          "Review feedback and risks"
+        ],
+        "roles": [
+          "Developers",
+          "QA",
+          "Customer representative"
+        ],
+        "deliverables": [
+          "Working increment or verified stage",
+          "Test evidence"
+        ],
+        "gate": "Quality and stakeholder acceptance"
+      },
+      {
+        "phase": "Release and learn",
+        "activities": [
+          "Release approved scope",
+          "Monitor outcomes",
+          "Reassess requirement changes and risks"
+        ],
+        "roles": [
+          "Operations",
+          "Product owner",
+          "Project manager"
+        ],
+        "deliverables": [
+          "Release record",
+          "Updated SDLC assessment"
+        ],
+        "gate": "Release and change-control approval"
+      }
+    ],
+    "human_approval_required": true
+  },
+  "audit_log": [
+    {
+      "at": "2026-09-25T09:17:05.167118+00:00",
+      "action": "documents_uploaded",
+      "detail": "Stored 1 masked source document(s)."
+    },
+    {
+      "at": "2026-09-25T09:17:10.088529+00:00",
+      "action": "requirements_generated",
+      "detail": "Generated 10 evidence-only evidence-grounded draft requirement(s)."
+    },
+    {
+      "at": "2026-09-25T09:17:26.827464+00:00",
+      "action": "sdlc_analysed",
+      "detail": "Recommended DevSecOps hybrid; human approval remains required."
+    },
+    {
+      "at": "2026-09-25T09:27:54.597770+00:00",
+      "action": "sdlc_analysed",
+      "detail": "Recommended Spiral; human approval remains required."
+    },
+    {
+      "at": "2026-09-25T09:27:55.938140+00:00",
+      "action": "sdlc_analysed",
+      "detail": "Recommended Spiral; human approval remains required."
+    },
+    {
+      "at": "2026-09-25T09:27:56.353728+00:00",
+      "action": "sdlc_analysed",
+      "detail": "Recommended Spiral; human approval remains required."
+    },
+    {
+      "at": "2026-09-25T09:27:56.558080+00:00",
+      "action": "sdlc_analysed",
+      "detail": "Recommended Spiral; human approval remains required."
+    },
+    {
+      "at": "2026-09-25T09:49:01.755779+00:00",
+      "action": "requirement_approval_updated",
+      "detail": "REQ-001 marked Rejected."
+    },
+    {
+      "at": "2026-09-25T09:49:15.387642+00:00",
+      "action": "requirement_approval_updated",
+      "detail": "REQ-002 marked Rejected."
+    },
+    {
+      "at": "2026-09-25T09:49:23.412712+00:00",
+      "action": "requirement_approval_updated",
+      "detail": "REQ-003 marked Rejected."
+    },
+    {
+      "at": "2026-09-25T09:49:27.588038+00:00",
+      "action": "requirement_approval_updated",
+      "detail": "REQ-004 marked Rejected."
+    },
+    {
+      "at": "2026-09-25T09:49:38.841517+00:00",
+      "action": "requirement_approval_updated",
+      "detail": "REQ-005 marked Approved."
+    },
+    {
+      "at": "2026-09-25T09:49:41.135482+00:00",
+      "action": "sdlc_analysed",
+      "detail": "Recommended Spiral; human approval remains required."
+    },
+    {
+      "at": "2026-09-25T09:49:52.368165+00:00",
+      "action": "sdlc_analysed",
+      "detail": "Recommended Spiral; human approval remains required."
+    },
+    {
+      "at": "2026-09-25T09:49:56.316503+00:00",
+      "action": "sdlc_analysed",
+      "detail": "Recommended Spiral; human approval remains required."
+    }
+  ]
+}

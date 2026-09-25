@@ -1,0 +1,424 @@
+{
+  "id": "7646ed59f5dc",
+  "functionality": "digital customer onboarding and KYC",
+  "created_at": "2026-09-25T09:12:30.675410Z",
+  "documents": [
+    {
+      "id": "DOC-001",
+      "name": "digital_onboarding_policy.txt",
+      "chunks": [
+        {
+          "id": "chunk-001",
+          "text": "Digital Customer Onboarding Policy - Example Source The onboarding service shall verify an applicant's identity before opening an account. The system must record the identity verification decision, the source used, and the reviewer identifier in an auditable event log. Personal data collected during onboarding must be restricted to authorised roles and retained according to the approved retention policy. The onboarding portal should notify applicants when additional documents are required. The system shall integrate with the approved identity-verification provider through its documented API. Failed identity-verification checks must be routed to a trained operations reviewer."
+        },
+        {
+          "id": "chunk-002",
+          "text": "The service should provide an availability target approved by the operations owner before production release."
+        }
+      ]
+    }
+  ],
+  "requirements": [
+    {
+      "id": "REQ-001",
+      "statement": "Digital Customer Onboarding Policy - Example Source The onboarding service shall verify an applicant's identity before opening an account.",
+      "categories": [
+        "Regulatory"
+      ],
+      "evidence": [
+        {
+          "document_id": "DOC-001",
+          "document_name": "digital_onboarding_policy.txt",
+          "chunk_id": "chunk-001",
+          "excerpt": "Digital Customer Onboarding Policy - Example Source The onboarding service shall verify an applicant's identity before opening an account.",
+          "relevance": 0.8
+        }
+      ],
+      "business_justification": "Supports the documented digital customer onboarding and KYC need.",
+      "priority": "Should",
+      "dependencies": [],
+      "assumptions": [],
+      "acceptance_criteria": [
+        "A reviewer must confirm measurable acceptance criteria before baseline approval."
+      ],
+      "applicable_policy": null,
+      "risk_level": "Medium",
+      "confidence": 0.8,
+      "reasoning": "Evidence-only draft derived verbatim from the cited source; human refinement is required.",
+      "approval_status": "Needs review"
+    },
+    {
+      "id": "REQ-002",
+      "statement": "The system must record the identity verification decision, the source used, and the reviewer identifier in an auditable event log.",
+      "categories": [
+        "Audit / reporting",
+        "Data management"
+      ],
+      "evidence": [
+        {
+          "document_id": "DOC-001",
+          "document_name": "digital_onboarding_policy.txt",
+          "chunk_id": "chunk-001",
+          "excerpt": "The system must record the identity verification decision, the source used, and the reviewer identifier in an auditable event log.",
+          "relevance": 0.8
+        }
+      ],
+      "business_justification": "Supports the documented digital customer onboarding and KYC need.",
+      "priority": "Should",
+      "dependencies": [],
+      "assumptions": [],
+      "acceptance_criteria": [
+        "A reviewer must confirm measurable acceptance criteria before baseline approval."
+      ],
+      "applicable_policy": null,
+      "risk_level": "Medium",
+      "confidence": 0.8,
+      "reasoning": "Evidence-only draft derived verbatim from the cited source; human refinement is required.",
+      "approval_status": "Needs review"
+    },
+    {
+      "id": "REQ-003",
+      "statement": "Personal data collected during onboarding must be restricted to authorised roles and retained according to the approved retention policy.",
+      "categories": [
+        "Privacy",
+        "Regulatory",
+        "Data management"
+      ],
+      "evidence": [
+        {
+          "document_id": "DOC-001",
+          "document_name": "digital_onboarding_policy.txt",
+          "chunk_id": "chunk-001",
+          "excerpt": "Personal data collected during onboarding must be restricted to authorised roles and retained according to the approved retention policy.",
+          "relevance": 0.8
+        }
+      ],
+      "business_justification": "Supports the documented digital customer onboarding and KYC need.",
+      "priority": "Should",
+      "dependencies": [],
+      "assumptions": [],
+      "acceptance_criteria": [
+        "A reviewer must confirm measurable acceptance criteria before baseline approval."
+      ],
+      "applicable_policy": null,
+      "risk_level": "Medium",
+      "confidence": 0.8,
+      "reasoning": "Evidence-only draft derived verbatim from the cited source; human refinement is required.",
+      "approval_status": "Needs review"
+    },
+    {
+      "id": "REQ-004",
+      "statement": "The onboarding portal should notify applicants when additional documents are required.",
+      "categories": [
+        "Data management"
+      ],
+      "evidence": [
+        {
+          "document_id": "DOC-001",
+          "document_name": "digital_onboarding_policy.txt",
+          "chunk_id": "chunk-001",
+          "excerpt": "The onboarding portal should notify applicants when additional documents are required.",
+          "relevance": 0.8
+        }
+      ],
+      "business_justification": "Supports the documented digital customer onboarding and KYC need.",
+      "priority": "Should",
+      "dependencies": [],
+      "assumptions": [],
+      "acceptance_criteria": [
+        "A reviewer must confirm measurable acceptance criteria before baseline approval."
+      ],
+      "applicable_policy": null,
+      "risk_level": "Medium",
+      "confidence": 0.8,
+      "reasoning": "Evidence-only draft derived verbatim from the cited source; human refinement is required.",
+      "approval_status": "Needs review"
+    },
+    {
+      "id": "REQ-005",
+      "statement": "The system shall integrate with the approved identity-verification provider through its documented API.",
+      "categories": [
+        "Integration",
+        "Data management"
+      ],
+      "evidence": [
+        {
+          "document_id": "DOC-001",
+          "document_name": "digital_onboarding_policy.txt",
+          "chunk_id": "chunk-001",
+          "excerpt": "The system shall integrate with the approved identity-verification provider through its documented API.",
+          "relevance": 0.8
+        }
+      ],
+      "business_justification": "Supports the documented digital customer onboarding and KYC need.",
+      "priority": "Should",
+      "dependencies": [],
+      "assumptions": [],
+      "acceptance_criteria": [
+        "A reviewer must confirm measurable acceptance criteria before baseline approval."
+      ],
+      "applicable_policy": null,
+      "risk_level": "Medium",
+      "confidence": 0.8,
+      "reasoning": "Evidence-only draft derived verbatim from the cited source; human refinement is required.",
+      "approval_status": "Needs review"
+    },
+    {
+      "id": "REQ-006",
+      "statement": "Failed identity-verification checks must be routed to a trained operations reviewer.",
+      "categories": [
+        "Operational / maintenance"
+      ],
+      "evidence": [
+        {
+          "document_id": "DOC-001",
+          "document_name": "digital_onboarding_policy.txt",
+          "chunk_id": "chunk-001",
+          "excerpt": "Failed identity-verification checks must be routed to a trained operations reviewer.",
+          "relevance": 0.8
+        }
+      ],
+      "business_justification": "Supports the documented digital customer onboarding and KYC need.",
+      "priority": "Should",
+      "dependencies": [],
+      "assumptions": [],
+      "acceptance_criteria": [
+        "A reviewer must confirm measurable acceptance criteria before baseline approval."
+      ],
+      "applicable_policy": null,
+      "risk_level": "Medium",
+      "confidence": 0.8,
+      "reasoning": "Evidence-only draft derived verbatim from the cited source; human refinement is required.",
+      "approval_status": "Needs review"
+    },
+    {
+      "id": "REQ-007",
+      "statement": "The service should provide an availability target approved by the operations owner before production release.",
+      "categories": [
+        "Availability / reliability",
+        "Operational / maintenance"
+      ],
+      "evidence": [
+        {
+          "document_id": "DOC-001",
+          "document_name": "digital_onboarding_policy.txt",
+          "chunk_id": "chunk-002",
+          "excerpt": "The service should provide an availability target approved by the operations owner before production release.",
+          "relevance": 0.0
+        }
+      ],
+      "business_justification": "Supports the documented digital customer onboarding and KYC need.",
+      "priority": "Should",
+      "dependencies": [],
+      "assumptions": [],
+      "acceptance_criteria": [
+        "A reviewer must confirm measurable acceptance criteria before baseline approval."
+      ],
+      "applicable_policy": null,
+      "risk_level": "Medium",
+      "confidence": 0.45,
+      "reasoning": "Evidence-only draft derived verbatim from the cited source; human refinement is required.",
+      "approval_status": "Needs review"
+    }
+  ],
+  "quality_issues": [
+    {
+      "id": "QI-001",
+      "requirement_id": "REQ-002",
+      "check": "Missing security or compliance requirements",
+      "severity": "Low",
+      "message": "This item has no linked security, privacy, or regulatory control.",
+      "recommendation": "Confirm whether a control is not applicable or add an evidence-backed control."
+    },
+    {
+      "id": "QI-002",
+      "requirement_id": "REQ-004",
+      "check": "Missing security or compliance requirements",
+      "severity": "Low",
+      "message": "This item has no linked security, privacy, or regulatory control.",
+      "recommendation": "Confirm whether a control is not applicable or add an evidence-backed control."
+    },
+    {
+      "id": "QI-003",
+      "requirement_id": "REQ-005",
+      "check": "Missing security or compliance requirements",
+      "severity": "Low",
+      "message": "This item has no linked security, privacy, or regulatory control.",
+      "recommendation": "Confirm whether a control is not applicable or add an evidence-backed control."
+    },
+    {
+      "id": "QI-004",
+      "requirement_id": "REQ-006",
+      "check": "Missing security or compliance requirements",
+      "severity": "Low",
+      "message": "This item has no linked security, privacy, or regulatory control.",
+      "recommendation": "Confirm whether a control is not applicable or add an evidence-backed control."
+    },
+    {
+      "id": "QI-005",
+      "requirement_id": "REQ-007",
+      "check": "Missing security or compliance requirements",
+      "severity": "Low",
+      "message": "This item has no linked security, privacy, or regulatory control.",
+      "recommendation": "Confirm whether a control is not applicable or add an evidence-backed control."
+    }
+  ],
+  "sdlc": {
+    "recommended_sdlc": "DevSecOps hybrid",
+    "factors": [
+      {
+        "name": "Regulatory criticality",
+        "value": "High",
+        "score": 5,
+        "rationale": "Derived from regulatory, privacy, or audit classifications.",
+        "requirement_ids": [
+          "REQ-001",
+          "REQ-002",
+          "REQ-003"
+        ]
+      },
+      {
+        "name": "Security risk",
+        "value": "Medium",
+        "score": 3,
+        "rationale": "Derived from security classifications and stated risk levels.",
+        "requirement_ids": []
+      },
+      {
+        "name": "Legacy-system dependence",
+        "value": "Present",
+        "score": 4,
+        "rationale": "Derived from integration classifications; confirm with stakeholders.",
+        "requirement_ids": [
+          "REQ-005"
+        ]
+      },
+      {
+        "name": "Requirement stability",
+        "value": "Needs stakeholder assessment",
+        "score": 3,
+        "rationale": "Source documents alone cannot establish the expected rate of change.",
+        "requirement_ids": []
+      }
+    ],
+    "options": [
+      {
+        "name": "DevSecOps hybrid",
+        "score": 72,
+        "suitability": "Strong when secure, auditable delivery and repeated control checks are needed."
+      },
+      {
+        "name": "V-Model",
+        "score": 67,
+        "suitability": "Strong for formal verification, traceability, and stable approved baselines."
+      },
+      {
+        "name": "Spiral",
+        "score": 58,
+        "suitability": "Useful when integration or risk uncertainty requires iterative risk reduction."
+      },
+      {
+        "name": "Waterfall",
+        "score": 55,
+        "suitability": "Suitable only if requirements stabilise and staged approvals dominate."
+      },
+      {
+        "name": "Agile",
+        "score": 48,
+        "suitability": "Useful for changing user needs, with governance added for regulated releases."
+      }
+    ],
+    "justification": "DevSecOps hybrid is ranked from the classified requirements, their risks, and evidence coverage. The score is advisory: confirm requirement stability, budget, schedule, and stakeholder availability before approving the SDLC baseline.",
+    "workflow": [
+      {
+        "phase": "Discover and baseline",
+        "activities": [
+          "Retrieve evidence",
+          "Draft and classify requirements",
+          "Mask sensitive data"
+        ],
+        "roles": [
+          "Business analyst",
+          "Compliance officer"
+        ],
+        "deliverables": [
+          "Traceability matrix",
+          "Approved requirement baseline"
+        ],
+        "gate": "Business, compliance, and security approval"
+      },
+      {
+        "phase": "Plan and design",
+        "activities": [
+          "Threat model",
+          "Architecture review",
+          "Test design"
+        ],
+        "roles": [
+          "Architect",
+          "Security engineer",
+          "QA lead"
+        ],
+        "deliverables": [
+          "Architecture decision record",
+          "Security test plan"
+        ],
+        "gate": "Design and control review"
+      },
+      {
+        "phase": "Build and verify",
+        "activities": [
+          "Implement",
+          "Static checks",
+          "Requirement-linked testing"
+        ],
+        "roles": [
+          "Developers",
+          "QA",
+          "Security"
+        ],
+        "deliverables": [
+          "Test evidence",
+          "Audit log"
+        ],
+        "gate": "Verification exit criteria met"
+      },
+      {
+        "phase": "Release and monitor",
+        "activities": [
+          "Compliance sign-off",
+          "Deployment approval",
+          "Operational monitoring"
+        ],
+        "roles": [
+          "Operations",
+          "Compliance",
+          "Product owner"
+        ],
+        "deliverables": [
+          "Release record",
+          "Monitoring report"
+        ],
+        "gate": "Production-readiness approval"
+      }
+    ],
+    "human_approval_required": true
+  },
+  "audit_log": [
+    {
+      "at": "2026-09-25T09:12:30.677606+00:00",
+      "action": "documents_uploaded",
+      "detail": "Stored 1 masked source document(s)."
+    },
+    {
+      "at": "2026-09-25T09:12:58.577251+00:00",
+      "action": "requirements_generated",
+      "detail": "Generated 7 evidence-grounded draft requirement(s)."
+    },
+    {
+      "at": "2026-09-25T09:13:11.426857+00:00",
+      "action": "sdlc_analysed",
+      "detail": "Recommended DevSecOps hybrid; human approval remains required."
+    }
+  ]
+}

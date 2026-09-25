@@ -1,0 +1,9 @@
+Digital Customer Onboarding Policy - Example Source
+
+The onboarding service shall verify an applicant's identity before opening an account.
+The system must record the identity verification decision, the source used, and the reviewer identifier in an auditable event log.
+Personal data collected during onboarding must be restricted to authorised roles and retained according to the approved retention policy.
+The onboarding portal should notify applicants when additional documents are required.
+The system shall integrate with the approved identity-verification provider through its documented API.
+Failed identity-verification checks must be routed to a trained operations reviewer.
+The service should provide an availability target approved by the operations owner before production release.

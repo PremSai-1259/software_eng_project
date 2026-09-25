@@ -1,0 +1,27 @@
+{
+  "id": "fc590f3f84a9",
+  "functionality": "Online loan application and approval",
+  "created_at": "2026-09-25T09:58:55.016736Z",
+  "documents": [
+    {
+      "id": "DOC-001",
+      "name": "Stakeholder interview",
+      "chunks": [
+        {
+          "id": "chunk-001",
+          "text": "business objective: v project context: clear and structured"
+        }
+      ]
+    }
+  ],
+  "requirements": [],
+  "quality_issues": [],
+  "sdlc": null,
+  "audit_log": [
+    {
+      "at": "2026-09-25T09:58:55.016809+00:00",
+      "action": "sources_recorded",
+      "detail": "Stored 1 masked source(s): 2 stakeholder response(s) and 0 uploaded document(s)."
+    }
+  ]
+}

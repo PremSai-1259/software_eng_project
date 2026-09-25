@@ -1,0 +1,27 @@
+{
+  "id": "2b6d47400112",
+  "functionality": "digital customer onboarding",
+  "created_at": "2026-09-25T09:53:49.601661Z",
+  "documents": [
+    {
+      "id": "DOC-001",
+      "name": "Stakeholder interview",
+      "chunks": [
+        {
+          "id": "chunk-001",
+          "text": "business objective: The system shall verify customer identity before account creation. security: The system must record audit logs for verification decisions."
+        }
+      ]
+    }
+  ],
+  "requirements": [],
+  "quality_issues": [],
+  "sdlc": null,
+  "audit_log": [
+    {
+      "at": "2026-09-25T09:53:49.602226+00:00",
+      "action": "sources_recorded",
+      "detail": "Stored 1 masked source(s): 2 stakeholder response(s) and 0 uploaded document(s)."
+    }
+  ]
+}
