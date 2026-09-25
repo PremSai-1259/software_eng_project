@@ -59,3 +59,5 @@ This prototype runs without an API key. The default generator extracts only sour
 ## Scope and extensions
 
 The prototype supports document-led requirement elicitation, not autonomous stakeholder conversations or live regulation retrieval. In production, add role-based authentication, encrypted durable storage, source versioning, a vetted regulatory knowledge base, semantic retrieval, prompt-injection controls, configurable data-retention rules, human editing/regeneration, and an approved structured-output LLM adapter. Compliance mappings remain advisory until approved by authorised compliance or legal personnel.
+=======
+
