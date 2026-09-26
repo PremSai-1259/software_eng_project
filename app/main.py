@@ -1,26 +1,30 @@
 from __future__ import annotations
 
 import json
+import os
 from contextlib import asynccontextmanager
 from datetime import datetime, timezone
 from pathlib import Path
 from uuid import uuid4
 
+from dotenv import load_dotenv
 from fastapi import FastAPI, File, Form, HTTPException, UploadFile
 from fastapi.responses import FileResponse, JSONResponse
 from fastapi.staticfiles import StaticFiles
 
 from app.schemas import Project
-from app.services.documents import chunk_text, extract_text, mask_sensitive, retrieve
+from app.services.documents import chunk_text, extract_text, mask_sensitive
 from app.services.generator import generate_evidence_drafts
-from app.services.llm import enabled as llm_enabled
-from app.services.llm import generate_requirements as generate_llm_requirements
+from app.services.llm import enabled as llm_enabled, generate_requirements as generate_llm_requirements
 from app.services.quality import analyse
+from app.services.rag import RagConfigurationError, VectorStore, provider_configured
 from app.services.sdlc import recommend
 from app.services.storage import ProjectStore
 
 ROOT = Path(__file__).resolve().parent
+load_dotenv(ROOT.parent / ".env")
 store = ProjectStore()
+vector_store = VectorStore()
 
 
 @asynccontextmanager
@@ -29,7 +33,8 @@ async def lifespan(_: FastAPI):
     print("  FinReq Studio is running")
     print("  App:      http://127.0.0.1:8000")
     print("  API docs: http://127.0.0.1:8000/docs")
-    print("  Storage:  local JSON project data")
+    print("  RAG:      ChromaDB + OpenAI-compatible embeddings")
+    print("  Storage:  local JSON project data and ChromaDB vectors")
     print("  Stop:     press Ctrl+C")
     print("=" * 56 + "\n")
     yield
@@ -47,6 +52,15 @@ def audit(project: Project, action: str, detail: str) -> None:
 @app.get("/")
 def home() -> FileResponse:
     return FileResponse(ROOT / "templates" / "index.html")
+
+
+@app.get("/api/rag/status")
+def rag_status() -> JSONResponse:
+    return JSONResponse({
+        **vector_store.configuration(),
+        "embedding_provider_configured": provider_configured(),
+        "generation_mode": "LLM generation with citation validation" if llm_enabled() else "Evidence-only drafts until LLM_API_KEY is configured",
+    })
 
 
 @app.post("/api/projects")
@@ -86,9 +100,34 @@ async def create_project(
         doc_id = f"DOC-{len(documents)+1:03d}"
         documents.append({"id": doc_id, "name": upload.filename, "chunks": [chunk.__dict__ for chunk in chunk_text(text)]})
     project = Project(id=uuid4().hex[:12], functionality=functionality, created_at=datetime.now(timezone.utc), documents=documents)
+    try:
+        indexed_chunks = vector_store.index(project.id, documents)
+    except RagConfigurationError as exc:
+        raise HTTPException(503, str(exc)) from exc
     audit(project, "sources_recorded", f"Stored {len(documents)} masked source(s): {len(answers)} stakeholder response(s) and {len(uploads)} uploaded document(s).")
+    audit(project, "rag_indexed", f"Indexed {indexed_chunks} source chunk(s) in ChromaDB.")
     store.save(project)
-    return JSONResponse({"project_id": project.id, "documents": [{"id": doc["id"], "name": doc["name"], "chunks": len(doc["chunks"])} for doc in documents]})
+    return JSONResponse({
+        "project_id": project.id,
+        "documents": [{"id": doc["id"], "name": doc["name"], "chunks": len(doc["chunks"])} for doc in documents],
+        "rag": {**vector_store.configuration(), "indexed_chunks": indexed_chunks},
+    })
+
+
+@app.get("/api/projects/{project_id}/retrieval")
+def retrieve_evidence(project_id: str, query: str | None = None) -> JSONResponse:
+    try:
+        project = store.get(project_id)
+    except KeyError as exc:
+        raise HTTPException(404, "Project not found.") from exc
+    search_query = (query or project.functionality).strip()
+    if len(search_query) < 3:
+        raise HTTPException(422, "Enter a retrieval query of at least three characters.")
+    try:
+        evidence = vector_store.retrieve(project.id, search_query)
+    except RagConfigurationError as exc:
+        raise HTTPException(503, str(exc)) from exc
+    return JSONResponse({"query": search_query, "matches": evidence, "count": len(evidence)})
 
 
 @app.post("/api/projects/{project_id}/requirements")
@@ -97,7 +136,10 @@ def generate_requirements(project_id: str) -> JSONResponse:
         project = store.get(project_id)
     except KeyError as exc:
         raise HTTPException(404, "Project not found.") from exc
-    evidence = retrieve(project.functionality, project.documents)
+    try:
+        evidence = vector_store.retrieve(project.id, project.functionality)
+    except RagConfigurationError as exc:
+        raise HTTPException(503, str(exc)) from exc
     if not evidence:
         raise HTTPException(422, "No retrievable evidence was found in the uploaded documents.")
     generation_mode = "evidence-only"
@@ -105,13 +147,13 @@ def generate_requirements(project_id: str) -> JSONResponse:
         try:
             project.requirements = generate_llm_requirements(project.functionality, evidence)
             generation_mode = "LLM-assisted"
-        except RuntimeError as exc:
+        except (RuntimeError, ValueError) as exc:
             project.requirements = generate_evidence_drafts(project.functionality, evidence)
             audit(project, "llm_fallback", str(exc))
     else:
         project.requirements = generate_evidence_drafts(project.functionality, evidence)
     project.quality_issues = analyse(project.requirements)
-    audit(project, "requirements_generated", f"Generated {len(project.requirements)} {generation_mode} evidence-grounded draft requirement(s).")
+    audit(project, "requirements_generated", f"Generated {len(project.requirements)} {generation_mode} RAG-grounded draft requirement(s).")
     store.save(project)
     return JSONResponse(project.model_dump(mode="json"))
 

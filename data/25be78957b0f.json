@@ -1,0 +1,270 @@
+{
+  "id": "25be78957b0f",
+  "functionality": "Online loan application and approval",
+  "created_at": "2026-09-26T04:33:33.842786Z",
+  "documents": [
+    {
+      "id": "DOC-001",
+      "name": "Stakeholder interview",
+      "chunks": [
+        {
+          "id": "chunk-001",
+          "text": "business objective: Online loan approval users and roles: bank customers and Bank employee credit decision: No idea loan exception handling: they have to be declined and message has to be sent ot user workflow and outcomes: no idea business rules: no idea exceptions and failures: both user and employee must be notified data and privacy: Only high level employees can access it security and audit: authentication using Aadhar project context: 2-3 months"
+        }
+      ]
+    }
+  ],
+  "requirements": [
+    {
+      "id": "REQ-001",
+      "statement": "business objective: Online loan approval users and roles: bank customers and Bank employee credit decision: No idea loan exception handling: they have to be declined and message has to be sent ot user workflow and outcomes: no idea business rules: no idea exceptions and failures: both user and employee must be notified data and privacy: Only high level employees can access it security and audit: authentication using Aadhar project context: 2-3 months",
+      "categories": [
+        "Security",
+        "Privacy",
+        "Audit / reporting",
+        "Data management"
+      ],
+      "evidence": [
+        {
+          "document_id": "DOC-001",
+          "document_name": "Stakeholder interview",
+          "chunk_id": "chunk-001",
+          "excerpt": "business objective: Online loan approval users and roles: bank customers and Bank employee credit decision: No idea loan exception handling: they have to be declined and message has to be sent ot user workflow and outcomes: no idea business rules: no idea exceptions and failures: both user and employee must be notified data and privacy: Only high level employees can access it security and audit: authentication using Aadhar project context: 2-3 months",
+          "relevance": 0.71
+        }
+      ],
+      "business_justification": "Supports the documented Online loan application and approval need.",
+      "priority": "Should",
+      "dependencies": [],
+      "assumptions": [],
+      "acceptance_criteria": [
+        "A reviewer must confirm measurable acceptance criteria before baseline approval."
+      ],
+      "applicable_policy": null,
+      "risk_level": "Medium",
+      "confidence": 0.71,
+      "reasoning": "Evidence-only draft derived verbatim from the cited source; human refinement is required.",
+      "approval_status": "Needs review"
+    }
+  ],
+  "quality_issues": [],
+  "sdlc": {
+    "recommended_sdlc": "Spiral",
+    "factors": [
+      {
+        "name": "Requirement stability",
+        "value": "Needs validation",
+        "score": 2,
+        "rationale": "Draft or unapproved requirements indicate that stability has not yet been demonstrated.",
+        "requirement_ids": [
+          "REQ-001"
+        ]
+      },
+      {
+        "name": "Requirement clarity",
+        "value": "Low",
+        "score": 2,
+        "rationale": "Measured from the presence of concrete, non-placeholder acceptance criteria.",
+        "requirement_ids": [
+          "REQ-001"
+        ]
+      },
+      {
+        "name": "Risk",
+        "value": "High",
+        "score": 5,
+        "rationale": "Derived from stated high risk and security, privacy, regulatory, or audit classifications.",
+        "requirement_ids": [
+          "REQ-001"
+        ]
+      },
+      {
+        "name": "Complexity",
+        "value": "High",
+        "score": 4,
+        "rationale": "Integration and data-management requirements increase coordination and technical complexity.",
+        "requirement_ids": [
+          "REQ-001"
+        ]
+      },
+      {
+        "name": "Need for early prototype",
+        "value": "Likely",
+        "score": 4,
+        "rationale": "Unclear requirements or integration complexity make early learning and validation valuable.",
+        "requirement_ids": []
+      },
+      {
+        "name": "Time constraints",
+        "value": "Not evidenced",
+        "score": 3,
+        "rationale": "No schedule or deadline evidence is available in the generated requirements; confirm this with the project sponsor.",
+        "requirement_ids": []
+      },
+      {
+        "name": "Customer involvement",
+        "value": "Not evidenced",
+        "score": 3,
+        "rationale": "Derived only from business, stakeholder, or usability requirements; otherwise this must be confirmed.",
+        "requirement_ids": []
+      },
+      {
+        "name": "Frequency of changes",
+        "value": "Not evidenced",
+        "score": 3,
+        "rationale": "Requirement documents do not establish the expected change rate; confirm with product and business stakeholders.",
+        "requirement_ids": []
+      },
+      {
+        "name": "Need for iterative development",
+        "value": "Likely",
+        "score": 4,
+        "rationale": "Unapproved or unclear requirements benefit from repeated review and validation cycles.",
+        "requirement_ids": []
+      },
+      {
+        "name": "Need for risk analysis",
+        "value": "High",
+        "score": 5,
+        "rationale": "Security/compliance concerns or complex integration warrant explicit risk analysis.",
+        "requirement_ids": [
+          "REQ-001"
+        ]
+      }
+    ],
+    "options": [
+      {
+        "name": "Spiral",
+        "score": 100,
+        "suitability": "Best when risk analysis, prototypes, and repeated risk-reduction cycles are central."
+      },
+      {
+        "name": "Prototyping",
+        "score": 97,
+        "suitability": "Best for validating uncertain user needs, workflows, and interfaces before committing to a full build."
+      },
+      {
+        "name": "Agile",
+        "score": 92,
+        "suitability": "Best for frequent feedback and evolving requirements, with planned governance for high-risk work."
+      },
+      {
+        "name": "Incremental",
+        "score": 86,
+        "suitability": "Best when value can be divided into validated, independently testable increments."
+      },
+      {
+        "name": "V-Shape",
+        "score": 44,
+        "suitability": "Best when each specification stage needs a linked verification and validation activity."
+      },
+      {
+        "name": "RAD",
+        "score": 37,
+        "suitability": "Best for time-boxed delivery with available users and modular, lower-risk scope."
+      },
+      {
+        "name": "Waterfall",
+        "score": 27,
+        "suitability": "Best when requirements are stable, fully specified, and changes are controlled."
+      }
+    ],
+    "justification": "Spiral has the highest transparent score because requirement stability is needs validation, requirement clarity is low, risk is high, complexity is high, need for early prototype is likely. Factors marked 'Not evidenced' are deliberately neutral and require stakeholder confirmation before the SDLC is approved.",
+    "workflow": [
+      {
+        "phase": "Validate requirements",
+        "activities": [
+          "Resolve quality issues",
+          "Confirm stability, time constraints, and expected changes",
+          "Prioritise requirement baseline"
+        ],
+        "roles": [
+          "Business analyst",
+          "Customer representative"
+        ],
+        "deliverables": [
+          "Validated requirements",
+          "SDLC factor assessment"
+        ],
+        "gate": "Stakeholder confirms project assumptions"
+      },
+      {
+        "phase": "Plan the model",
+        "activities": [
+          "Review ranked SDLC options",
+          "Plan risk analysis",
+          "Define iteration or stage gates"
+        ],
+        "roles": [
+          "Project manager",
+          "Architect",
+          "Risk owner"
+        ],
+        "deliverables": [
+          "Approved SDLC decision",
+          "Risk register"
+        ],
+        "gate": "Engineering and business approval"
+      },
+      {
+        "phase": "Develop and validate",
+        "activities": [
+          "Build planned scope",
+          "Test against acceptance criteria",
+          "Review feedback and risks"
+        ],
+        "roles": [
+          "Developers",
+          "QA",
+          "Customer representative"
+        ],
+        "deliverables": [
+          "Working increment or verified stage",
+          "Test evidence"
+        ],
+        "gate": "Quality and stakeholder acceptance"
+      },
+      {
+        "phase": "Release and learn",
+        "activities": [
+          "Release approved scope",
+          "Monitor outcomes",
+          "Reassess requirement changes and risks"
+        ],
+        "roles": [
+          "Operations",
+          "Product owner",
+          "Project manager"
+        ],
+        "deliverables": [
+          "Release record",
+          "Updated SDLC assessment"
+        ],
+        "gate": "Release and change-control approval"
+      }
+    ],
+    "human_approval_required": true
+  },
+  "audit_log": [
+    {
+      "at": "2026-09-26T04:33:33.909408+00:00",
+      "action": "sources_recorded",
+      "detail": "Stored 1 masked source(s): 10 stakeholder response(s) and 0 uploaded document(s)."
+    },
+    {
+      "at": "2026-09-26T04:33:33.909427+00:00",
+      "action": "rag_indexed",
+      "detail": "Indexed 1 source chunk(s) in ChromaDB."
+    },
+    {
+      "at": "2026-09-26T04:33:49.483430+00:00",
+      "action": "requirements_generated",
+      "detail": "Generated 1 evidence-only RAG-grounded draft requirement(s)."
+    },
+    {
+      "at": "2026-09-26T04:33:56.046501+00:00",
+      "action": "sdlc_analysed",
+      "detail": "Recommended Spiral; human approval remains required."
+    }
+  ]
+}

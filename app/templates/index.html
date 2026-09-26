@@ -48,8 +48,11 @@
       </nav>
 
       <section id="documentsPanel" class="panel is-hidden" aria-labelledby="documents-title">
-        <div class="panel-title"><div><p class="eyebrow">Retrieved knowledge</p><h2 id="documents-title">Source documents</h2></div><button id="generateButton" type="button">Generate requirements</button></div>
+        <div class="panel-title"><div><p class="eyebrow">RAG knowledge base</p><h2 id="documents-title">Indexed source documents</h2></div><button id="generateButton" type="button">Generate requirements</button></div>
+        <div id="ragSummary" class="rag-summary" aria-label="RAG index status"></div>
         <div id="documentList" class="document-list"></div>
+        <div class="retrieval-toolbar"><label>Search indexed evidence<input id="retrievalQuery" placeholder="Ask the vector index about a requirement or control"></label><button id="retrieveButton" type="button">Retrieve</button><span id="retrievalCount" class="count"></span></div>
+        <div id="retrievalResults" class="retrieval-results"></div>
       </section>
 
       <section id="requirementsPanel" class="panel is-hidden" aria-labelledby="requirements-title">

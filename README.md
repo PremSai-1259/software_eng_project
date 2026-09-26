@@ -1,63 +1,132 @@
 # FinReq Studio
 
-A small, local-first Software Engineering project prototype for financial-sector requirement generation, quality review, and SDLC identification. It implements the two evaluated flows in the supplied problem statement without pretending that unverified drafts or legal interpretations are final decisions.
+FinReq Studio is a financial requirements engineering prototype built around a complete Retrieval-Augmented Generation (RAG) workflow. It turns stakeholder responses and supporting documents into traceable draft requirements, highlights quality risks, and recommends an SDLC approach for human review.
 
-## What it demonstrates
+## Highlights
 
-1. Begin an adaptive stakeholder interview with the financial functionality, business objective, and users/roles.
-2. Answer one contextual follow-up at a time. The interview selects financial-domain questions for onboarding, payments, loans, fraud, insurance, and reporting, then covers workflow, controls, exceptions, and SDLC context.
-3. Optionally upload `.txt`, `.md`, `.csv`, `.pdf`, or `.docx` policies or existing requirements as supporting evidence.
-4. Mask common account/card, tax-ID, and national-ID-like patterns before local processing.
-5. Retrieve source chunks by keyword overlap and generate evidence-linked requirement drafts.
-6. Classify requirements across functional and non-functional categories.
-7. Run deterministic checks for ambiguity, testability, evidence gaps, duplication, and missing security/compliance review.
-8. Rank SDLC options using factors inferred from the generated requirements, then show a project-specific workflow and approval gates.
-9. Record stakeholder input, uploads, generated drafts, approvals, and SDLC analysis in a local audit log. Export the complete project as JSON.
+- Adaptive stakeholder interview for onboarding, payments, loans, fraud, insurance, and reporting workflows.
+- Upload and process `.txt`, `.md`, `.csv`, `.pdf`, and `.docx` source documents.
+- Mask common account/card, tax-ID, and national-ID-like patterns before indexing.
+- Store embeddings in a persistent, per-project ChromaDB collection.
+- Inspect retrieved evidence before generating requirements.
+- Generate requirements with citations to the retrieved source chunks.
+- Review deterministic quality findings and approve, reject, or return requirements for review.
+- Produce a transparent SDLC recommendation and export the complete project audit trail as JSON.
 
-## Architecture
+## RAG Flow
 
 ```text
-Adaptive stakeholder interview + documents -> processing/masking -> retrieval -> requirement drafts
-         -> quality checks -> SDLC factor scoring -> ranked recommendation
-         -> local JSON store, audit log, export
+Stakeholder interview + uploaded documents
+              |
+       Mask sensitive patterns
+              |
+          Chunk sources
+              |
+     Create embeddings and index
+              |
+     ChromaDB semantic retrieval
+              |
+  LLM or evidence-only requirement drafts
+              |
+ Quality review + SDLC recommendation + export
 ```
 
-The modules are intentionally independent:
+Every requirement is linked to retrieved evidence. Requirements are drafts, begin in `Needs review`, and require human approval.
 
-- `app/services/documents.py`: extraction, masking, chunking, retrieval
-- `app/services/generator.py`: evidence-backed requirement drafting and classification
-- `app/services/quality.py`: requirement quality rules
-- `app/services/sdlc.py`: transparent SDLC factor scoring and workflow construction
-- `app/services/storage.py`: local project persistence
-- `app/prompts/`: separate LLM prompt templates ready for a future structured-output adapter
+## Quick Start
 
-## Setup
-
-Requires Python 3.10+.
+Requires Python 3.10 or later.
 
 ```bash
 python3 -m venv .venv
 source .venv/bin/activate
 pip install -r requirements.txt
-uvicorn app.main:app --reload
+.venv/bin/uvicorn app.main:app --host 127.0.0.1 --port 8000 --reload
 ```
 
-Open `http://127.0.0.1:8000`. Start with the stakeholder questionnaire for `digital customer onboarding and KYC`; `sample_data/digital_onboarding_policy.txt` is optional supporting evidence.
+Open http://127.0.0.1:8000.
 
-Run the automated checks with:
+To use a different port, replace `8000` in the start command, for example `--port 8080`, then open `http://127.0.0.1:8080`.
+
+## LLM Configuration
+
+The project works without an API key. In this local mode, it uses deterministic local embeddings for ChromaDB retrieval and creates evidence-only requirement drafts.
+
+To enable OpenAI-compatible embeddings and LLM-generated requirements, create a `.env` file in the project root:
+
+```text
+LLM_API_KEY=your_new_api_key
+LLM_BASE_URL=https://api.openai.com/v1
+LLM_MODEL=gpt-4o-mini
+EMBEDDING_MODEL=text-embedding-3-small
+
+APP_DATA_DIR=data
+VECTOR_DB_PATH=data/chroma
+```
+
+`OPENAI_API_KEY` is also supported as an alternative to `LLM_API_KEY`. Restart the server after changing `.env`.
+
+Keep API keys only in `.env`, which is ignored by Git. Never add a key to source code, JSON exports, screenshots, or documentation. If a key is exposed, revoke it and create a replacement immediately.
+
+## Using the App
+
+1. Enter the financial functionality, business objective, and users/roles.
+2. Complete the adaptive interview and optionally attach policy or requirement documents.
+3. Create the project. The app masks, chunks, and indexes the sources.
+4. Review the retrieved evidence or use the evidence search field to query the vector index.
+5. Generate evidence-grounded requirements and review their citations, confidence, risk, and acceptance criteria.
+6. Record requirement approval decisions, run the SDLC analysis, and export the project JSON when ready.
+
+Try the included [digital onboarding policy](sample_data/digital_onboarding_policy.txt) with the functionality `Digital customer onboarding and KYC`.
+
+## API Endpoints
+
+| Method | Endpoint | Purpose |
+| --- | --- | --- |
+| `GET` | `/api/rag/status` | Safe RAG configuration and provider status; never returns secrets. |
+| `POST` | `/api/projects` | Create a project and index its source chunks. |
+| `GET` | `/api/projects/{project_id}/retrieval?query=...` | Retrieve the highest-ranked ChromaDB evidence chunks. |
+| `POST` | `/api/projects/{project_id}/requirements` | Generate evidence-grounded draft requirements. |
+| `POST` | `/api/projects/{project_id}/sdlc` | Generate the SDLC recommendation. |
+| `GET` | `/api/projects/{project_id}/export` | Download the project audit trail as JSON. |
+
+Interactive API documentation is available at http://127.0.0.1:8000/docs while the server is running.
+
+## Project Structure
+
+```text
+app/
+  main.py                 FastAPI routes and application lifecycle
+  services/documents.py   Extraction, masking, and chunking
+  services/rag.py         Embeddings, ChromaDB indexing, and retrieval
+  services/llm.py         OpenAI-compatible structured generation
+  services/quality.py     Requirement quality checks
+  services/sdlc.py        SDLC scoring and workflow recommendation
+  services/storage.py     Local project JSON storage
+  prompts/                Requirement-generation prompt templates
+sample_data/              Example supporting document
+tests/                    Automated checks
+data/                     Local JSON projects and ChromaDB data
+```
+
+## Tests
+
+Run the automated test suite from the project root:
 
 ```bash
-pytest
+.venv/bin/python -m pytest -q
 ```
 
-## LLM and evidence policy
+## Troubleshooting
 
-This prototype runs without an API key. The default generator extracts only source-supported draft statements and attaches the relevant source excerpt. It intentionally labels those drafts `Needs review` and uses conservative confidence scores.
+| Problem | Resolution |
+| --- | --- |
+| `Address already in use` | A server is already using the chosen port. Stop it with `Ctrl+C`, or start this app on another port. |
+| `embedding_provider_configured: false` | Add a valid replacement key to `.env`, then restart the server. Local fallback mode still works without it. |
+| The configured embedding provider rejects a request | The app automatically indexes with local embeddings so project creation remains available. Verify `LLM_BASE_URL`, `EMBEDDING_MODEL`, and the provider key before relying on remote embeddings. |
+| `500` while creating a project | Stop the server, ensure the `data/` directory is writable, then restart. A fresh ChromaDB collection is created for each project. |
+| Browser appears frozen | In DevTools, select Resume script execution if the page is paused in the debugger, then refresh. |
 
-`.env.example` configures an OpenAI-compatible structured-output adapter. When `LLM_API_KEY` is set in the environment, requirement generation sends the selected functionality plus retrieved source chunks to that adapter. The response is rejected unless it points to valid source chunk IDs. If the provider is unavailable or returns invalid JSON, the app records the fallback in the audit log and uses local evidence-only drafting instead. No remote model is called by default. Any adapter must preserve the evidence requirement, distinguish inference from explicit source content, reject unsupported regulations/policies, and retain the human approval checkpoint.
+## Limitations
 
-## Scope and extensions
-
-The prototype supports document-led requirement elicitation, not autonomous stakeholder conversations or live regulation retrieval. In production, add role-based authentication, encrypted durable storage, source versioning, a vetted regulatory knowledge base, semantic retrieval, prompt-injection controls, configurable data-retention rules, human editing/regeneration, and an approved structured-output LLM adapter. Compliance mappings remain advisory until approved by authorised compliance or legal personnel.
-=======
-
+This is a local prototype, not a compliance or legal decision system. Before production use, add authentication, access controls, encrypted durable storage, source versioning, prompt-injection safeguards, retention policies, monitoring, and a formal compliance approval workflow.

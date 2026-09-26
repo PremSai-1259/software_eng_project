@@ -7,13 +7,14 @@ from urllib.error import URLError
 from urllib.request import Request, urlopen
 
 from app.schemas import Category, Evidence, Requirement
+from app.services.rag import _api_key, provider_configured
 
 
 PROMPTS = Path(__file__).resolve().parents[1] / "prompts"
 
 
 def enabled() -> bool:
-    return bool(os.getenv("LLM_API_KEY"))
+    return provider_configured()
 
 
 def _post_chat(prompt: str) -> dict:
@@ -27,15 +28,15 @@ def _post_chat(prompt: str) -> dict:
     request = Request(
         f"{base_url}/chat/completions",
         data=json.dumps(payload).encode("utf-8"),
-        headers={"Authorization": f"Bearer {os.environ['LLM_API_KEY']}", "Content-Type": "application/json"},
+        headers={"Authorization": f"Bearer {_api_key()}", "Content-Type": "application/json"},
         method="POST",
     )
     try:
         with urlopen(request, timeout=35) as response:  # noqa: S310 - URL is explicit operator configuration
             content = json.loads(response.read().decode("utf-8"))["choices"][0]["message"]["content"]
+        return json.loads(content)
     except (URLError, KeyError, IndexError, json.JSONDecodeError) as exc:
         raise RuntimeError("The configured LLM did not return usable structured JSON.") from exc
-    return json.loads(content)
 
 
 def generate_requirements(functionality: str, chunks: list[dict]) -> list[Requirement]:
