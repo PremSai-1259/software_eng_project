@@ -1,0 +1,637 @@
+{
+  "id": "ff5756cc9d45",
+  "functionality": "Digital customer onboarding and KYC verification",
+  "created_at": "2026-09-26T09:38:50.776320Z",
+  "documents": [
+    {
+      "id": "DOC-001",
+      "name": "Stakeholder interview",
+      "chunks": [
+        {
+          "id": "chunk-001",
+          "text": "business objective: The system should allow customers to complete account onboarding and KYC verification digitally, reducing manual paperwork and processing time while ensuring that required customer information and identity documents are properly verified and recorded. users and roles: Customers should be able to create an account, enter their personal details, upload KYC documents, and track verification status. KYC officers should be able to review customer information and documents, approve or reject KYC applications, and request corrections. Administrators should be able to manage users, configure KYC requirements, and view onboarding reports."
+        },
+        {
+          "id": "chunk-002",
+          "text": "workflow and outcomes: Identity verification starts when a customer submits the onboarding form with their personal details and KYC documents. The system checks the submitted identity document, customer information, document validity, and whether the details match. If all checks pass, the customer's identity is verified and the customer receives a confirmation. If verification fails, the customer is informed of the reason and can correct the information or resubmit the required documents. exceptions: If information is missing or a document is invalid, the system should mark the application as incomplete and ask the customer to provide the missing information or upload a valid document."
+        },
+        {
+          "id": "chunk-003",
+          "text": "If verification is rejected, the customer should be notified with the reason and allowed to resubmit. KYC officers should handle manual reviews and overrides. Administrators should approve exceptional overrides and maintain an audit record of all manual decisions. business rules: The workflow can continue only when all mandatory customer details are provided, the required KYC documents are uploaded and valid, and the submitted information matches the documents. The customer must meet the applicable eligibility requirements and pass identity verification. Applications with missing information, invalid or expired documents, or mismatched details must be stopped for correction or manual review."
+        },
+        {
+          "id": "chunk-004",
+          "text": "Any manual override or exception requires approval from an authorized KYC officer or administrator and must be recorded in the audit log. data and integrations: The system collects customer name, date of birth, contact details, address, identification details, KYC documents, and verification status. This information is exchanged between the onboarding application, the KYC verification service, and authorized internal systems. If an external verification service is unavailable, the application should not approve the customer automatically."
+        },
+        {
+          "id": "chunk-005",
+          "text": "The request should be marked as pending, the customer should be informed, and the system should retry or route the case for manual review when the service becomes available. security and compliance: Customer data and KYC documents should be accessible only to authorized users based on their roles. Customers can access their own information, KYC officers can review assigned applications, and administrators can manage authorized access. The system should maintain an audit log of document uploads, verification decisions, approvals, rejections, and manual overrides. Sensitive customer data should be encrypted during transmission and storage."
+        },
+        {
+          "id": "chunk-006",
+          "text": "The system should perform basic fraud and duplicate-identity checks and retain only the information required for the onboarding process. Applicable privacy, KYC, and regulatory requirements must be followed. service levels and scale: The system should support at least 1,000 customer onboarding applications per day and handle peak loads of around 100 simultaneous users. Normal page and API responses should complete within 2 seconds, excluding delays from external KYC services. The system should target 99.9% availability during business operations."
+        },
+        {
+          "id": "chunk-007",
+          "text": "Customer applications and KYC data should be backed up regularly, and in case of a system failure, the service should be restored within 4 hours with no more than 1 hour of data loss. delivery constraints: The first version should be delivered within 8 weeks with a small development team consisting of 4 developers, 1 QA engineer, and 1 project manager. The project should use the existing authentication, database, and KYC verification services where possible. Key stakeholders should be available weekly for requirement clarification and approval. The solution should be designed so that business rules, KYC requirements, and workflows can be updated without major changes to the system."
+        },
+        {
+          "id": "chunk-008",
+          "text": "Major changes after development begins should go through a formal change-request and approval process. validation and rollout: The system should be tested using unit testing, integration testing, security testing, performance testing, and user acceptance testing. The QA team should verify that all functional and non-functional requirements are satisfied before release. Business stakeholders should approve the system after successful user acceptance testing. The system should first be released to a small pilot group of users before full deployment. After launch, system performance, errors, failed KYC verifications, and user feedback should be monitored."
+        },
+        {
+          "id": "chunk-009",
+          "text": "Regular reviews should be conducted to fix defects, improve the onboarding process, and update business rules when requirements change."
+        }
+      ]
+    }
+  ],
+  "requirements": [
+    {
+      "id": "REQ-001",
+      "statement": "business objective: The system should allow customers to complete account onboarding and KYC verification digitally, reducing manual paperwork and processing time while ensuring that required customer information and identity documents are properly verified and recorded.",
+      "categories": [
+        "Regulatory",
+        "Data management"
+      ],
+      "evidence": [
+        {
+          "document_id": "DOC-001",
+          "document_name": "Stakeholder interview",
+          "chunk_id": "chunk-001",
+          "excerpt": "business objective: The system should allow customers to complete account onboarding and KYC verification digitally, reducing manual paperwork and processing time while ensuring that required customer information and identity documents are properly verified and recorded.",
+          "relevance": 0.77
+        }
+      ],
+      "business_justification": "Supports the documented Digital customer onboarding and KYC verification need.",
+      "priority": "Should",
+      "dependencies": [],
+      "assumptions": [],
+      "acceptance_criteria": [
+        "A reviewer must confirm measurable acceptance criteria before baseline approval."
+      ],
+      "applicable_policy": null,
+      "risk_level": "Medium",
+      "confidence": 0.77,
+      "reasoning": "Evidence-only draft derived verbatim from the cited source; human refinement is required.",
+      "approval_status": "Needs review"
+    },
+    {
+      "id": "REQ-002",
+      "statement": "users and roles: Customers should be able to create an account, enter their personal details, upload KYC documents, and track verification status.",
+      "categories": [
+        "Regulatory",
+        "Data management"
+      ],
+      "evidence": [
+        {
+          "document_id": "DOC-001",
+          "document_name": "Stakeholder interview",
+          "chunk_id": "chunk-001",
+          "excerpt": "users and roles: Customers should be able to create an account, enter their personal details, upload KYC documents, and track verification status.",
+          "relevance": 0.77
+        }
+      ],
+      "business_justification": "Supports the documented Digital customer onboarding and KYC verification need.",
+      "priority": "Should",
+      "dependencies": [],
+      "assumptions": [],
+      "acceptance_criteria": [
+        "A reviewer must confirm measurable acceptance criteria before baseline approval."
+      ],
+      "applicable_policy": null,
+      "risk_level": "Medium",
+      "confidence": 0.77,
+      "reasoning": "Evidence-only draft derived verbatim from the cited source; human refinement is required.",
+      "approval_status": "Needs review"
+    },
+    {
+      "id": "REQ-003",
+      "statement": "KYC officers should be able to review customer information and documents, approve or reject KYC applications, and request corrections.",
+      "categories": [
+        "Regulatory",
+        "Data management"
+      ],
+      "evidence": [
+        {
+          "document_id": "DOC-001",
+          "document_name": "Stakeholder interview",
+          "chunk_id": "chunk-001",
+          "excerpt": "KYC officers should be able to review customer information and documents, approve or reject KYC applications, and request corrections.",
+          "relevance": 0.77
+        }
+      ],
+      "business_justification": "Supports the documented Digital customer onboarding and KYC verification need.",
+      "priority": "Should",
+      "dependencies": [],
+      "assumptions": [],
+      "acceptance_criteria": [
+        "A reviewer must confirm measurable acceptance criteria before baseline approval."
+      ],
+      "applicable_policy": null,
+      "risk_level": "Medium",
+      "confidence": 0.77,
+      "reasoning": "Evidence-only draft derived verbatim from the cited source; human refinement is required.",
+      "approval_status": "Needs review"
+    },
+    {
+      "id": "REQ-004",
+      "statement": "Administrators should be able to manage users, configure KYC requirements, and view onboarding reports.",
+      "categories": [
+        "Regulatory",
+        "Audit / reporting"
+      ],
+      "evidence": [
+        {
+          "document_id": "DOC-001",
+          "document_name": "Stakeholder interview",
+          "chunk_id": "chunk-001",
+          "excerpt": "Administrators should be able to manage users, configure KYC requirements, and view onboarding reports.",
+          "relevance": 0.77
+        }
+      ],
+      "business_justification": "Supports the documented Digital customer onboarding and KYC verification need.",
+      "priority": "Should",
+      "dependencies": [],
+      "assumptions": [],
+      "acceptance_criteria": [
+        "A reviewer must confirm measurable acceptance criteria before baseline approval."
+      ],
+      "applicable_policy": null,
+      "risk_level": "Medium",
+      "confidence": 0.77,
+      "reasoning": "Evidence-only draft derived verbatim from the cited source; human refinement is required.",
+      "approval_status": "Draft"
+    },
+    {
+      "id": "REQ-005",
+      "statement": "Any manual override or exception requires approval from an authorized KYC officer or administrator and must be recorded in the audit log.",
+      "categories": [
+        "Regulatory",
+        "Audit / reporting",
+        "Data management"
+      ],
+      "evidence": [
+        {
+          "document_id": "DOC-001",
+          "document_name": "Stakeholder interview",
+          "chunk_id": "chunk-004",
+          "excerpt": "Any manual override or exception requires approval from an authorized KYC officer or administrator and must be recorded in the audit log.",
+          "relevance": 0.76
+        }
+      ],
+      "business_justification": "Supports the documented Digital customer onboarding and KYC verification need.",
+      "priority": "Should",
+      "dependencies": [],
+      "assumptions": [],
+      "acceptance_criteria": [
+        "A reviewer must confirm measurable acceptance criteria before baseline approval."
+      ],
+      "applicable_policy": null,
+      "risk_level": "Medium",
+      "confidence": 0.76,
+      "reasoning": "Evidence-only draft derived verbatim from the cited source; human refinement is required.",
+      "approval_status": "Needs review"
+    },
+    {
+      "id": "REQ-006",
+      "statement": "If an external verification service is unavailable, the application should not approve the customer automatically.",
+      "categories": [
+        "Functional"
+      ],
+      "evidence": [
+        {
+          "document_id": "DOC-001",
+          "document_name": "Stakeholder interview",
+          "chunk_id": "chunk-004",
+          "excerpt": "If an external verification service is unavailable, the application should not approve the customer automatically.",
+          "relevance": 0.76
+        }
+      ],
+      "business_justification": "Supports the documented Digital customer onboarding and KYC verification need.",
+      "priority": "Should",
+      "dependencies": [],
+      "assumptions": [],
+      "acceptance_criteria": [
+        "A reviewer must confirm measurable acceptance criteria before baseline approval."
+      ],
+      "applicable_policy": null,
+      "risk_level": "Medium",
+      "confidence": 0.76,
+      "reasoning": "Evidence-only draft derived verbatim from the cited source; human refinement is required.",
+      "approval_status": "Needs review"
+    },
+    {
+      "id": "REQ-007",
+      "statement": "exceptions: If information is missing or a document is invalid, the system should mark the application as incomplete and ask the customer to provide the missing information or upload a valid document.",
+      "categories": [
+        "Data management"
+      ],
+      "evidence": [
+        {
+          "document_id": "DOC-001",
+          "document_name": "Stakeholder interview",
+          "chunk_id": "chunk-002",
+          "excerpt": "exceptions: If information is missing or a document is invalid, the system should mark the application as incomplete and ask the customer to provide the missing information or upload a valid document.",
+          "relevance": 0.7
+        }
+      ],
+      "business_justification": "Supports the documented Digital customer onboarding and KYC verification need.",
+      "priority": "Should",
+      "dependencies": [],
+      "assumptions": [],
+      "acceptance_criteria": [
+        "A reviewer must confirm measurable acceptance criteria before baseline approval."
+      ],
+      "applicable_policy": null,
+      "risk_level": "Medium",
+      "confidence": 0.7,
+      "reasoning": "Evidence-only draft derived verbatim from the cited source; human refinement is required.",
+      "approval_status": "Needs review"
+    },
+    {
+      "id": "REQ-008",
+      "statement": "If verification is rejected, the customer should be notified with the reason and allowed to resubmit.",
+      "categories": [
+        "Functional"
+      ],
+      "evidence": [
+        {
+          "document_id": "DOC-001",
+          "document_name": "Stakeholder interview",
+          "chunk_id": "chunk-003",
+          "excerpt": "If verification is rejected, the customer should be notified with the reason and allowed to resubmit.",
+          "relevance": 0.68
+        }
+      ],
+      "business_justification": "Supports the documented Digital customer onboarding and KYC verification need.",
+      "priority": "Should",
+      "dependencies": [],
+      "assumptions": [],
+      "acceptance_criteria": [
+        "A reviewer must confirm measurable acceptance criteria before baseline approval."
+      ],
+      "applicable_policy": null,
+      "risk_level": "Medium",
+      "confidence": 0.68,
+      "reasoning": "Evidence-only draft derived verbatim from the cited source; human refinement is required.",
+      "approval_status": "Needs review"
+    },
+    {
+      "id": "REQ-009",
+      "statement": "KYC officers should handle manual reviews and overrides.",
+      "categories": [
+        "Regulatory"
+      ],
+      "evidence": [
+        {
+          "document_id": "DOC-001",
+          "document_name": "Stakeholder interview",
+          "chunk_id": "chunk-003",
+          "excerpt": "KYC officers should handle manual reviews and overrides.",
+          "relevance": 0.68
+        }
+      ],
+      "business_justification": "Supports the documented Digital customer onboarding and KYC verification need.",
+      "priority": "Should",
+      "dependencies": [],
+      "assumptions": [],
+      "acceptance_criteria": [
+        "A reviewer must confirm measurable acceptance criteria before baseline approval."
+      ],
+      "applicable_policy": null,
+      "risk_level": "Medium",
+      "confidence": 0.68,
+      "reasoning": "Evidence-only draft derived verbatim from the cited source; human refinement is required.",
+      "approval_status": "Needs review"
+    },
+    {
+      "id": "REQ-010",
+      "statement": "Administrators should approve exceptional overrides and maintain an audit record of all manual decisions.",
+      "categories": [
+        "Audit / reporting",
+        "Data management"
+      ],
+      "evidence": [
+        {
+          "document_id": "DOC-001",
+          "document_name": "Stakeholder interview",
+          "chunk_id": "chunk-003",
+          "excerpt": "Administrators should approve exceptional overrides and maintain an audit record of all manual decisions.",
+          "relevance": 0.68
+        }
+      ],
+      "business_justification": "Supports the documented Digital customer onboarding and KYC verification need.",
+      "priority": "Should",
+      "dependencies": [],
+      "assumptions": [],
+      "acceptance_criteria": [
+        "A reviewer must confirm measurable acceptance criteria before baseline approval."
+      ],
+      "applicable_policy": null,
+      "risk_level": "Medium",
+      "confidence": 0.68,
+      "reasoning": "Evidence-only draft derived verbatim from the cited source; human refinement is required.",
+      "approval_status": "Needs review"
+    }
+  ],
+  "quality_issues": [
+    {
+      "id": "QI-001",
+      "requirement_id": "REQ-006",
+      "check": "Missing security or compliance requirements",
+      "severity": "Low",
+      "message": "This item has no linked security, privacy, or regulatory control.",
+      "recommendation": "Confirm whether a control is not applicable or add an evidence-backed control."
+    },
+    {
+      "id": "QI-002",
+      "requirement_id": "REQ-007",
+      "check": "Missing security or compliance requirements",
+      "severity": "Low",
+      "message": "This item has no linked security, privacy, or regulatory control.",
+      "recommendation": "Confirm whether a control is not applicable or add an evidence-backed control."
+    },
+    {
+      "id": "QI-003",
+      "requirement_id": "REQ-008",
+      "check": "Missing security or compliance requirements",
+      "severity": "Low",
+      "message": "This item has no linked security, privacy, or regulatory control.",
+      "recommendation": "Confirm whether a control is not applicable or add an evidence-backed control."
+    },
+    {
+      "id": "QI-004",
+      "requirement_id": "REQ-010",
+      "check": "Missing security or compliance requirements",
+      "severity": "Low",
+      "message": "This item has no linked security, privacy, or regulatory control.",
+      "recommendation": "Confirm whether a control is not applicable or add an evidence-backed control."
+    }
+  ],
+  "sdlc": {
+    "recommended_sdlc": "Spiral",
+    "factors": [
+      {
+        "name": "Requirement stability",
+        "value": "Needs validation",
+        "score": 2,
+        "rationale": "Draft or unapproved requirements indicate that stability has not yet been demonstrated.",
+        "requirement_ids": [
+          "REQ-001",
+          "REQ-002",
+          "REQ-003",
+          "REQ-004",
+          "REQ-005",
+          "REQ-006",
+          "REQ-007",
+          "REQ-008",
+          "REQ-009",
+          "REQ-010"
+        ]
+      },
+      {
+        "name": "Requirement clarity",
+        "value": "Low",
+        "score": 2,
+        "rationale": "Measured from the presence of concrete, non-placeholder acceptance criteria.",
+        "requirement_ids": [
+          "REQ-001",
+          "REQ-002",
+          "REQ-003",
+          "REQ-004",
+          "REQ-005",
+          "REQ-006",
+          "REQ-007",
+          "REQ-008",
+          "REQ-009",
+          "REQ-010"
+        ]
+      },
+      {
+        "name": "Risk",
+        "value": "High",
+        "score": 5,
+        "rationale": "Derived from stated high risk and security, privacy, regulatory, or audit classifications.",
+        "requirement_ids": [
+          "REQ-001",
+          "REQ-002",
+          "REQ-003",
+          "REQ-004",
+          "REQ-005",
+          "REQ-009",
+          "REQ-010"
+        ]
+      },
+      {
+        "name": "Complexity",
+        "value": "High",
+        "score": 4,
+        "rationale": "Integration and data-management requirements increase coordination and technical complexity.",
+        "requirement_ids": [
+          "REQ-001",
+          "REQ-002",
+          "REQ-003",
+          "REQ-005",
+          "REQ-007",
+          "REQ-010"
+        ]
+      },
+      {
+        "name": "Need for early prototype",
+        "value": "Likely",
+        "score": 4,
+        "rationale": "Unclear requirements or integration complexity make early learning and validation valuable.",
+        "requirement_ids": []
+      },
+      {
+        "name": "Time constraints",
+        "value": "Not evidenced",
+        "score": 3,
+        "rationale": "No schedule or deadline evidence is available in the generated requirements; confirm this with the project sponsor.",
+        "requirement_ids": []
+      },
+      {
+        "name": "Customer involvement",
+        "value": "Not evidenced",
+        "score": 3,
+        "rationale": "Derived only from business, stakeholder, or usability requirements; otherwise this must be confirmed.",
+        "requirement_ids": []
+      },
+      {
+        "name": "Frequency of changes",
+        "value": "Not evidenced",
+        "score": 3,
+        "rationale": "Requirement documents do not establish the expected change rate; confirm with product and business stakeholders.",
+        "requirement_ids": []
+      },
+      {
+        "name": "Need for iterative development",
+        "value": "Likely",
+        "score": 4,
+        "rationale": "Unapproved or unclear requirements benefit from repeated review and validation cycles.",
+        "requirement_ids": []
+      },
+      {
+        "name": "Need for risk analysis",
+        "value": "High",
+        "score": 5,
+        "rationale": "Security/compliance concerns or complex integration warrant explicit risk analysis.",
+        "requirement_ids": [
+          "REQ-001",
+          "REQ-002",
+          "REQ-003",
+          "REQ-004",
+          "REQ-005",
+          "REQ-007",
+          "REQ-009",
+          "REQ-010"
+        ]
+      }
+    ],
+    "options": [
+      {
+        "name": "Spiral",
+        "score": 100,
+        "suitability": "Best when risk analysis, prototypes, and repeated risk-reduction cycles are central."
+      },
+      {
+        "name": "Prototyping",
+        "score": 97,
+        "suitability": "Best for validating uncertain user needs, workflows, and interfaces before committing to a full build."
+      },
+      {
+        "name": "Agile",
+        "score": 92,
+        "suitability": "Best for frequent feedback and evolving requirements, with planned governance for high-risk work."
+      },
+      {
+        "name": "Incremental",
+        "score": 86,
+        "suitability": "Best when value can be divided into validated, independently testable increments."
+      },
+      {
+        "name": "V-Shape",
+        "score": 44,
+        "suitability": "Best when each specification stage needs a linked verification and validation activity."
+      },
+      {
+        "name": "RAD",
+        "score": 37,
+        "suitability": "Best for time-boxed delivery with available users and modular, lower-risk scope."
+      },
+      {
+        "name": "Waterfall",
+        "score": 27,
+        "suitability": "Best when requirements are stable, fully specified, and changes are controlled."
+      }
+    ],
+    "justification": "Spiral has the highest transparent score because requirement stability is needs validation, requirement clarity is low, risk is high, complexity is high, need for early prototype is likely. Factors marked 'Not evidenced' are deliberately neutral and require stakeholder confirmation before the SDLC is approved.",
+    "workflow": [
+      {
+        "phase": "Validate requirements",
+        "activities": [
+          "Resolve quality issues",
+          "Confirm stability, time constraints, and expected changes",
+          "Prioritise requirement baseline"
+        ],
+        "roles": [
+          "Business analyst",
+          "Customer representative"
+        ],
+        "deliverables": [
+          "Validated requirements",
+          "SDLC factor assessment"
+        ],
+        "gate": "Stakeholder confirms project assumptions"
+      },
+      {
+        "phase": "Plan the model",
+        "activities": [
+          "Review ranked SDLC options",
+          "Plan risk analysis",
+          "Define iteration or stage gates"
+        ],
+        "roles": [
+          "Project manager",
+          "Architect",
+          "Risk owner"
+        ],
+        "deliverables": [
+          "Approved SDLC decision",
+          "Risk register"
+        ],
+        "gate": "Engineering and business approval"
+      },
+      {
+        "phase": "Develop and validate",
+        "activities": [
+          "Build planned scope",
+          "Test against acceptance criteria",
+          "Review feedback and risks"
+        ],
+        "roles": [
+          "Developers",
+          "QA",
+          "Customer representative"
+        ],
+        "deliverables": [
+          "Working increment or verified stage",
+          "Test evidence"
+        ],
+        "gate": "Quality and stakeholder acceptance"
+      },
+      {
+        "phase": "Release and learn",
+        "activities": [
+          "Release approved scope",
+          "Monitor outcomes",
+          "Reassess requirement changes and risks"
+        ],
+        "roles": [
+          "Operations",
+          "Product owner",
+          "Project manager"
+        ],
+        "deliverables": [
+          "Release record",
+          "Updated SDLC assessment"
+        ],
+        "gate": "Release and change-control approval"
+      }
+    ],
+    "human_approval_required": true
+  },
+  "audit_log": [
+    {
+      "at": "2026-09-26T09:38:51.076256+00:00",
+      "action": "sources_recorded",
+      "detail": "Stored 1 masked source(s): 10 stakeholder response(s) and 0 uploaded document(s)."
+    },
+    {
+      "at": "2026-09-26T09:38:51.076279+00:00",
+      "action": "rag_indexed",
+      "detail": "Indexed 9 source chunk(s) in ChromaDB."
+    },
+    {
+      "at": "2026-09-26T09:39:08.726185+00:00",
+      "action": "llm_fallback",
+      "detail": "The configured LLM did not return usable structured JSON."
+    },
+    {
+      "at": "2026-09-26T09:39:08.727313+00:00",
+      "action": "requirements_generated",
+      "detail": "Generated 10 evidence-only RAG-grounded draft requirement(s)."
+    },
+    {
+      "at": "2026-09-26T09:39:16.589233+00:00",
+      "action": "requirement_approval_updated",
+      "detail": "REQ-004 marked Draft."
+    },
+    {
+      "at": "2026-09-26T09:39:20.371005+00:00",
+      "action": "sdlc_analysed",
+      "detail": "Recommended Spiral; human approval remains required."
+    }
+  ]
+}

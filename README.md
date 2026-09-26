@@ -4,7 +4,7 @@ FinReq Studio is a financial requirements engineering prototype built around a c
 
 ## Highlights
 
-- Adaptive stakeholder interview for onboarding, payments, loans, fraud, insurance, and reporting workflows.
+- Ten-prompt, answer-driven stakeholder interview that gathers the workflow, decisions, exceptions, integrations, controls, scale, and delivery constraints needed for SDLC analysis.
 - Upload and process `.txt`, `.md`, `.csv`, `.pdf`, and `.docx` source documents.
 - Mask common account/card, tax-ID, and national-ID-like patterns before indexing.
 - Store embeddings in a persistent, per-project ChromaDB collection.
