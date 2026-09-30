@@ -31,6 +31,60 @@ class Evidence(BaseModel):
     relevance: float = Field(ge=0, le=1)
 
 
+class ComplianceMapping(BaseModel):
+    """A reviewable control suggestion, never a legal determination."""
+
+    control_id: str
+    source_title: str
+    source_url: str
+    jurisdiction: str = "India"
+    applicability: str
+    rationale: str
+    human_approval_required: bool = True
+
+
+class RiskEntry(BaseModel):
+    id: str
+    requirement_id: str
+    title: str
+    category: Literal["Security", "Privacy", "Compliance", "Operational", "Integration"]
+    level: Literal["Low", "Medium", "High"]
+    rationale: str
+    mitigation: str
+    owner_role: str
+    status: Literal["Open", "Accepted", "Mitigated"] = "Open"
+
+
+class TraceabilityRecord(BaseModel):
+    requirement_id: str
+    source_document: str
+    source_chunk_id: str
+    control_ids: list[str] = Field(default_factory=list)
+    risk_ids: list[str] = Field(default_factory=list)
+
+
+class ApprovalDecision(BaseModel):
+    id: str
+    subject_type: Literal["Requirement", "SDLC", "Compliance mapping", "Release"]
+    subject_id: str
+    decision: Literal["Approved", "Rejected", "Needs review"]
+    reviewer: str
+    reviewer_role: str
+    rationale: str = ""
+    at: datetime
+
+
+class EvaluationMetrics(BaseModel):
+    requirements_count: int = 0
+    citation_coverage: float = Field(ge=0, le=1)
+    measurable_acceptance_coverage: float = Field(ge=0, le=1)
+    rbi_control_coverage: float = Field(ge=0, le=1)
+    open_high_issues: int = 0
+    open_risks: int = 0
+    human_review_coverage: float = Field(ge=0, le=1)
+    notes: list[str] = Field(default_factory=list)
+
+
 class Requirement(BaseModel):
     id: str
     statement: str
@@ -42,6 +96,7 @@ class Requirement(BaseModel):
     assumptions: list[str] = Field(default_factory=list)
     acceptance_criteria: list[str] = Field(default_factory=list)
     applicable_policy: str | None = None
+    compliance_mappings: list[ComplianceMapping] = Field(default_factory=list)
     risk_level: Literal["Low", "Medium", "High"] = "Medium"
     confidence: float = Field(ge=0, le=1)
     reasoning: str
@@ -103,6 +158,12 @@ class Project(BaseModel):
     documents: list[dict] = Field(default_factory=list)
     requirements: list[Requirement] = Field(default_factory=list)
     quality_issues: list[QualityIssue] = Field(default_factory=list)
+    risks: list[RiskEntry] = Field(default_factory=list)
+    traceability: list[TraceabilityRecord] = Field(default_factory=list)
+    artefacts: dict = Field(default_factory=dict)
+    clarification_questions: list[str] = Field(default_factory=list)
+    approvals: list[ApprovalDecision] = Field(default_factory=list)
+    evaluation: EvaluationMetrics | None = None
     sdlc: SdlcRecommendation | None = None
     agent_runs: list[AgentRun] = Field(default_factory=list)
     audit_log: list[dict] = Field(default_factory=list)

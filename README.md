@@ -1,13 +1,15 @@
 # FinReq Studio
 
-FinReq Studio is a financial requirements engineering prototype built around a complete Retrieval-Augmented Generation (RAG) workflow. It uses exactly two collaborative, sequential agents to turn stakeholder responses and supporting documents into traceable draft requirements and an SDLC advisory for human review.
+FinReq Studio is an RBI-scoped financial requirements engineering prototype built around a Retrieval-Augmented Generation (RAG) workflow. It turns stakeholder responses and supporting documents into traceable draft requirements, reviewable RBI control suggestions, derived requirements artefacts, and an SDLC advisory for human review.
 
-## Two-agent architecture
+## Agent workflow
 
-1. **Requirements Agent** — retrieves approved evidence, creates and classifies draft requirements, attaches citations, and runs deterministic quality checks for ambiguity, missing evidence, testability, control coverage, and duplicates.
-2. **Governance & SDLC Agent** — consumes the reviewed requirement set, uses its security, privacy, regulatory, audit, integration, and risk signals to rank SDLC options and generate workflow approval gates.
+1. **Requirements Agent** — retrieves approved evidence, creates and classifies draft requirements, attaches citations, and runs deterministic quality checks.
+2. **Compliance & Risk Agent** — maps requirements to a small, versioned RBI control catalogue, builds a risk register, and creates source-to-requirement-to-control traceability records.
+3. **Documentation Agent** — derives an exportable SRS, user stories, use cases, risk register, compliance-control matrix, traceability matrix, assumptions/dependencies, and open issues.
+4. **Governance & SDLC Agent** — consumes the reviewed requirement set, uses its security, privacy, regulatory, audit, integration, and risk signals to rank SDLC options and generate workflow approval gates.
 
-The hand-off is explicit and sequential: Agent 2 cannot run until Agent 1 has produced requirements. Both outputs are advisory, are recorded in the project audit trail, and remain pending human review. This keeps the prototype within the problem statement's human-in-the-loop and non-legal-advice boundaries without pretending that more autonomous roles exist.
+The hand-off is explicit and sequential: compliance, risk, and documentation run only after requirements exist; SDLC analysis runs after requirement generation. Outputs are advisory, are recorded in the project audit trail, and remain pending human review. RBI mappings are applicability suggestions, not legal determinations.
 
 ## Highlights
 
@@ -18,7 +20,11 @@ The hand-off is explicit and sequential: Agent 2 cannot run until Agent 1 has pr
 - Inspect retrieved evidence before generating requirements.
 - Generate requirements with citations to the retrieved source chunks.
 - Review deterministic quality findings and approve, reject, or return requirements for review.
-- Produce a transparent SDLC recommendation and export the complete project audit trail as JSON.
+- Turn quality findings into a requirement-specific clarification queue, so incomplete or ambiguous drafts return to stakeholder review.
+- Produce a transparent SDLC recommendation, record its human approval or return-for-review decision, and export the complete project audit trail as JSON.
+- Calculate transparent prototype evaluation metrics for citation coverage, measurable acceptance coverage, control coverage, open risks/issues, and human-review coverage.
+- Use a reviewable RBI source register for KYC, IT-governance, and digital-payment-control suggestions.
+- Export derived SRS, user-story, use-case, risk, compliance-control, traceability, and open-issue artefacts through the project JSON or `/api/projects/{project_id}/artefacts`.
 
 ## RAG Flow
 
@@ -95,6 +101,10 @@ Try the included [digital onboarding policy](sample_data/digital_onboarding_poli
 | `GET` | `/api/projects/{project_id}/retrieval?query=...` | Retrieve the highest-ranked ChromaDB evidence chunks. |
 | `POST` | `/api/projects/{project_id}/requirements` | Generate evidence-grounded draft requirements. |
 | `POST` | `/api/projects/{project_id}/sdlc` | Generate the SDLC recommendation. |
+| `POST` | `/api/projects/{project_id}/sdlc/approval` | Record the human approval, rejection, or return-for-review decision. |
+| `GET` | `/api/knowledge-base/rbi` | Inspect the RBI source register and applicability notices. |
+| `GET` | `/api/projects/{project_id}/artefacts` | Retrieve derived SRS, traceability, risk, and compliance artefacts. |
+| `GET` | `/api/projects/{project_id}/evaluation` | Retrieve transparent prototype evaluation metrics. |
 | `GET` | `/api/projects/{project_id}/export` | Download the project audit trail as JSON. |
 
 Interactive API documentation is available at http://127.0.0.1:8000/docs while the server is running.
@@ -136,4 +146,4 @@ Run the automated test suite from the project root:
 
 ## Limitations
 
-This is a local prototype, not a compliance or legal decision system. Before production use, add authentication, access controls, encrypted durable storage, source versioning, prompt-injection safeguards, retention policies, monitoring, and a formal compliance approval workflow.
+This is a local prototype, not a compliance or legal decision system. The RBI catalogue is deliberately small and its applicability must be confirmed by authorised compliance/legal reviewers. Before production use, add authentication, RBAC/MFA, encrypted durable storage, institution-approved and versioned regulatory sources, formal retention policies, monitoring, and a formal approval workflow.

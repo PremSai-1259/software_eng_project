@@ -12,8 +12,9 @@ from fastapi import FastAPI, File, Form, HTTPException, UploadFile
 from fastapi.responses import FileResponse, JSONResponse
 from fastapi.staticfiles import StaticFiles
 
-from app.schemas import AgentRun, Project
-from app.services.agents import GovernanceSdlcAgent, RequirementsAgent
+from app.schemas import AgentRun, ApprovalDecision, Project
+from app.services.agents import ComplianceRiskAgent, DocumentationAgent, GovernanceSdlcAgent, RequirementsAgent
+from app.services.compliance import catalogue as rbi_catalogue
 from app.services.documents import chunk_text, extract_text, mask_sensitive
 from app.services.generator import generate_evidence_drafts
 from app.services.llm import enabled as llm_enabled, generate_requirements as generate_llm_requirements
@@ -25,6 +26,8 @@ load_dotenv(ROOT.parent / ".env")
 store = ProjectStore()
 vector_store = VectorStore()
 requirements_agent = RequirementsAgent()
+compliance_risk_agent = ComplianceRiskAgent()
+documentation_agent = DocumentationAgent()
 governance_sdlc_agent = GovernanceSdlcAgent()
 
 
@@ -70,6 +73,12 @@ def rag_status() -> JSONResponse:
         "embedding_provider_configured": provider_configured(),
         "generation_mode": "LLM generation with citation validation" if llm_enabled() else "Evidence-only drafts until LLM_API_KEY is configured",
     })
+
+
+@app.get("/api/knowledge-base/rbi")
+def rbi_knowledge_base() -> JSONResponse:
+    """Return the reviewable source register, not legal advice or source text."""
+    return JSONResponse({"jurisdiction": "India", "authority": "Reserve Bank of India", "sources": rbi_catalogue(), "notice": "Source applicability and legal interpretation require authorised compliance review."})
 
 
 @app.post("/api/projects")
@@ -166,6 +175,16 @@ def generate_requirements(project_id: str) -> JSONResponse:
         project, requirements_agent.name, requirements_agent.responsibility, "Waiting for human review",
         f"Generated {len(project.requirements)} {generation_mode} RAG-grounded draft requirement(s) and found {len(project.quality_issues)} quality issue(s).",
     )
+    compliance_risk_agent.run(project)
+    record_agent_run(
+        project, compliance_risk_agent.name, compliance_risk_agent.responsibility, "Waiting for human review",
+        f"Mapped {sum(len(item.compliance_mappings) for item in project.requirements)} RBI control suggestion(s) and raised {len(project.risks)} reviewable risk entr{'y' if len(project.risks) == 1 else 'ies'}.",
+    )
+    documentation_agent.run(project)
+    record_agent_run(
+        project, documentation_agent.name, documentation_agent.responsibility, "Waiting for human review",
+        "Generated exportable SRS, user-story, use-case, risk, compliance, traceability, and open-issue artefacts.",
+    )
     store.save(project)
     return JSONResponse(project.model_dump(mode="json"))
 
@@ -182,6 +201,13 @@ def update_approval(project_id: str, requirement_id: str, status: str = Form(...
     if not requirement:
         raise HTTPException(404, "Requirement not found.")
     requirement.approval_status = status
+    if status != "Draft":
+        project.approvals.append(ApprovalDecision(
+            id=f"APR-{uuid4().hex[:8].upper()}", subject_type="Requirement", subject_id=requirement_id,
+            decision=status, reviewer="Human reviewer (identity not recorded)", reviewer_role="Not recorded",
+            rationale="Requirement review status updated in the prototype interface.", at=datetime.now(timezone.utc),
+        ))
+    documentation_agent.run(project)
     audit(project, "requirement_approval_updated", f"{requirement_id} marked {status}.")
     store.save(project)
     return JSONResponse(requirement.model_dump(mode="json"))
@@ -204,12 +230,57 @@ def sdlc_analysis(project_id: str) -> JSONResponse:
     return JSONResponse(project.sdlc.model_dump(mode="json"))
 
 
+@app.post("/api/projects/{project_id}/sdlc/approval")
+def update_sdlc_approval(project_id: str, status: str = Form(...), rationale: str = Form("")) -> JSONResponse:
+    """Record the mandatory human decision on an advisory SDLC recommendation."""
+    if status not in {"Approved", "Rejected", "Needs review"}:
+        raise HTTPException(422, "Invalid SDLC approval status.")
+    try:
+        project = store.get(project_id)
+    except KeyError as exc:
+        raise HTTPException(404, "Project not found.") from exc
+    if not project.sdlc:
+        raise HTTPException(422, "Run SDLC analysis before recording its approval.")
+    project.approvals.append(ApprovalDecision(
+        id=f"APR-{uuid4().hex[:8].upper()}", subject_type="SDLC", subject_id=project.sdlc.recommended_sdlc,
+        decision=status, reviewer="Human reviewer (identity not recorded)", reviewer_role="Not recorded",
+        rationale=rationale.strip() or "SDLC decision recorded in the prototype interface.", at=datetime.now(timezone.utc),
+    ))
+    documentation_agent.run(project)
+    audit(project, "sdlc_approval_updated", f"{project.sdlc.recommended_sdlc} marked {status}.")
+    store.save(project)
+    return JSONResponse(project.approvals[-1].model_dump(mode="json"))
+
+
 @app.get("/api/projects/{project_id}")
 def get_project(project_id: str) -> JSONResponse:
     try:
         return JSONResponse(store.get(project_id).model_dump(mode="json"))
     except KeyError as exc:
         raise HTTPException(404, "Project not found.") from exc
+
+
+@app.get("/api/projects/{project_id}/artefacts")
+def get_artefacts(project_id: str) -> JSONResponse:
+    try:
+        project = store.get(project_id)
+    except KeyError as exc:
+        raise HTTPException(404, "Project not found.") from exc
+    if not project.artefacts:
+        raise HTTPException(422, "Generate requirements before requesting derived artefacts.")
+    return JSONResponse(project.artefacts)
+
+
+@app.get("/api/projects/{project_id}/evaluation")
+def get_evaluation(project_id: str) -> JSONResponse:
+    """Return transparent, prototype-level effectiveness metrics for demonstration."""
+    try:
+        project = store.get(project_id)
+    except KeyError as exc:
+        raise HTTPException(404, "Project not found.") from exc
+    if not project.evaluation:
+        raise HTTPException(422, "Generate requirements before requesting evaluation metrics.")
+    return JSONResponse(project.evaluation.model_dump(mode="json"))
 
 
 @app.get("/api/projects/{project_id}/export")

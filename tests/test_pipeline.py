@@ -8,7 +8,7 @@ from urllib.error import HTTPError
 from app.services import rag
 from app.services.rag import RagConfigurationError, VectorStore, _api_key, _embed, provider_configured
 from app.services.sdlc import recommend
-from app.services.agents import GovernanceSdlcAgent, RequirementsAgent
+from app.services.agents import ComplianceRiskAgent, DocumentationAgent, GovernanceSdlcAgent, RequirementsAgent
 from app.schemas import Project
 from datetime import datetime
 
@@ -27,7 +27,7 @@ def test_pipeline_creates_grounded_requirements_and_recommendation():
     assert isinstance(analyse(requirements), list)
     recommendation = recommend(requirements)
     assert recommendation.options[0].score >= recommendation.options[-1].score
-    assert {option.name for option in recommendation.options} == {"Waterfall", "V-Shape", "Prototyping", "RAD", "Spiral", "Incremental", "Agile"}
+    assert {option.name for option in recommendation.options} == {"Waterfall", "V-Shape", "Prototyping", "RAD", "Spiral", "Incremental", "Agile", "DevSecOps", "Agile–V-Model hybrid"}
     assert {factor.name for factor in recommendation.factors} == {"Requirement stability", "Requirement clarity", "Risk", "Complexity", "Need for early prototype", "Time constraints", "Customer involvement", "Frequency of changes", "Need for iterative development", "Need for risk analysis"}
 
 
@@ -42,6 +42,24 @@ def test_two_agents_have_a_sequential_hand_off():
     assert requirements == project.requirements
     assert project.quality_issues is not None
     assert recommendation == project.sdlc
+
+
+def test_rbi_compliance_risks_traceability_and_artefacts_are_reviewable():
+    chunks = [chunk.__dict__ for chunk in chunk_text("The system shall verify customer identity for KYC and retain an audit record for every decision.")]
+    evidence = retrieve("KYC identity audit", [{"id": "DOC-001", "name": "policy.txt", "chunks": chunks}])
+    project = Project(id="rbi", functionality="Digital onboarding", created_at=datetime.now())
+
+    RequirementsAgent().run(project, evidence)
+    ComplianceRiskAgent().run(project)
+    DocumentationAgent().run(project)
+
+    assert any(mapping.control_id == "RBI-KYC-CDD" for requirement in project.requirements for mapping in requirement.compliance_mappings)
+    assert project.risks
+    assert project.traceability
+    assert {"srs", "user_stories", "use_cases", "risk_register", "traceability_matrix", "compliance_control_matrix"} <= set(project.artefacts)
+    assert project.clarification_questions
+    assert project.evaluation is not None
+    assert project.evaluation.citation_coverage == 1
 
 
 def test_masking_replaces_account_like_values():

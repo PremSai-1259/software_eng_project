@@ -68,6 +68,8 @@ def recommend(requirements: list[Requirement]) -> SdlcRecommendation:
         SdlcOption(name="Spiral", score=_score(43, [(high_risk_or_analysis, 27), (complex_project, 18), (prototype_helpful, 12), (iterative, 8)]), suitability="Best when risk analysis, prototypes, and repeated risk-reduction cycles are central."),
         SdlcOption(name="Incremental", score=_score(46, [(iterative, 18), (complex_project, 12), (prototype_helpful, 10), (customer_available, 8), (time_pressure, 8)]), suitability="Best when value can be divided into validated, independently testable increments."),
         SdlcOption(name="Agile", score=_score(45, [(iterative, 22), (customer_available, 18), (prototype_helpful, 12), (unclear, 10), (high_risk_or_analysis, 3)]), suitability="Best for frequent feedback and evolving requirements, with planned governance for high-risk work."),
+        SdlcOption(name="DevSecOps", score=_score(44, [(iterative, 18), (high_risk_or_analysis, 22), (complex_project, 8), (customer_available, 6)]), suitability="Best where iterative delivery is paired with automated security, assurance, and operational controls."),
+        SdlcOption(name="Agile–V-Model hybrid", score=_score(43, [(iterative, 15), (high_risk_or_analysis, 20), (clear, 8), (complex_project, 8)]), suitability="Best where evolving delivery needs formal verification and validation gates for regulated scope."),
     ]
     options.sort(key=lambda option: option.score, reverse=True)
     choice = options[0].name
