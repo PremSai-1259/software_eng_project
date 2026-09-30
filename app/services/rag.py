@@ -99,7 +99,11 @@ class VectorStore:
             for chunk in document.get("chunks", []):
                 ids.append(f"{document['id']}:{chunk['id']}")
                 texts.append(chunk["text"])
-                metadata.append({"document_id": document["id"], "document_name": document["name"], "chunk_id": chunk["id"]})
+                metadata.append({
+                    "document_id": document["id"], "document_name": document["name"], "chunk_id": chunk["id"],
+                    "source_url": document.get("source_url", ""), "source_version": document.get("version", ""),
+                    "effective_date": document.get("effective_date", ""),
+                })
         if not texts:
             raise RagConfigurationError("No text chunks were available for semantic indexing.")
         try:
@@ -136,6 +140,9 @@ class VectorStore:
                 "document_id": item["document_id"],
                 "document_name": item["document_name"],
                 "relevance": round(max(0.0, 1 - (distance / 2)), 2),
+                "source_url": item.get("source_url") or None,
+                "source_version": item.get("source_version") or None,
+                "effective_date": item.get("effective_date") or None,
             }
             for text, item, distance in zip(documents, metadata, distances, strict=True)
         ]

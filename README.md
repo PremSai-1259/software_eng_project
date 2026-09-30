@@ -17,6 +17,7 @@ The hand-off is explicit and sequential: compliance, risk, and documentation run
 - Upload and process `.txt`, `.md`, `.csv`, `.pdf`, and `.docx` source documents.
 - Mask common account/card, tax-ID, and national-ID-like patterns before indexing.
 - Store embeddings in a persistent, per-project ChromaDB collection.
+- Automatically index an allowlisted, versioned RBI reference-summary pack for every project; project uploads remain separate sources.
 - Inspect retrieved evidence before generating requirements.
 - Generate requirements with citations to the retrieved source chunks.
 - Review deterministic quality findings and approve, reject, or return requirements for review.
@@ -30,6 +31,7 @@ The hand-off is explicit and sequential: compliance, risk, and documentation run
 
 ```text
 Stakeholder interview + uploaded documents
+     + allowlisted RBI reference summaries
               |
        Mask sensitive patterns
               |

@@ -139,3 +139,5 @@ def test_project_creation_works_without_provider_key(monkeypatch, tmp_path):
 
     assert response.status_code == 200
     assert response.json()["rag"]["vector_database"] == "ChromaDB"
+    knowledge_sources = [item for item in response.json()["documents"] if item["source_type"] == "Allowlisted RBI reference"]
+    assert len(knowledge_sources) == 3

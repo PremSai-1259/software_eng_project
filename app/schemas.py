@@ -29,6 +29,9 @@ class Evidence(BaseModel):
     chunk_id: str
     excerpt: str
     relevance: float = Field(ge=0, le=1)
+    source_url: str | None = None
+    source_version: str | None = None
+    effective_date: str | None = None
 
 
 class ComplianceMapping(BaseModel):

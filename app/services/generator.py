@@ -37,7 +37,8 @@ def generate_evidence_drafts(functionality: str, chunks: list[dict]) -> list[Req
     for index, (chunk, sentence) in enumerate(_candidate_sentences(chunks)[:10], start=1):
         evidence = Evidence(
             document_id=chunk["document_id"], document_name=chunk["document_name"],
-            chunk_id=chunk["id"], excerpt=sentence, relevance=chunk["relevance"]
+            chunk_id=chunk["id"], excerpt=sentence, relevance=chunk["relevance"],
+            source_url=chunk.get("source_url"), source_version=chunk.get("source_version"), effective_date=chunk.get("effective_date"),
         )
         requirements.append(Requirement(
             id=f"REQ-{index:03d}", statement=sentence, categories=classify(sentence), evidence=[evidence],
@@ -51,7 +52,7 @@ def generate_evidence_drafts(functionality: str, chunks: list[dict]) -> list[Req
         chunk = chunks[0]
         requirements.append(Requirement(
             id="REQ-001", statement=f"The system shall support the documented {functionality} workflow.",
-            categories=[Category.FUNCTIONAL], evidence=[Evidence(document_id=chunk["document_id"], document_name=chunk["document_name"], chunk_id=chunk["id"], excerpt=chunk["text"][:400], relevance=chunk["relevance"])],
+            categories=[Category.FUNCTIONAL], evidence=[Evidence(document_id=chunk["document_id"], document_name=chunk["document_name"], chunk_id=chunk["id"], excerpt=chunk["text"][:400], relevance=chunk["relevance"], source_url=chunk.get("source_url"), source_version=chunk.get("source_version"), effective_date=chunk.get("effective_date"))],
             business_justification="A draft was requested for the selected functionality.", priority="Should",
             assumptions=["The source excerpt describes the intended workflow."],
             acceptance_criteria=["Human reviewer defines measurable outcomes."], confidence=0.35,

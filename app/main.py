@@ -17,6 +17,7 @@ from app.services.agents import ComplianceRiskAgent, DocumentationAgent, Governa
 from app.services.compliance import catalogue as rbi_catalogue
 from app.services.documents import chunk_text, extract_text, mask_sensitive
 from app.services.generator import generate_evidence_drafts
+from app.services.knowledge import approved_documents
 from app.services.llm import enabled as llm_enabled, generate_requirements as generate_llm_requirements
 from app.services.rag import RagConfigurationError, VectorStore, provider_configured
 from app.services.storage import ProjectStore
@@ -100,11 +101,16 @@ async def create_project(
     uploads = [upload for upload in files if upload.filename]
     if not answers and not uploads:
         raise HTTPException(422, "Answer at least one stakeholder question or upload a supporting document.")
-    documents = []
+    # Index only allowlisted reference summaries by default. They give every
+    # project an auditable RBI baseline without treating them as legal advice.
+    documents = approved_documents()
+    knowledge_document_count = len(documents)
+    project_source_count = 0
     if answers:
         interview_text = "\n".join(f"{question}: {answer}" for question, answer in answers.items())
         masked_text = mask_sensitive(interview_text)
         documents.append({"id": "DOC-001", "name": "Stakeholder interview", "chunks": [chunk.__dict__ for chunk in chunk_text(masked_text)]})
+        project_source_count += 1
     for upload in uploads:
         content = await upload.read()
         if len(content) > 5_000_000:
@@ -115,19 +121,20 @@ async def create_project(
             raise HTTPException(422, str(exc)) from exc
         if not text.strip():
             raise HTTPException(422, f"{upload.filename} contains no extractable text.")
-        doc_id = f"DOC-{len(documents)+1:03d}"
+        doc_id = f"DOC-{project_source_count + 1:03d}"
         documents.append({"id": doc_id, "name": upload.filename, "chunks": [chunk.__dict__ for chunk in chunk_text(text)]})
+        project_source_count += 1
     project = Project(id=uuid4().hex[:12], functionality=functionality, created_at=datetime.now(timezone.utc), documents=documents)
     try:
         indexed_chunks = vector_store.index(project.id, documents)
     except RagConfigurationError as exc:
         raise HTTPException(503, str(exc)) from exc
-    audit(project, "sources_recorded", f"Stored {len(documents)} masked source(s): {len(answers)} stakeholder response(s) and {len(uploads)} uploaded document(s).")
+    audit(project, "sources_recorded", f"Indexed {knowledge_document_count} allowlisted RBI reference summary source(s), plus {len(answers)} masked stakeholder response(s) and {len(uploads)} uploaded document(s).")
     audit(project, "rag_indexed", f"Indexed {indexed_chunks} source chunk(s) in ChromaDB.")
     store.save(project)
     return JSONResponse({
         "project_id": project.id,
-        "documents": [{"id": doc["id"], "name": doc["name"], "chunks": len(doc["chunks"])} for doc in documents],
+        "documents": [{"id": doc["id"], "name": doc["name"], "chunks": len(doc["chunks"]), "source_type": "Allowlisted RBI reference" if doc["id"].startswith("KB-") else "Project source", "version": doc.get("version"), "source_url": doc.get("source_url")} for doc in documents],
         "rag": {**vector_store.configuration(), "indexed_chunks": indexed_chunks},
     })
 

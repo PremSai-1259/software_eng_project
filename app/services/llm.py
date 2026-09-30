@@ -62,7 +62,7 @@ def generate_requirements(functionality: str, chunks: list[dict]) -> list[Requir
         requirements.append(Requirement(
             id=f"REQ-{index:03d}", statement=item["statement"],
             categories=[Category(value) for value in item.get("categories", ["Functional"])],
-            evidence=[Evidence(document_id=source["document_id"], document_name=source["document_name"], chunk_id=source["id"], excerpt=source["text"][:500], relevance=source["relevance"]) for source in linked],
+            evidence=[Evidence(document_id=source["document_id"], document_name=source["document_name"], chunk_id=source["id"], excerpt=source["text"][:500], relevance=source["relevance"], source_url=source.get("source_url"), source_version=source.get("source_version"), effective_date=source.get("effective_date")) for source in linked],
             business_justification=item["business_justification"], priority=item.get("priority", "Should"), dependencies=item.get("dependencies", []),
             assumptions=item.get("assumptions", []), acceptance_criteria=item.get("acceptance_criteria", []),
             applicable_policy=item.get("applicable_policy"), risk_level=item.get("risk_level", "Medium"),
