@@ -1,0 +1,285 @@
+{
+  "id": "44d511b70b91",
+  "functionality": "Online loan application and approval",
+  "created_at": "2026-09-27T09:55:52.019196Z",
+  "documents": [
+    {
+      "id": "DOC-001",
+      "name": "Stakeholder interview",
+      "chunks": [
+        {
+          "id": "chunk-001",
+          "text": "business objective: no idea users and roles: no idea workflow and outcomes: no idea business rules: no idea exceptions: no idea data and integrations: no idea security and compliance: no idea service levels and scale: no idea delivery constraints: no idea validation and rollout: no idea"
+        }
+      ]
+    }
+  ],
+  "requirements": [
+    {
+      "id": "REQ-001",
+      "statement": "The system shall support the documented Online loan application and approval workflow.",
+      "categories": [
+        "Functional"
+      ],
+      "evidence": [
+        {
+          "document_id": "DOC-001",
+          "document_name": "Stakeholder interview",
+          "chunk_id": "chunk-001",
+          "excerpt": "business objective: no idea users and roles: no idea workflow and outcomes: no idea business rules: no idea exceptions: no idea data and integrations: no idea security and compliance: no idea service levels and scale: no idea delivery constraints: no idea validation and rollout: no idea",
+          "relevance": 0.58
+        }
+      ],
+      "business_justification": "A draft was requested for the selected functionality.",
+      "priority": "Should",
+      "dependencies": [],
+      "assumptions": [
+        "The source excerpt describes the intended workflow."
+      ],
+      "acceptance_criteria": [
+        "Human reviewer defines measurable outcomes."
+      ],
+      "applicable_policy": null,
+      "risk_level": "Medium",
+      "confidence": 0.35,
+      "reasoning": "Conservative placeholder based on the highest-ranked source. It must be rewritten and approved by a human.",
+      "approval_status": "Needs review"
+    }
+  ],
+  "quality_issues": [
+    {
+      "id": "QI-001",
+      "requirement_id": "REQ-001",
+      "check": "Lack of testability",
+      "severity": "Medium",
+      "message": "Acceptance criteria are absent or not yet measurable.",
+      "recommendation": "Add pass/fail criteria, test data, and expected outcome."
+    },
+    {
+      "id": "QI-002",
+      "requirement_id": "REQ-001",
+      "check": "Missing security or compliance requirements",
+      "severity": "Low",
+      "message": "This item has no linked security, privacy, or regulatory control.",
+      "recommendation": "Confirm whether a control is not applicable or add an evidence-backed control."
+    }
+  ],
+  "sdlc": {
+    "recommended_sdlc": "Prototyping",
+    "factors": [
+      {
+        "name": "Requirement stability",
+        "value": "Needs validation",
+        "score": 2,
+        "rationale": "Draft or unapproved requirements indicate that stability has not yet been demonstrated.",
+        "requirement_ids": [
+          "REQ-001"
+        ]
+      },
+      {
+        "name": "Requirement clarity",
+        "value": "Low",
+        "score": 2,
+        "rationale": "Measured from the presence of concrete, non-placeholder acceptance criteria.",
+        "requirement_ids": [
+          "REQ-001"
+        ]
+      },
+      {
+        "name": "Risk",
+        "value": "Medium",
+        "score": 3,
+        "rationale": "Derived from stated high risk and security, privacy, regulatory, or audit classifications.",
+        "requirement_ids": []
+      },
+      {
+        "name": "Complexity",
+        "value": "Low",
+        "score": 2,
+        "rationale": "Integration and data-management requirements increase coordination and technical complexity.",
+        "requirement_ids": []
+      },
+      {
+        "name": "Need for early prototype",
+        "value": "Likely",
+        "score": 4,
+        "rationale": "Unclear requirements or integration complexity make early learning and validation valuable.",
+        "requirement_ids": []
+      },
+      {
+        "name": "Time constraints",
+        "value": "Not evidenced",
+        "score": 3,
+        "rationale": "No schedule or deadline evidence is available in the generated requirements; confirm this with the project sponsor.",
+        "requirement_ids": []
+      },
+      {
+        "name": "Customer involvement",
+        "value": "Not evidenced",
+        "score": 3,
+        "rationale": "Derived only from business, stakeholder, or usability requirements; otherwise this must be confirmed.",
+        "requirement_ids": []
+      },
+      {
+        "name": "Frequency of changes",
+        "value": "Not evidenced",
+        "score": 3,
+        "rationale": "Requirement documents do not establish the expected change rate; confirm with product and business stakeholders.",
+        "requirement_ids": []
+      },
+      {
+        "name": "Need for iterative development",
+        "value": "Likely",
+        "score": 4,
+        "rationale": "Unapproved or unclear requirements benefit from repeated review and validation cycles.",
+        "requirement_ids": []
+      },
+      {
+        "name": "Need for risk analysis",
+        "value": "Medium",
+        "score": 3,
+        "rationale": "Security/compliance concerns or complex integration warrant explicit risk analysis.",
+        "requirement_ids": []
+      }
+    ],
+    "options": [
+      {
+        "name": "Prototyping",
+        "score": 89,
+        "suitability": "Best for validating uncertain user needs, workflows, and interfaces before committing to a full build."
+      },
+      {
+        "name": "Agile",
+        "score": 89,
+        "suitability": "Best for frequent feedback and evolving requirements, with planned governance for high-risk work."
+      },
+      {
+        "name": "Incremental",
+        "score": 74,
+        "suitability": "Best when value can be divided into validated, independently testable increments."
+      },
+      {
+        "name": "Spiral",
+        "score": 63,
+        "suitability": "Best when risk analysis, prototypes, and repeated risk-reduction cycles are central."
+      },
+      {
+        "name": "RAD",
+        "score": 55,
+        "suitability": "Best for time-boxed delivery with available users and modular, lower-risk scope."
+      },
+      {
+        "name": "V-Shape",
+        "score": 26,
+        "suitability": "Best when each specification stage needs a linked verification and validation activity."
+      },
+      {
+        "name": "Waterfall",
+        "score": 22,
+        "suitability": "Best when requirements are stable, fully specified, and changes are controlled."
+      }
+    ],
+    "justification": "Prototyping has the highest transparent score because requirement stability is needs validation, requirement clarity is low, risk is medium, complexity is low, need for early prototype is likely. Factors marked 'Not evidenced' are deliberately neutral and require stakeholder confirmation before the SDLC is approved.",
+    "workflow": [
+      {
+        "phase": "Validate requirements",
+        "activities": [
+          "Resolve quality issues",
+          "Confirm stability, time constraints, and expected changes",
+          "Prioritise requirement baseline"
+        ],
+        "roles": [
+          "Business analyst",
+          "Customer representative"
+        ],
+        "deliverables": [
+          "Validated requirements",
+          "SDLC factor assessment"
+        ],
+        "gate": "Stakeholder confirms project assumptions"
+      },
+      {
+        "phase": "Plan the model",
+        "activities": [
+          "Review ranked SDLC options",
+          "Plan risk analysis",
+          "Define iteration or stage gates"
+        ],
+        "roles": [
+          "Project manager",
+          "Architect",
+          "Risk owner"
+        ],
+        "deliverables": [
+          "Approved SDLC decision",
+          "Risk register"
+        ],
+        "gate": "Engineering and business approval"
+      },
+      {
+        "phase": "Develop and validate",
+        "activities": [
+          "Build planned scope",
+          "Test against acceptance criteria",
+          "Review feedback and risks"
+        ],
+        "roles": [
+          "Developers",
+          "QA",
+          "Customer representative"
+        ],
+        "deliverables": [
+          "Working increment or verified stage",
+          "Test evidence"
+        ],
+        "gate": "Quality and stakeholder acceptance"
+      },
+      {
+        "phase": "Release and learn",
+        "activities": [
+          "Release approved scope",
+          "Monitor outcomes",
+          "Reassess requirement changes and risks"
+        ],
+        "roles": [
+          "Operations",
+          "Product owner",
+          "Project manager"
+        ],
+        "deliverables": [
+          "Release record",
+          "Updated SDLC assessment"
+        ],
+        "gate": "Release and change-control approval"
+      }
+    ],
+    "human_approval_required": true
+  },
+  "audit_log": [
+    {
+      "at": "2026-09-27T09:55:52.297611+00:00",
+      "action": "sources_recorded",
+      "detail": "Stored 1 masked source(s): 10 stakeholder response(s) and 0 uploaded document(s)."
+    },
+    {
+      "at": "2026-09-27T09:55:52.297644+00:00",
+      "action": "rag_indexed",
+      "detail": "Indexed 1 source chunk(s) in ChromaDB."
+    },
+    {
+      "at": "2026-09-27T09:55:57.902654+00:00",
+      "action": "llm_fallback",
+      "detail": "The configured LLM did not return usable structured JSON."
+    },
+    {
+      "at": "2026-09-27T09:55:57.903040+00:00",
+      "action": "requirements_generated",
+      "detail": "Generated 1 evidence-only RAG-grounded draft requirement(s)."
+    },
+    {
+      "at": "2026-09-27T09:55:59.893433+00:00",
+      "action": "sdlc_analysed",
+      "detail": "Recommended Prototyping; human approval remains required."
+    }
+  ]
+}

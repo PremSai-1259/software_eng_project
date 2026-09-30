@@ -9,7 +9,7 @@
   <body>
     <header class="topbar">
       <div class="brand"><span class="brand-mark">F</span><span>FinReq Studio</span></div>
-      <p>Evidence-grounded requirements and SDLC advisory</p>
+      <p>Two-agent financial requirements and SDLC advisory</p>
       <a id="exportLink" class="icon-action is-hidden" title="Export project JSON" download>Export JSON</a>
     </header>
     <main>
@@ -18,6 +18,7 @@
           <div><p class="eyebrow">Project workspace</p><h1 id="workspace-title">Traceable requirement decisions</h1></div>
           <span id="projectState" class="state">No project loaded</span>
         </div>
+        <div class="agent-summary" aria-label="Two-agent workflow"><span><strong>Agent 1 · Requirements</strong> Extracts, classifies, and checks evidence-grounded requirements.</span><span><strong>Agent 2 · Governance &amp; SDLC</strong> Assesses controls and ranks delivery models after review.</span></div>
         <form id="interviewStartForm" class="intake">
           <div class="interview-heading"><p class="eyebrow">Adaptive stakeholder interview</p><p>Begin with the essentials. The next questions adapt to the financial workflow you describe.</p></div>
           <div class="starter-grid">
@@ -43,8 +44,8 @@
         <p class="quiet">Responses and optional documents are masked for common account, identity, and tax-ID patterns before local processing. Drafts are advisory and need human approval.</p>
       </section>
 
-      <nav class="steps" aria-label="Pipeline stages">
-        <span class="active">1 Sources</span><span>2 Requirements</span><span>3 Quality</span><span>4 SDLC</span>
+      <nav class="steps" aria-label="Two-agent pipeline stages">
+        <span class="active">1 Sources</span><span>2 Agent 1: Requirements</span><span>3 Human review</span><span>4 Agent 2: Governance &amp; SDLC</span>
       </nav>
 
       <section id="documentsPanel" class="panel is-hidden" aria-labelledby="documents-title">
@@ -56,7 +57,7 @@
       </section>
 
       <section id="requirementsPanel" class="panel is-hidden" aria-labelledby="requirements-title">
-        <div class="panel-title"><div><p class="eyebrow">Human review required</p><h2 id="requirements-title">Generated requirements</h2></div><span id="requirementCount" class="count"></span></div>
+        <div class="panel-title"><div><p class="eyebrow">Agent 1 · Human review required</p><h2 id="requirements-title">Generated requirements</h2></div><span id="requirementCount" class="count"></span></div>
         <div id="requirementsList" class="requirements-list"></div>
       </section>
 
@@ -66,7 +67,7 @@
       </section>
 
       <section id="sdlcPanel" class="panel is-hidden" aria-labelledby="sdlc-title">
-        <div class="panel-title"><div><p class="eyebrow">Architecture advisory</p><h2 id="sdlc-title">SDLC analysis</h2></div><button id="sdlcButton" type="button">Run SDLC analysis</button></div>
+        <div class="panel-title"><div><p class="eyebrow">Agent 2 · Governance advisory</p><h2 id="sdlc-title">SDLC analysis</h2></div><button id="sdlcButton" type="button">Run governance &amp; SDLC analysis</button></div>
         <div id="sdlcResult"></div>
       </section>
     </main>

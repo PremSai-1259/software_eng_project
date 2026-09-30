@@ -8,6 +8,9 @@ from urllib.error import HTTPError
 from app.services import rag
 from app.services.rag import RagConfigurationError, VectorStore, _api_key, _embed, provider_configured
 from app.services.sdlc import recommend
+from app.services.agents import GovernanceSdlcAgent, RequirementsAgent
+from app.schemas import Project
+from datetime import datetime
 
 
 def test_pipeline_creates_grounded_requirements_and_recommendation():
@@ -26,6 +29,19 @@ def test_pipeline_creates_grounded_requirements_and_recommendation():
     assert recommendation.options[0].score >= recommendation.options[-1].score
     assert {option.name for option in recommendation.options} == {"Waterfall", "V-Shape", "Prototyping", "RAD", "Spiral", "Incremental", "Agile"}
     assert {factor.name for factor in recommendation.factors} == {"Requirement stability", "Requirement clarity", "Risk", "Complexity", "Need for early prototype", "Time constraints", "Customer involvement", "Frequency of changes", "Need for iterative development", "Need for risk analysis"}
+
+
+def test_two_agents_have_a_sequential_hand_off():
+    chunks = [chunk.__dict__ for chunk in chunk_text("The system shall encrypt personal data and record every decision.")]
+    evidence = retrieve("encrypt and audit", [{"id": "DOC-001", "name": "policy.txt", "chunks": chunks}])
+    project = Project(id="two-agent", functionality="Customer onboarding", created_at=datetime.now())
+
+    requirements = RequirementsAgent().run(project, evidence)
+    recommendation = GovernanceSdlcAgent().run(project)
+
+    assert requirements == project.requirements
+    assert project.quality_issues is not None
+    assert recommendation == project.sdlc
 
 
 def test_masking_replaces_account_like_values():

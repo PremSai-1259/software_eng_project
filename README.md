@@ -1,6 +1,13 @@
 # FinReq Studio
 
-FinReq Studio is a financial requirements engineering prototype built around a complete Retrieval-Augmented Generation (RAG) workflow. It turns stakeholder responses and supporting documents into traceable draft requirements, highlights quality risks, and recommends an SDLC approach for human review.
+FinReq Studio is a financial requirements engineering prototype built around a complete Retrieval-Augmented Generation (RAG) workflow. It uses exactly two collaborative, sequential agents to turn stakeholder responses and supporting documents into traceable draft requirements and an SDLC advisory for human review.
+
+## Two-agent architecture
+
+1. **Requirements Agent** — retrieves approved evidence, creates and classifies draft requirements, attaches citations, and runs deterministic quality checks for ambiguity, missing evidence, testability, control coverage, and duplicates.
+2. **Governance & SDLC Agent** — consumes the reviewed requirement set, uses its security, privacy, regulatory, audit, integration, and risk signals to rank SDLC options and generate workflow approval gates.
+
+The hand-off is explicit and sequential: Agent 2 cannot run until Agent 1 has produced requirements. Both outputs are advisory, are recorded in the project audit trail, and remain pending human review. This keeps the prototype within the problem statement's human-in-the-loop and non-legal-advice boundaries without pretending that more autonomous roles exist.
 
 ## Highlights
 

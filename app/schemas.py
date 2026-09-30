@@ -88,6 +88,14 @@ class SdlcRecommendation(BaseModel):
     human_approval_required: bool = True
 
 
+class AgentRun(BaseModel):
+    agent: str
+    responsibility: str
+    status: Literal["Completed", "Waiting for human review"]
+    output: str
+    at: datetime
+
+
 class Project(BaseModel):
     id: str
     functionality: str
@@ -96,4 +104,5 @@ class Project(BaseModel):
     requirements: list[Requirement] = Field(default_factory=list)
     quality_issues: list[QualityIssue] = Field(default_factory=list)
     sdlc: SdlcRecommendation | None = None
+    agent_runs: list[AgentRun] = Field(default_factory=list)
     audit_log: list[dict] = Field(default_factory=list)
