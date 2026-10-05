@@ -1,0 +1,2283 @@
+{
+  "id": "dd5768708116",
+  "functionality": "Online loan application and approval",
+  "created_at": "2026-10-05T15:58:23.621070Z",
+  "documents": [
+    {
+      "id": "KB-RBI-KYC-2024",
+      "name": "Approved RBI knowledge — KYC Directions",
+      "authority": "Reserve Bank of India",
+      "jurisdiction": "India",
+      "effective_date": "2016-02-25",
+      "version": "Updated 2024-11-06",
+      "source_url": "https://www.rbi.org.in/commonman/Upload/English/Notification/PDFs/MD18KYCF6E92C82E1E1419D87323E3869BC9F13.pdf",
+      "chunks": [
+        {
+          "id": "chunk-001",
+          "text": "Approved reference summary: Reserve Bank of India Know Your Customer (KYC) Directions, 2016, updated 6 November 2024. For applicable regulated entities, assess customer due diligence, identity verification, KYC record handling, Central KYC Records Registry obligations where applicable, and review or audit evidence. Confirm regulated-entity scope, product applicability, retention obligations, and the current direction with authorised compliance or legal reviewers before baselining requirements."
+        }
+      ]
+    },
+    {
+      "id": "KB-RBI-ITG-2023",
+      "name": "Approved RBI knowledge — IT Governance Directions",
+      "authority": "Reserve Bank of India",
+      "jurisdiction": "India",
+      "effective_date": "2024-04-01",
+      "version": "Directions issued 2023-11-07",
+      "source_url": "https://systemhealth.rbi.org.in/Scripts/BS_ViewMasDirections.aspx_id%3D12562%283%29.html",
+      "chunks": [
+        {
+          "id": "chunk-001",
+          "text": "Approved reference summary: RBI Information Technology Governance, Risk, Controls and Assurance Practices Directions, 2023, effective 1 April 2024. For applicable regulated entities, analyse IT governance, risk management, assurance, access controls, audit evidence, incident management, business continuity and disaster recovery. Confirm the entity's scope and materiality classification with authorised compliance and security owners."
+        }
+      ]
+    },
+    {
+      "id": "KB-RBI-DPSC-2021",
+      "name": "Approved RBI knowledge — Digital Payment Security Controls",
+      "authority": "Reserve Bank of India",
+      "jurisdiction": "India",
+      "effective_date": "2021-02-18",
+      "version": "Master Direction 2021",
+      "source_url": "https://systemhealth.rbi.org.in/Scripts/BS_ViewMasDirections.aspx_id%3D12032%283%29.html",
+      "chunks": [
+        {
+          "id": "chunk-001",
+          "text": "Approved reference summary: RBI Master Direction on Digital Payment Security Controls, 2021. For payment workflows, assess strong authentication, fraud-risk management, secure application lifecycle, transaction reconciliation, logging, incident handling and relevant security testing. Confirm whether this direction or a more specific RBI direction applies to the regulated entity, payment channel, and third parties."
+        }
+      ]
+    },
+    {
+      "id": "DOC-001",
+      "name": "Stakeholder interview",
+      "chunks": [
+        {
+          "id": "chunk-001",
+          "text": "business objective: The system should provide a secure online loan application and approval process that allows customers to submit loan applications digitally and enables authorized bank employees to verify applicant information, assess eligibility, perform compliance checks, and approve or reject applications. The system should reduce manual processing, improve accuracy and traceability, and ensure that every decision follows defined financial and regulatory requirements. users and roles: The primary users are customers, loan officers, compliance officers, credit analysts, and system administrators."
+        },
+        {
+          "id": "chunk-002",
+          "text": "Customers should submit applications and supporting documents and track their application status. Loan officers should review applications and make approval or rejection decisions. Credit analysts should evaluate applicant eligibility and credit information. Compliance officers should verify regulatory requirements and audit decisions. Administrators should manage users, roles, system configuration, and access controls. workflow and outcomes: The application starts when a customer submits a complete online loan application with the required personal, financial, and supporting documents."
+        },
+        {
+          "id": "chunk-003",
+          "text": "The system validates the submitted information and checks eligibility based on predefined credit score, income, loan amount, repayment capacity, and RBI compliance rules. The application is then reviewed by an authorized loan officer or credit analyst. Based on the defined approval criteria, the loan is approved, rejected, or returned for additional information. The applicant receives a clear decision and reason, and all decisions, validations, and supporting evidence are recorded for audit and traceability. exceptions: If required information or documents are missing, the application should be placed on hold and the applicant should be notified of the missing items."
+        },
+        {
+          "id": "chunk-004",
+          "text": "Validation or system failures should be logged and routed to the support or operations team for resolution. If an application fails eligibility or compliance checks, it should be rejected with a recorded reason and the applicant should be notified. Rejected applications may be reconsidered only through a defined review or appeal process. Manual overrides should be permitted only for authorized senior loan officers or compliance officers, require a documented justification and approval, and must be recorded in an audit trail. The loan operations team owns application issues, credit officers own eligibility decisions, and compliance officers own regulatory exceptions and overrides."
+        },
+        {
+          "id": "chunk-005",
+          "text": "business rules: The workflow can continue only when all mandatory application fields and required documents are complete and successfully validated. Eligibility is determined using predefined criteria such as minimum credit score, minimum verified income, acceptable debt-to-income ratio, maximum loan amount, employment and repayment history, and applicable RBI and internal lending policies. Applications must pass identity, document, credit, fraud, and compliance checks before approval. Applications exceeding predefined loan limits or involving exceptions require approval from an authorized senior loan officer or compliance officer."
+        },
+        {
+          "id": "chunk-006",
+          "text": "Any override of a standard rule requires documented justification, appropriate authorization, and an audit record. These rules and approval thresholds are defined in advance and must be consistently applied to ensure traceability and regulatory compliance. data and integrations: The system collects applicant identity details, contact information, employment and income details, loan amount and purpose, financial information, credit history, supporting documents, and application status and decision data."
+        },
+        {
+          "id": "chunk-007",
+          "text": "It may exchange relevant information with internal banking systems such as customer/identity management, credit assessment, loan processing, document management, and compliance systems, as well as authorized third-party services such as credit bureaus, identity verification providers, and fraud detection services. Only the minimum required data should be exchanged through secure interfaces. If an external or internal integration is unavailable, the application should not proceed with an unverified decision. The system should record the integration failure, retry where appropriate, place the application on hold, and notify the responsible operations team."
+        },
+        {
+          "id": "chunk-008",
+          "text": "Critical failures require manual resolution before the workflow can continue, with all actions recorded for audit and traceability. security and compliance: Access should follow role-based access control and least-privilege principles, with customers, loan officers, credit analysts, compliance officers, and administrators receiving only the permissions required for their responsibilities. Sensitive applicant and financial data must be protected through encryption in transit and at rest, secure authentication, and controlled access to documents and records."
+        },
+        {
+          "id": "chunk-009",
+          "text": "Every important action, including data access, validation, approval, rejection, manual override, and configuration changes, must be recorded in an immutable audit trail with the user, timestamp, action, and reason. The system should perform identity verification, document validation, duplicate application detection, fraud checks, credit checks, and compliance screening before approval. Data collection and processing must follow applicable RBI requirements, organizational policies, and privacy/data-protection obligations, with appropriate consent, retention, and secure deletion controls."
+        },
+        {
+          "id": "chunk-010",
+          "text": "Any compliance or security violation must block the affected workflow and be escalated to the responsible compliance or security team. service levels and scale: The system should support at least 10,000 loan applications per day and approximately 1,000 concurrent users, with the capacity to scale during peak periods such as promotional campaigns or financial-year-end processing. Normal user interactions should respond within 2 seconds, while complex eligibility or credit checks should complete within 10 seconds when dependent services are available. The system should target at least 99.9% availability during business operations and maintain continuous monitoring of critical services."
+        },
+        {
+          "id": "chunk-011",
+          "text": "All application data and audit records must be backed up regularly. In case of system failure, critical services should be restored within 1 hour (RTO), with a maximum acceptable data loss of 15 minutes (RPO). Failed transactions should be recoverable without creating duplicate loan applications or inconsistent approval records. delivery constraints: The initial production release should be completed within 6 months, with clearly defined milestones for requirements, system design, implementation, integration, testing, security validation, and deployment."
+        },
+        {
+          "id": "chunk-012",
+          "text": "The project should operate within an approved budget and use a dedicated team consisting of developers, QA engineers, security/compliance specialists, database engineers, and domain experts. Key stakeholders such as loan officers, compliance officers, and business owners should be available at predefined review and approval points. The solution depends on the availability of credit bureau, identity verification, fraud detection, banking, and regulatory-compliance integrations. Requirements and acceptance criteria should be finalized and formally approved before development begins."
+        },
+        {
+          "id": "chunk-013",
+          "text": "Changes after requirements approval should follow a controlled change-management process involving impact analysis, stakeholder approval, documentation, and corresponding updates to design, implementation, and test plans. Critical regulatory or security changes should take priority over non-critical feature changes. validation and rollout: The system should undergo formal testing at each stage, including unit testing, integration testing, system testing, security testing, performance testing, compliance testing, and user acceptance testing."
+        },
+        {
+          "id": "chunk-014",
+          "text": "Each test should be derived from approved requirements and acceptance criteria, with traceability between requirements, design components, test cases, and results. Defects must be documented, resolved, and retested before approval. Business stakeholders, loan officers, security teams, and compliance officers should formally review and approve the system before release. A controlled pilot should first be conducted with a limited group of users and applications, followed by a phased production rollout after successful pilot validation. After launch, system health, performance, security events, failed transactions, approval accuracy, and user feedback should be continuously monitored."
+        },
+        {
+          "id": "chunk-015",
+          "text": "Regular audits and reviews should identify improvements, while any changes should follow the same controlled change-management, testing, approval, and regression-testing process before deployment."
+        }
+      ]
+    }
+  ],
+  "requirements": [
+    {
+      "id": "REQ-001",
+      "statement": "Customers should submit applications and supporting documents and track their application status.",
+      "categories": [
+        "Data management"
+      ],
+      "evidence": [
+        {
+          "document_id": "DOC-001",
+          "document_name": "Stakeholder interview",
+          "chunk_id": "chunk-002",
+          "excerpt": "Customers should submit applications and supporting documents and track their application status.",
+          "relevance": 0.76,
+          "source_url": null,
+          "source_version": null,
+          "effective_date": null
+        }
+      ],
+      "business_justification": "Supports the documented Online loan application and approval need.",
+      "priority": "Should",
+      "dependencies": [],
+      "assumptions": [],
+      "acceptance_criteria": [
+        "A reviewer must confirm measurable acceptance criteria before baseline approval."
+      ],
+      "applicable_policy": null,
+      "compliance_mappings": [],
+      "risk_level": "Medium",
+      "confidence": 0.76,
+      "reasoning": "Evidence-only draft derived verbatim from the cited source; human refinement is required.",
+      "approval_status": "Needs review"
+    },
+    {
+      "id": "REQ-002",
+      "statement": "Loan officers should review applications and make approval or rejection decisions.",
+      "categories": [
+        "Functional"
+      ],
+      "evidence": [
+        {
+          "document_id": "DOC-001",
+          "document_name": "Stakeholder interview",
+          "chunk_id": "chunk-002",
+          "excerpt": "Loan officers should review applications and make approval or rejection decisions.",
+          "relevance": 0.76,
+          "source_url": null,
+          "source_version": null,
+          "effective_date": null
+        }
+      ],
+      "business_justification": "Supports the documented Online loan application and approval need.",
+      "priority": "Should",
+      "dependencies": [],
+      "assumptions": [],
+      "acceptance_criteria": [
+        "A reviewer must confirm measurable acceptance criteria before baseline approval."
+      ],
+      "applicable_policy": null,
+      "compliance_mappings": [],
+      "risk_level": "Medium",
+      "confidence": 0.76,
+      "reasoning": "Evidence-only draft derived verbatim from the cited source; human refinement is required.",
+      "approval_status": "Needs review"
+    },
+    {
+      "id": "REQ-003",
+      "statement": "Credit analysts should evaluate applicant eligibility and credit information.",
+      "categories": [
+        "Functional"
+      ],
+      "evidence": [
+        {
+          "document_id": "DOC-001",
+          "document_name": "Stakeholder interview",
+          "chunk_id": "chunk-002",
+          "excerpt": "Credit analysts should evaluate applicant eligibility and credit information.",
+          "relevance": 0.76,
+          "source_url": null,
+          "source_version": null,
+          "effective_date": null
+        }
+      ],
+      "business_justification": "Supports the documented Online loan application and approval need.",
+      "priority": "Should",
+      "dependencies": [],
+      "assumptions": [],
+      "acceptance_criteria": [
+        "A reviewer must confirm measurable acceptance criteria before baseline approval."
+      ],
+      "applicable_policy": null,
+      "compliance_mappings": [],
+      "risk_level": "Medium",
+      "confidence": 0.76,
+      "reasoning": "Evidence-only draft derived verbatim from the cited source; human refinement is required.",
+      "approval_status": "Needs review"
+    },
+    {
+      "id": "REQ-004",
+      "statement": "Compliance officers should verify regulatory requirements and audit decisions.",
+      "categories": [
+        "Regulatory",
+        "Audit / reporting"
+      ],
+      "evidence": [
+        {
+          "document_id": "DOC-001",
+          "document_name": "Stakeholder interview",
+          "chunk_id": "chunk-002",
+          "excerpt": "Compliance officers should verify regulatory requirements and audit decisions.",
+          "relevance": 0.76,
+          "source_url": null,
+          "source_version": null,
+          "effective_date": null
+        }
+      ],
+      "business_justification": "Supports the documented Online loan application and approval need.",
+      "priority": "Should",
+      "dependencies": [],
+      "assumptions": [],
+      "acceptance_criteria": [
+        "A reviewer must confirm measurable acceptance criteria before baseline approval."
+      ],
+      "applicable_policy": "RBI-ITG-2023",
+      "compliance_mappings": [
+        {
+          "control_id": "RBI-ITG-2023",
+          "source_title": "RBI IT Governance, Risk, Controls and Assurance Practices Directions, 2023 (Effective 1 April 2024)",
+          "source_url": "https://systemhealth.rbi.org.in/Scripts/BS_ViewMasDirections.aspx_id%3D12562%283%29.html",
+          "jurisdiction": "India",
+          "applicability": "Confirm regulated-entity scope and the system's materiality classification.",
+          "rationale": "IT governance, risk management, assurance, continuity, and audit evidence.",
+          "human_approval_required": true
+        }
+      ],
+      "risk_level": "Medium",
+      "confidence": 0.76,
+      "reasoning": "Evidence-only draft derived verbatim from the cited source; human refinement is required.",
+      "approval_status": "Needs review"
+    },
+    {
+      "id": "REQ-005",
+      "statement": "Administrators should manage users, roles, system configuration, and access controls.",
+      "categories": [
+        "Security"
+      ],
+      "evidence": [
+        {
+          "document_id": "DOC-001",
+          "document_name": "Stakeholder interview",
+          "chunk_id": "chunk-002",
+          "excerpt": "Administrators should manage users, roles, system configuration, and access controls.",
+          "relevance": 0.76,
+          "source_url": null,
+          "source_version": null,
+          "effective_date": null
+        }
+      ],
+      "business_justification": "Supports the documented Online loan application and approval need.",
+      "priority": "Should",
+      "dependencies": [],
+      "assumptions": [],
+      "acceptance_criteria": [
+        "A reviewer must confirm measurable acceptance criteria before baseline approval."
+      ],
+      "applicable_policy": "RBI-ITG-2023",
+      "compliance_mappings": [
+        {
+          "control_id": "RBI-ITG-2023",
+          "source_title": "RBI IT Governance, Risk, Controls and Assurance Practices Directions, 2023 (Effective 1 April 2024)",
+          "source_url": "https://systemhealth.rbi.org.in/Scripts/BS_ViewMasDirections.aspx_id%3D12562%283%29.html",
+          "jurisdiction": "India",
+          "applicability": "Confirm regulated-entity scope and the system's materiality classification.",
+          "rationale": "IT governance, risk management, assurance, continuity, and audit evidence.",
+          "human_approval_required": true
+        }
+      ],
+      "risk_level": "Medium",
+      "confidence": 0.76,
+      "reasoning": "Evidence-only draft derived verbatim from the cited source; human refinement is required.",
+      "approval_status": "Needs review"
+    },
+    {
+      "id": "REQ-006",
+      "statement": "Applications must pass identity, document, credit, fraud, and compliance checks before approval.",
+      "categories": [
+        "Regulatory",
+        "Data management"
+      ],
+      "evidence": [
+        {
+          "document_id": "DOC-001",
+          "document_name": "Stakeholder interview",
+          "chunk_id": "chunk-005",
+          "excerpt": "Applications must pass identity, document, credit, fraud, and compliance checks before approval.",
+          "relevance": 0.74,
+          "source_url": null,
+          "source_version": null,
+          "effective_date": null
+        }
+      ],
+      "business_justification": "Supports the documented Online loan application and approval need.",
+      "priority": "Should",
+      "dependencies": [],
+      "assumptions": [],
+      "acceptance_criteria": [
+        "A reviewer must confirm measurable acceptance criteria before baseline approval."
+      ],
+      "applicable_policy": "RBI-KYC-CDD; RBI-DPSC-2021",
+      "compliance_mappings": [
+        {
+          "control_id": "RBI-KYC-CDD",
+          "source_title": "RBI Master Direction – Know Your Customer (KYC), 2016 (Updated 6 November 2024)",
+          "source_url": "https://www.rbi.org.in/commonman/Upload/English/Notification/PDFs/MD18KYCF6E92C82E1E1419D87323E3869BC9F13.pdf",
+          "jurisdiction": "India",
+          "applicability": "Confirm applicability to the regulated entity and customer/onboarding flow.",
+          "rationale": "Customer due diligence, KYC record handling, and required review/approval checkpoints.",
+          "human_approval_required": true
+        },
+        {
+          "control_id": "RBI-DPSC-2021",
+          "source_title": "RBI Master Direction on Digital Payment Security Controls (18 February 2021)",
+          "source_url": "https://systemhealth.rbi.org.in/Scripts/BS_ViewMasDirections.aspx_id%3D12032%283%29.html",
+          "jurisdiction": "India",
+          "applicability": "Confirm that the product/channel is within the Direction's regulated-entity scope.",
+          "rationale": "Authentication, fraud-risk management, application security lifecycle, and reconciliation controls.",
+          "human_approval_required": true
+        }
+      ],
+      "risk_level": "Medium",
+      "confidence": 0.74,
+      "reasoning": "Evidence-only draft derived verbatim from the cited source; human refinement is required.",
+      "approval_status": "Needs review"
+    },
+    {
+      "id": "REQ-007",
+      "statement": "Applications exceeding predefined loan limits or involving exceptions require approval from an authorized senior loan officer or compliance officer.",
+      "categories": [
+        "Regulatory"
+      ],
+      "evidence": [
+        {
+          "document_id": "DOC-001",
+          "document_name": "Stakeholder interview",
+          "chunk_id": "chunk-005",
+          "excerpt": "Applications exceeding predefined loan limits or involving exceptions require approval from an authorized senior loan officer or compliance officer.",
+          "relevance": 0.74,
+          "source_url": null,
+          "source_version": null,
+          "effective_date": null
+        }
+      ],
+      "business_justification": "Supports the documented Online loan application and approval need.",
+      "priority": "Should",
+      "dependencies": [],
+      "assumptions": [],
+      "acceptance_criteria": [
+        "A reviewer must confirm measurable acceptance criteria before baseline approval."
+      ],
+      "applicable_policy": null,
+      "compliance_mappings": [],
+      "risk_level": "Medium",
+      "confidence": 0.74,
+      "reasoning": "Evidence-only draft derived verbatim from the cited source; human refinement is required.",
+      "approval_status": "Needs review"
+    },
+    {
+      "id": "REQ-008",
+      "statement": "business objective: The system should provide a secure online loan application and approval process that allows customers to submit loan applications digitally and enables authorized bank employees to verify applicant information, assess eligibility, perform compliance checks, and approve or reject applications.",
+      "categories": [
+        "Regulatory"
+      ],
+      "evidence": [
+        {
+          "document_id": "DOC-001",
+          "document_name": "Stakeholder interview",
+          "chunk_id": "chunk-001",
+          "excerpt": "business objective: The system should provide a secure online loan application and approval process that allows customers to submit loan applications digitally and enables authorized bank employees to verify applicant information, assess eligibility, perform compliance checks, and approve or reject applications.",
+          "relevance": 0.74,
+          "source_url": null,
+          "source_version": null,
+          "effective_date": null
+        }
+      ],
+      "business_justification": "Supports the documented Online loan application and approval need.",
+      "priority": "Should",
+      "dependencies": [],
+      "assumptions": [],
+      "acceptance_criteria": [
+        "A reviewer must confirm measurable acceptance criteria before baseline approval."
+      ],
+      "applicable_policy": null,
+      "compliance_mappings": [],
+      "risk_level": "Medium",
+      "confidence": 0.74,
+      "reasoning": "Evidence-only draft derived verbatim from the cited source; human refinement is required.",
+      "approval_status": "Needs review"
+    },
+    {
+      "id": "REQ-009",
+      "statement": "The system should reduce manual processing, improve accuracy and traceability, and ensure that every decision follows defined financial and regulatory requirements.",
+      "categories": [
+        "Audit / reporting"
+      ],
+      "evidence": [
+        {
+          "document_id": "DOC-001",
+          "document_name": "Stakeholder interview",
+          "chunk_id": "chunk-001",
+          "excerpt": "The system should reduce manual processing, improve accuracy and traceability, and ensure that every decision follows defined financial and regulatory requirements.",
+          "relevance": 0.74,
+          "source_url": null,
+          "source_version": null,
+          "effective_date": null
+        }
+      ],
+      "business_justification": "Supports the documented Online loan application and approval need.",
+      "priority": "Should",
+      "dependencies": [],
+      "assumptions": [],
+      "acceptance_criteria": [
+        "A reviewer must confirm measurable acceptance criteria before baseline approval."
+      ],
+      "applicable_policy": "RBI-ITG-2023",
+      "compliance_mappings": [
+        {
+          "control_id": "RBI-ITG-2023",
+          "source_title": "RBI IT Governance, Risk, Controls and Assurance Practices Directions, 2023 (Effective 1 April 2024)",
+          "source_url": "https://systemhealth.rbi.org.in/Scripts/BS_ViewMasDirections.aspx_id%3D12562%283%29.html",
+          "jurisdiction": "India",
+          "applicability": "Confirm regulated-entity scope and the system's materiality classification.",
+          "rationale": "IT governance, risk management, assurance, continuity, and audit evidence.",
+          "human_approval_required": true
+        }
+      ],
+      "risk_level": "Medium",
+      "confidence": 0.74,
+      "reasoning": "Evidence-only draft derived verbatim from the cited source; human refinement is required.",
+      "approval_status": "Needs review"
+    },
+    {
+      "id": "REQ-010",
+      "statement": "These rules and approval thresholds are defined in advance and must be consistently applied to ensure traceability and regulatory compliance.",
+      "categories": [
+        "Regulatory",
+        "Audit / reporting"
+      ],
+      "evidence": [
+        {
+          "document_id": "DOC-001",
+          "document_name": "Stakeholder interview",
+          "chunk_id": "chunk-006",
+          "excerpt": "These rules and approval thresholds are defined in advance and must be consistently applied to ensure traceability and regulatory compliance.",
+          "relevance": 0.72,
+          "source_url": null,
+          "source_version": null,
+          "effective_date": null
+        }
+      ],
+      "business_justification": "Supports the documented Online loan application and approval need.",
+      "priority": "Should",
+      "dependencies": [],
+      "assumptions": [],
+      "acceptance_criteria": [
+        "A reviewer must confirm measurable acceptance criteria before baseline approval."
+      ],
+      "applicable_policy": "RBI-ITG-2023",
+      "compliance_mappings": [
+        {
+          "control_id": "RBI-ITG-2023",
+          "source_title": "RBI IT Governance, Risk, Controls and Assurance Practices Directions, 2023 (Effective 1 April 2024)",
+          "source_url": "https://systemhealth.rbi.org.in/Scripts/BS_ViewMasDirections.aspx_id%3D12562%283%29.html",
+          "jurisdiction": "India",
+          "applicability": "Confirm regulated-entity scope and the system's materiality classification.",
+          "rationale": "IT governance, risk management, assurance, continuity, and audit evidence.",
+          "human_approval_required": true
+        }
+      ],
+      "risk_level": "Medium",
+      "confidence": 0.72,
+      "reasoning": "Evidence-only draft derived verbatim from the cited source; human refinement is required.",
+      "approval_status": "Needs review"
+    }
+  ],
+  "quality_issues": [
+    {
+      "id": "QI-001",
+      "requirement_id": "REQ-001",
+      "check": "Lack of testability",
+      "severity": "Medium",
+      "message": "Acceptance criteria are absent or not yet measurable.",
+      "recommendation": "Add pass/fail criteria, test data, and expected outcome."
+    },
+    {
+      "id": "QI-002",
+      "requirement_id": "REQ-001",
+      "check": "Missing security or compliance requirements",
+      "severity": "Low",
+      "message": "This item has no linked security, privacy, or regulatory control.",
+      "recommendation": "Confirm whether a control is not applicable or add an evidence-backed control."
+    },
+    {
+      "id": "QI-003",
+      "requirement_id": "REQ-002",
+      "check": "Lack of testability",
+      "severity": "Medium",
+      "message": "Acceptance criteria are absent or not yet measurable.",
+      "recommendation": "Add pass/fail criteria, test data, and expected outcome."
+    },
+    {
+      "id": "QI-004",
+      "requirement_id": "REQ-002",
+      "check": "Missing security or compliance requirements",
+      "severity": "Low",
+      "message": "This item has no linked security, privacy, or regulatory control.",
+      "recommendation": "Confirm whether a control is not applicable or add an evidence-backed control."
+    },
+    {
+      "id": "QI-005",
+      "requirement_id": "REQ-003",
+      "check": "Lack of testability",
+      "severity": "Medium",
+      "message": "Acceptance criteria are absent or not yet measurable.",
+      "recommendation": "Add pass/fail criteria, test data, and expected outcome."
+    },
+    {
+      "id": "QI-006",
+      "requirement_id": "REQ-003",
+      "check": "Missing security or compliance requirements",
+      "severity": "Low",
+      "message": "This item has no linked security, privacy, or regulatory control.",
+      "recommendation": "Confirm whether a control is not applicable or add an evidence-backed control."
+    },
+    {
+      "id": "QI-007",
+      "requirement_id": "REQ-004",
+      "check": "Lack of testability",
+      "severity": "Medium",
+      "message": "Acceptance criteria are absent or not yet measurable.",
+      "recommendation": "Add pass/fail criteria, test data, and expected outcome."
+    },
+    {
+      "id": "QI-008",
+      "requirement_id": "REQ-005",
+      "check": "Lack of testability",
+      "severity": "Medium",
+      "message": "Acceptance criteria are absent or not yet measurable.",
+      "recommendation": "Add pass/fail criteria, test data, and expected outcome."
+    },
+    {
+      "id": "QI-009",
+      "requirement_id": "REQ-006",
+      "check": "Lack of testability",
+      "severity": "Medium",
+      "message": "Acceptance criteria are absent or not yet measurable.",
+      "recommendation": "Add pass/fail criteria, test data, and expected outcome."
+    },
+    {
+      "id": "QI-010",
+      "requirement_id": "REQ-007",
+      "check": "Lack of testability",
+      "severity": "Medium",
+      "message": "Acceptance criteria are absent or not yet measurable.",
+      "recommendation": "Add pass/fail criteria, test data, and expected outcome."
+    },
+    {
+      "id": "QI-011",
+      "requirement_id": "REQ-008",
+      "check": "Ambiguity",
+      "severity": "Medium",
+      "message": "The requirement contains a qualitative term without a measurable threshold.",
+      "recommendation": "Define an observable metric, limit, or acceptance test."
+    },
+    {
+      "id": "QI-012",
+      "requirement_id": "REQ-008",
+      "check": "Lack of testability",
+      "severity": "Medium",
+      "message": "Acceptance criteria are absent or not yet measurable.",
+      "recommendation": "Add pass/fail criteria, test data, and expected outcome."
+    },
+    {
+      "id": "QI-013",
+      "requirement_id": "REQ-009",
+      "check": "Lack of testability",
+      "severity": "Medium",
+      "message": "Acceptance criteria are absent or not yet measurable.",
+      "recommendation": "Add pass/fail criteria, test data, and expected outcome."
+    },
+    {
+      "id": "QI-014",
+      "requirement_id": "REQ-009",
+      "check": "Missing security or compliance requirements",
+      "severity": "Low",
+      "message": "This item has no linked security, privacy, or regulatory control.",
+      "recommendation": "Confirm whether a control is not applicable or add an evidence-backed control."
+    },
+    {
+      "id": "QI-015",
+      "requirement_id": "REQ-010",
+      "check": "Lack of testability",
+      "severity": "Medium",
+      "message": "Acceptance criteria are absent or not yet measurable.",
+      "recommendation": "Add pass/fail criteria, test data, and expected outcome."
+    }
+  ],
+  "risks": [
+    {
+      "id": "RISK-001",
+      "requirement_id": "REQ-004",
+      "title": "Compliance risk for REQ-004",
+      "category": "Compliance",
+      "level": "High",
+      "rationale": "Regulatory applicability must be confirmed by compliance.",
+      "mitigation": "Define a measurable control, test evidence, accountable owner, and approval gate.",
+      "owner_role": "Compliance officer",
+      "status": "Open"
+    },
+    {
+      "id": "RISK-002",
+      "requirement_id": "REQ-004",
+      "title": "Compliance risk for REQ-004",
+      "category": "Compliance",
+      "level": "Medium",
+      "rationale": "Auditability and retained evidence require control-owner review.",
+      "mitigation": "Define a measurable control, test evidence, accountable owner, and approval gate.",
+      "owner_role": "Compliance officer",
+      "status": "Open"
+    },
+    {
+      "id": "RISK-003",
+      "requirement_id": "REQ-005",
+      "title": "Security risk for REQ-005",
+      "category": "Security",
+      "level": "High",
+      "rationale": "Security controls require security-owner approval.",
+      "mitigation": "Define a measurable control, test evidence, accountable owner, and approval gate.",
+      "owner_role": "Security / technical owner",
+      "status": "Open"
+    },
+    {
+      "id": "RISK-004",
+      "requirement_id": "REQ-006",
+      "title": "Compliance risk for REQ-006",
+      "category": "Compliance",
+      "level": "High",
+      "rationale": "Regulatory applicability must be confirmed by compliance.",
+      "mitigation": "Define a measurable control, test evidence, accountable owner, and approval gate.",
+      "owner_role": "Compliance officer",
+      "status": "Open"
+    },
+    {
+      "id": "RISK-005",
+      "requirement_id": "REQ-007",
+      "title": "Compliance risk for REQ-007",
+      "category": "Compliance",
+      "level": "High",
+      "rationale": "Regulatory applicability must be confirmed by compliance.",
+      "mitigation": "Define a measurable control, test evidence, accountable owner, and approval gate.",
+      "owner_role": "Compliance officer",
+      "status": "Open"
+    },
+    {
+      "id": "RISK-006",
+      "requirement_id": "REQ-008",
+      "title": "Compliance risk for REQ-008",
+      "category": "Compliance",
+      "level": "High",
+      "rationale": "Regulatory applicability must be confirmed by compliance.",
+      "mitigation": "Define a measurable control, test evidence, accountable owner, and approval gate.",
+      "owner_role": "Compliance officer",
+      "status": "Open"
+    },
+    {
+      "id": "RISK-007",
+      "requirement_id": "REQ-009",
+      "title": "Compliance risk for REQ-009",
+      "category": "Compliance",
+      "level": "Medium",
+      "rationale": "Auditability and retained evidence require control-owner review.",
+      "mitigation": "Define a measurable control, test evidence, accountable owner, and approval gate.",
+      "owner_role": "Compliance officer",
+      "status": "Open"
+    },
+    {
+      "id": "RISK-008",
+      "requirement_id": "REQ-010",
+      "title": "Compliance risk for REQ-010",
+      "category": "Compliance",
+      "level": "High",
+      "rationale": "Regulatory applicability must be confirmed by compliance.",
+      "mitigation": "Define a measurable control, test evidence, accountable owner, and approval gate.",
+      "owner_role": "Compliance officer",
+      "status": "Open"
+    },
+    {
+      "id": "RISK-009",
+      "requirement_id": "REQ-010",
+      "title": "Compliance risk for REQ-010",
+      "category": "Compliance",
+      "level": "Medium",
+      "rationale": "Auditability and retained evidence require control-owner review.",
+      "mitigation": "Define a measurable control, test evidence, accountable owner, and approval gate.",
+      "owner_role": "Compliance officer",
+      "status": "Open"
+    }
+  ],
+  "traceability": [
+    {
+      "requirement_id": "REQ-001",
+      "source_document": "Stakeholder interview",
+      "source_chunk_id": "chunk-002",
+      "control_ids": [],
+      "risk_ids": []
+    },
+    {
+      "requirement_id": "REQ-002",
+      "source_document": "Stakeholder interview",
+      "source_chunk_id": "chunk-002",
+      "control_ids": [],
+      "risk_ids": []
+    },
+    {
+      "requirement_id": "REQ-003",
+      "source_document": "Stakeholder interview",
+      "source_chunk_id": "chunk-002",
+      "control_ids": [],
+      "risk_ids": []
+    },
+    {
+      "requirement_id": "REQ-004",
+      "source_document": "Stakeholder interview",
+      "source_chunk_id": "chunk-002",
+      "control_ids": [
+        "RBI-ITG-2023"
+      ],
+      "risk_ids": [
+        "RISK-001",
+        "RISK-002"
+      ]
+    },
+    {
+      "requirement_id": "REQ-005",
+      "source_document": "Stakeholder interview",
+      "source_chunk_id": "chunk-002",
+      "control_ids": [
+        "RBI-ITG-2023"
+      ],
+      "risk_ids": [
+        "RISK-003"
+      ]
+    },
+    {
+      "requirement_id": "REQ-006",
+      "source_document": "Stakeholder interview",
+      "source_chunk_id": "chunk-005",
+      "control_ids": [
+        "RBI-KYC-CDD",
+        "RBI-DPSC-2021"
+      ],
+      "risk_ids": [
+        "RISK-004"
+      ]
+    },
+    {
+      "requirement_id": "REQ-007",
+      "source_document": "Stakeholder interview",
+      "source_chunk_id": "chunk-005",
+      "control_ids": [],
+      "risk_ids": [
+        "RISK-005"
+      ]
+    },
+    {
+      "requirement_id": "REQ-008",
+      "source_document": "Stakeholder interview",
+      "source_chunk_id": "chunk-001",
+      "control_ids": [],
+      "risk_ids": [
+        "RISK-006"
+      ]
+    },
+    {
+      "requirement_id": "REQ-009",
+      "source_document": "Stakeholder interview",
+      "source_chunk_id": "chunk-001",
+      "control_ids": [
+        "RBI-ITG-2023"
+      ],
+      "risk_ids": [
+        "RISK-007"
+      ]
+    },
+    {
+      "requirement_id": "REQ-010",
+      "source_document": "Stakeholder interview",
+      "source_chunk_id": "chunk-006",
+      "control_ids": [
+        "RBI-ITG-2023"
+      ],
+      "risk_ids": [
+        "RISK-008",
+        "RISK-009"
+      ]
+    }
+  ],
+  "artefacts": {
+    "srs": {
+      "title": "Software Requirements Specification: Online loan application and approval",
+      "requirements": [
+        {
+          "id": "REQ-001",
+          "statement": "Customers should submit applications and supporting documents and track their application status.",
+          "categories": [
+            "Data management"
+          ],
+          "evidence": [
+            {
+              "document_id": "DOC-001",
+              "document_name": "Stakeholder interview",
+              "chunk_id": "chunk-002",
+              "excerpt": "Customers should submit applications and supporting documents and track their application status.",
+              "relevance": 0.76,
+              "source_url": null,
+              "source_version": null,
+              "effective_date": null
+            }
+          ],
+          "business_justification": "Supports the documented Online loan application and approval need.",
+          "priority": "Should",
+          "dependencies": [],
+          "assumptions": [],
+          "acceptance_criteria": [
+            "A reviewer must confirm measurable acceptance criteria before baseline approval."
+          ],
+          "applicable_policy": null,
+          "compliance_mappings": [],
+          "risk_level": "Medium",
+          "confidence": 0.76,
+          "reasoning": "Evidence-only draft derived verbatim from the cited source; human refinement is required.",
+          "approval_status": "Needs review"
+        },
+        {
+          "id": "REQ-002",
+          "statement": "Loan officers should review applications and make approval or rejection decisions.",
+          "categories": [
+            "Functional"
+          ],
+          "evidence": [
+            {
+              "document_id": "DOC-001",
+              "document_name": "Stakeholder interview",
+              "chunk_id": "chunk-002",
+              "excerpt": "Loan officers should review applications and make approval or rejection decisions.",
+              "relevance": 0.76,
+              "source_url": null,
+              "source_version": null,
+              "effective_date": null
+            }
+          ],
+          "business_justification": "Supports the documented Online loan application and approval need.",
+          "priority": "Should",
+          "dependencies": [],
+          "assumptions": [],
+          "acceptance_criteria": [
+            "A reviewer must confirm measurable acceptance criteria before baseline approval."
+          ],
+          "applicable_policy": null,
+          "compliance_mappings": [],
+          "risk_level": "Medium",
+          "confidence": 0.76,
+          "reasoning": "Evidence-only draft derived verbatim from the cited source; human refinement is required.",
+          "approval_status": "Needs review"
+        },
+        {
+          "id": "REQ-003",
+          "statement": "Credit analysts should evaluate applicant eligibility and credit information.",
+          "categories": [
+            "Functional"
+          ],
+          "evidence": [
+            {
+              "document_id": "DOC-001",
+              "document_name": "Stakeholder interview",
+              "chunk_id": "chunk-002",
+              "excerpt": "Credit analysts should evaluate applicant eligibility and credit information.",
+              "relevance": 0.76,
+              "source_url": null,
+              "source_version": null,
+              "effective_date": null
+            }
+          ],
+          "business_justification": "Supports the documented Online loan application and approval need.",
+          "priority": "Should",
+          "dependencies": [],
+          "assumptions": [],
+          "acceptance_criteria": [
+            "A reviewer must confirm measurable acceptance criteria before baseline approval."
+          ],
+          "applicable_policy": null,
+          "compliance_mappings": [],
+          "risk_level": "Medium",
+          "confidence": 0.76,
+          "reasoning": "Evidence-only draft derived verbatim from the cited source; human refinement is required.",
+          "approval_status": "Needs review"
+        },
+        {
+          "id": "REQ-004",
+          "statement": "Compliance officers should verify regulatory requirements and audit decisions.",
+          "categories": [
+            "Regulatory",
+            "Audit / reporting"
+          ],
+          "evidence": [
+            {
+              "document_id": "DOC-001",
+              "document_name": "Stakeholder interview",
+              "chunk_id": "chunk-002",
+              "excerpt": "Compliance officers should verify regulatory requirements and audit decisions.",
+              "relevance": 0.76,
+              "source_url": null,
+              "source_version": null,
+              "effective_date": null
+            }
+          ],
+          "business_justification": "Supports the documented Online loan application and approval need.",
+          "priority": "Should",
+          "dependencies": [],
+          "assumptions": [],
+          "acceptance_criteria": [
+            "A reviewer must confirm measurable acceptance criteria before baseline approval."
+          ],
+          "applicable_policy": "RBI-ITG-2023",
+          "compliance_mappings": [
+            {
+              "control_id": "RBI-ITG-2023",
+              "source_title": "RBI IT Governance, Risk, Controls and Assurance Practices Directions, 2023 (Effective 1 April 2024)",
+              "source_url": "https://systemhealth.rbi.org.in/Scripts/BS_ViewMasDirections.aspx_id%3D12562%283%29.html",
+              "jurisdiction": "India",
+              "applicability": "Confirm regulated-entity scope and the system's materiality classification.",
+              "rationale": "IT governance, risk management, assurance, continuity, and audit evidence.",
+              "human_approval_required": true
+            }
+          ],
+          "risk_level": "Medium",
+          "confidence": 0.76,
+          "reasoning": "Evidence-only draft derived verbatim from the cited source; human refinement is required.",
+          "approval_status": "Needs review"
+        },
+        {
+          "id": "REQ-005",
+          "statement": "Administrators should manage users, roles, system configuration, and access controls.",
+          "categories": [
+            "Security"
+          ],
+          "evidence": [
+            {
+              "document_id": "DOC-001",
+              "document_name": "Stakeholder interview",
+              "chunk_id": "chunk-002",
+              "excerpt": "Administrators should manage users, roles, system configuration, and access controls.",
+              "relevance": 0.76,
+              "source_url": null,
+              "source_version": null,
+              "effective_date": null
+            }
+          ],
+          "business_justification": "Supports the documented Online loan application and approval need.",
+          "priority": "Should",
+          "dependencies": [],
+          "assumptions": [],
+          "acceptance_criteria": [
+            "A reviewer must confirm measurable acceptance criteria before baseline approval."
+          ],
+          "applicable_policy": "RBI-ITG-2023",
+          "compliance_mappings": [
+            {
+              "control_id": "RBI-ITG-2023",
+              "source_title": "RBI IT Governance, Risk, Controls and Assurance Practices Directions, 2023 (Effective 1 April 2024)",
+              "source_url": "https://systemhealth.rbi.org.in/Scripts/BS_ViewMasDirections.aspx_id%3D12562%283%29.html",
+              "jurisdiction": "India",
+              "applicability": "Confirm regulated-entity scope and the system's materiality classification.",
+              "rationale": "IT governance, risk management, assurance, continuity, and audit evidence.",
+              "human_approval_required": true
+            }
+          ],
+          "risk_level": "Medium",
+          "confidence": 0.76,
+          "reasoning": "Evidence-only draft derived verbatim from the cited source; human refinement is required.",
+          "approval_status": "Needs review"
+        },
+        {
+          "id": "REQ-006",
+          "statement": "Applications must pass identity, document, credit, fraud, and compliance checks before approval.",
+          "categories": [
+            "Regulatory",
+            "Data management"
+          ],
+          "evidence": [
+            {
+              "document_id": "DOC-001",
+              "document_name": "Stakeholder interview",
+              "chunk_id": "chunk-005",
+              "excerpt": "Applications must pass identity, document, credit, fraud, and compliance checks before approval.",
+              "relevance": 0.74,
+              "source_url": null,
+              "source_version": null,
+              "effective_date": null
+            }
+          ],
+          "business_justification": "Supports the documented Online loan application and approval need.",
+          "priority": "Should",
+          "dependencies": [],
+          "assumptions": [],
+          "acceptance_criteria": [
+            "A reviewer must confirm measurable acceptance criteria before baseline approval."
+          ],
+          "applicable_policy": "RBI-KYC-CDD; RBI-DPSC-2021",
+          "compliance_mappings": [
+            {
+              "control_id": "RBI-KYC-CDD",
+              "source_title": "RBI Master Direction – Know Your Customer (KYC), 2016 (Updated 6 November 2024)",
+              "source_url": "https://www.rbi.org.in/commonman/Upload/English/Notification/PDFs/MD18KYCF6E92C82E1E1419D87323E3869BC9F13.pdf",
+              "jurisdiction": "India",
+              "applicability": "Confirm applicability to the regulated entity and customer/onboarding flow.",
+              "rationale": "Customer due diligence, KYC record handling, and required review/approval checkpoints.",
+              "human_approval_required": true
+            },
+            {
+              "control_id": "RBI-DPSC-2021",
+              "source_title": "RBI Master Direction on Digital Payment Security Controls (18 February 2021)",
+              "source_url": "https://systemhealth.rbi.org.in/Scripts/BS_ViewMasDirections.aspx_id%3D12032%283%29.html",
+              "jurisdiction": "India",
+              "applicability": "Confirm that the product/channel is within the Direction's regulated-entity scope.",
+              "rationale": "Authentication, fraud-risk management, application security lifecycle, and reconciliation controls.",
+              "human_approval_required": true
+            }
+          ],
+          "risk_level": "Medium",
+          "confidence": 0.74,
+          "reasoning": "Evidence-only draft derived verbatim from the cited source; human refinement is required.",
+          "approval_status": "Needs review"
+        },
+        {
+          "id": "REQ-007",
+          "statement": "Applications exceeding predefined loan limits or involving exceptions require approval from an authorized senior loan officer or compliance officer.",
+          "categories": [
+            "Regulatory"
+          ],
+          "evidence": [
+            {
+              "document_id": "DOC-001",
+              "document_name": "Stakeholder interview",
+              "chunk_id": "chunk-005",
+              "excerpt": "Applications exceeding predefined loan limits or involving exceptions require approval from an authorized senior loan officer or compliance officer.",
+              "relevance": 0.74,
+              "source_url": null,
+              "source_version": null,
+              "effective_date": null
+            }
+          ],
+          "business_justification": "Supports the documented Online loan application and approval need.",
+          "priority": "Should",
+          "dependencies": [],
+          "assumptions": [],
+          "acceptance_criteria": [
+            "A reviewer must confirm measurable acceptance criteria before baseline approval."
+          ],
+          "applicable_policy": null,
+          "compliance_mappings": [],
+          "risk_level": "Medium",
+          "confidence": 0.74,
+          "reasoning": "Evidence-only draft derived verbatim from the cited source; human refinement is required.",
+          "approval_status": "Needs review"
+        },
+        {
+          "id": "REQ-008",
+          "statement": "business objective: The system should provide a secure online loan application and approval process that allows customers to submit loan applications digitally and enables authorized bank employees to verify applicant information, assess eligibility, perform compliance checks, and approve or reject applications.",
+          "categories": [
+            "Regulatory"
+          ],
+          "evidence": [
+            {
+              "document_id": "DOC-001",
+              "document_name": "Stakeholder interview",
+              "chunk_id": "chunk-001",
+              "excerpt": "business objective: The system should provide a secure online loan application and approval process that allows customers to submit loan applications digitally and enables authorized bank employees to verify applicant information, assess eligibility, perform compliance checks, and approve or reject applications.",
+              "relevance": 0.74,
+              "source_url": null,
+              "source_version": null,
+              "effective_date": null
+            }
+          ],
+          "business_justification": "Supports the documented Online loan application and approval need.",
+          "priority": "Should",
+          "dependencies": [],
+          "assumptions": [],
+          "acceptance_criteria": [
+            "A reviewer must confirm measurable acceptance criteria before baseline approval."
+          ],
+          "applicable_policy": null,
+          "compliance_mappings": [],
+          "risk_level": "Medium",
+          "confidence": 0.74,
+          "reasoning": "Evidence-only draft derived verbatim from the cited source; human refinement is required.",
+          "approval_status": "Needs review"
+        },
+        {
+          "id": "REQ-009",
+          "statement": "The system should reduce manual processing, improve accuracy and traceability, and ensure that every decision follows defined financial and regulatory requirements.",
+          "categories": [
+            "Audit / reporting"
+          ],
+          "evidence": [
+            {
+              "document_id": "DOC-001",
+              "document_name": "Stakeholder interview",
+              "chunk_id": "chunk-001",
+              "excerpt": "The system should reduce manual processing, improve accuracy and traceability, and ensure that every decision follows defined financial and regulatory requirements.",
+              "relevance": 0.74,
+              "source_url": null,
+              "source_version": null,
+              "effective_date": null
+            }
+          ],
+          "business_justification": "Supports the documented Online loan application and approval need.",
+          "priority": "Should",
+          "dependencies": [],
+          "assumptions": [],
+          "acceptance_criteria": [
+            "A reviewer must confirm measurable acceptance criteria before baseline approval."
+          ],
+          "applicable_policy": "RBI-ITG-2023",
+          "compliance_mappings": [
+            {
+              "control_id": "RBI-ITG-2023",
+              "source_title": "RBI IT Governance, Risk, Controls and Assurance Practices Directions, 2023 (Effective 1 April 2024)",
+              "source_url": "https://systemhealth.rbi.org.in/Scripts/BS_ViewMasDirections.aspx_id%3D12562%283%29.html",
+              "jurisdiction": "India",
+              "applicability": "Confirm regulated-entity scope and the system's materiality classification.",
+              "rationale": "IT governance, risk management, assurance, continuity, and audit evidence.",
+              "human_approval_required": true
+            }
+          ],
+          "risk_level": "Medium",
+          "confidence": 0.74,
+          "reasoning": "Evidence-only draft derived verbatim from the cited source; human refinement is required.",
+          "approval_status": "Needs review"
+        },
+        {
+          "id": "REQ-010",
+          "statement": "These rules and approval thresholds are defined in advance and must be consistently applied to ensure traceability and regulatory compliance.",
+          "categories": [
+            "Regulatory",
+            "Audit / reporting"
+          ],
+          "evidence": [
+            {
+              "document_id": "DOC-001",
+              "document_name": "Stakeholder interview",
+              "chunk_id": "chunk-006",
+              "excerpt": "These rules and approval thresholds are defined in advance and must be consistently applied to ensure traceability and regulatory compliance.",
+              "relevance": 0.72,
+              "source_url": null,
+              "source_version": null,
+              "effective_date": null
+            }
+          ],
+          "business_justification": "Supports the documented Online loan application and approval need.",
+          "priority": "Should",
+          "dependencies": [],
+          "assumptions": [],
+          "acceptance_criteria": [
+            "A reviewer must confirm measurable acceptance criteria before baseline approval."
+          ],
+          "applicable_policy": "RBI-ITG-2023",
+          "compliance_mappings": [
+            {
+              "control_id": "RBI-ITG-2023",
+              "source_title": "RBI IT Governance, Risk, Controls and Assurance Practices Directions, 2023 (Effective 1 April 2024)",
+              "source_url": "https://systemhealth.rbi.org.in/Scripts/BS_ViewMasDirections.aspx_id%3D12562%283%29.html",
+              "jurisdiction": "India",
+              "applicability": "Confirm regulated-entity scope and the system's materiality classification.",
+              "rationale": "IT governance, risk management, assurance, continuity, and audit evidence.",
+              "human_approval_required": true
+            }
+          ],
+          "risk_level": "Medium",
+          "confidence": 0.72,
+          "reasoning": "Evidence-only draft derived verbatim from the cited source; human refinement is required.",
+          "approval_status": "Needs review"
+        }
+      ]
+    },
+    "user_stories": [
+      {
+        "id": "US-001",
+        "story": "As a relevant stakeholder, I want customers should submit applications and supporting documents and track their application status. so that Supports the documented Online loan application and approval need.",
+        "acceptance_criteria": [
+          "A reviewer must confirm measurable acceptance criteria before baseline approval."
+        ],
+        "requirement_id": "REQ-001"
+      },
+      {
+        "id": "US-002",
+        "story": "As a relevant stakeholder, I want loan officers should review applications and make approval or rejection decisions. so that Supports the documented Online loan application and approval need.",
+        "acceptance_criteria": [
+          "A reviewer must confirm measurable acceptance criteria before baseline approval."
+        ],
+        "requirement_id": "REQ-002"
+      },
+      {
+        "id": "US-003",
+        "story": "As a relevant stakeholder, I want credit analysts should evaluate applicant eligibility and credit information. so that Supports the documented Online loan application and approval need.",
+        "acceptance_criteria": [
+          "A reviewer must confirm measurable acceptance criteria before baseline approval."
+        ],
+        "requirement_id": "REQ-003"
+      },
+      {
+        "id": "US-004",
+        "story": "As a relevant stakeholder, I want compliance officers should verify regulatory requirements and audit decisions. so that Supports the documented Online loan application and approval need.",
+        "acceptance_criteria": [
+          "A reviewer must confirm measurable acceptance criteria before baseline approval."
+        ],
+        "requirement_id": "REQ-004"
+      },
+      {
+        "id": "US-005",
+        "story": "As a relevant stakeholder, I want administrators should manage users, roles, system configuration, and access controls. so that Supports the documented Online loan application and approval need.",
+        "acceptance_criteria": [
+          "A reviewer must confirm measurable acceptance criteria before baseline approval."
+        ],
+        "requirement_id": "REQ-005"
+      },
+      {
+        "id": "US-006",
+        "story": "As a relevant stakeholder, I want applications must pass identity, document, credit, fraud, and compliance checks before approval. so that Supports the documented Online loan application and approval need.",
+        "acceptance_criteria": [
+          "A reviewer must confirm measurable acceptance criteria before baseline approval."
+        ],
+        "requirement_id": "REQ-006"
+      },
+      {
+        "id": "US-007",
+        "story": "As a relevant stakeholder, I want applications exceeding predefined loan limits or involving exceptions require approval from an authorized senior loan officer or compliance officer. so that Supports the documented Online loan application and approval need.",
+        "acceptance_criteria": [
+          "A reviewer must confirm measurable acceptance criteria before baseline approval."
+        ],
+        "requirement_id": "REQ-007"
+      },
+      {
+        "id": "US-008",
+        "story": "As a relevant stakeholder, I want business objective: The system should provide a secure online loan application and approval process that allows customers to submit loan applications digitally and enables authorized bank employees to verify applicant information, assess eligibility, perform compliance checks, and approve or reject applications. so that Supports the documented Online loan application and approval need.",
+        "acceptance_criteria": [
+          "A reviewer must confirm measurable acceptance criteria before baseline approval."
+        ],
+        "requirement_id": "REQ-008"
+      },
+      {
+        "id": "US-009",
+        "story": "As a relevant stakeholder, I want the system should reduce manual processing, improve accuracy and traceability, and ensure that every decision follows defined financial and regulatory requirements. so that Supports the documented Online loan application and approval need.",
+        "acceptance_criteria": [
+          "A reviewer must confirm measurable acceptance criteria before baseline approval."
+        ],
+        "requirement_id": "REQ-009"
+      },
+      {
+        "id": "US-010",
+        "story": "As a relevant stakeholder, I want these rules and approval thresholds are defined in advance and must be consistently applied to ensure traceability and regulatory compliance. so that Supports the documented Online loan application and approval need.",
+        "acceptance_criteria": [
+          "A reviewer must confirm measurable acceptance criteria before baseline approval."
+        ],
+        "requirement_id": "REQ-010"
+      }
+    ],
+    "use_cases": [
+      {
+        "id": "UC-001",
+        "name": "Customers should submit applications and supporting documents and track their application status.",
+        "actors": "To be confirmed by stakeholder",
+        "preconditions": [],
+        "success_criteria": [
+          "A reviewer must confirm measurable acceptance criteria before baseline approval."
+        ],
+        "requirement_id": "REQ-001"
+      },
+      {
+        "id": "UC-002",
+        "name": "Loan officers should review applications and make approval or rejection decisions.",
+        "actors": "To be confirmed by stakeholder",
+        "preconditions": [],
+        "success_criteria": [
+          "A reviewer must confirm measurable acceptance criteria before baseline approval."
+        ],
+        "requirement_id": "REQ-002"
+      },
+      {
+        "id": "UC-003",
+        "name": "Credit analysts should evaluate applicant eligibility and credit information.",
+        "actors": "To be confirmed by stakeholder",
+        "preconditions": [],
+        "success_criteria": [
+          "A reviewer must confirm measurable acceptance criteria before baseline approval."
+        ],
+        "requirement_id": "REQ-003"
+      },
+      {
+        "id": "UC-004",
+        "name": "Compliance officers should verify regulatory requirements and audit decisions.",
+        "actors": "To be confirmed by stakeholder",
+        "preconditions": [],
+        "success_criteria": [
+          "A reviewer must confirm measurable acceptance criteria before baseline approval."
+        ],
+        "requirement_id": "REQ-004"
+      },
+      {
+        "id": "UC-005",
+        "name": "Administrators should manage users, roles, system configuration, and access controls.",
+        "actors": "To be confirmed by stakeholder",
+        "preconditions": [],
+        "success_criteria": [
+          "A reviewer must confirm measurable acceptance criteria before baseline approval."
+        ],
+        "requirement_id": "REQ-005"
+      },
+      {
+        "id": "UC-006",
+        "name": "Applications must pass identity, document, credit, fraud, and compliance checks before approval.",
+        "actors": "To be confirmed by stakeholder",
+        "preconditions": [],
+        "success_criteria": [
+          "A reviewer must confirm measurable acceptance criteria before baseline approval."
+        ],
+        "requirement_id": "REQ-006"
+      },
+      {
+        "id": "UC-007",
+        "name": "Applications exceeding predefined loan limits or involving exceptions require approval from an autho",
+        "actors": "To be confirmed by stakeholder",
+        "preconditions": [],
+        "success_criteria": [
+          "A reviewer must confirm measurable acceptance criteria before baseline approval."
+        ],
+        "requirement_id": "REQ-007"
+      },
+      {
+        "id": "UC-008",
+        "name": "business objective: The system should provide a secure online loan application and approval process ",
+        "actors": "To be confirmed by stakeholder",
+        "preconditions": [],
+        "success_criteria": [
+          "A reviewer must confirm measurable acceptance criteria before baseline approval."
+        ],
+        "requirement_id": "REQ-008"
+      },
+      {
+        "id": "UC-009",
+        "name": "The system should reduce manual processing, improve accuracy and traceability, and ensure that every",
+        "actors": "To be confirmed by stakeholder",
+        "preconditions": [],
+        "success_criteria": [
+          "A reviewer must confirm measurable acceptance criteria before baseline approval."
+        ],
+        "requirement_id": "REQ-009"
+      },
+      {
+        "id": "UC-010",
+        "name": "These rules and approval thresholds are defined in advance and must be consistently applied to ensur",
+        "actors": "To be confirmed by stakeholder",
+        "preconditions": [],
+        "success_criteria": [
+          "A reviewer must confirm measurable acceptance criteria before baseline approval."
+        ],
+        "requirement_id": "REQ-010"
+      }
+    ],
+    "risk_register": [
+      {
+        "id": "RISK-001",
+        "requirement_id": "REQ-004",
+        "title": "Compliance risk for REQ-004",
+        "category": "Compliance",
+        "level": "High",
+        "rationale": "Regulatory applicability must be confirmed by compliance.",
+        "mitigation": "Define a measurable control, test evidence, accountable owner, and approval gate.",
+        "owner_role": "Compliance officer",
+        "status": "Open"
+      },
+      {
+        "id": "RISK-002",
+        "requirement_id": "REQ-004",
+        "title": "Compliance risk for REQ-004",
+        "category": "Compliance",
+        "level": "Medium",
+        "rationale": "Auditability and retained evidence require control-owner review.",
+        "mitigation": "Define a measurable control, test evidence, accountable owner, and approval gate.",
+        "owner_role": "Compliance officer",
+        "status": "Open"
+      },
+      {
+        "id": "RISK-003",
+        "requirement_id": "REQ-005",
+        "title": "Security risk for REQ-005",
+        "category": "Security",
+        "level": "High",
+        "rationale": "Security controls require security-owner approval.",
+        "mitigation": "Define a measurable control, test evidence, accountable owner, and approval gate.",
+        "owner_role": "Security / technical owner",
+        "status": "Open"
+      },
+      {
+        "id": "RISK-004",
+        "requirement_id": "REQ-006",
+        "title": "Compliance risk for REQ-006",
+        "category": "Compliance",
+        "level": "High",
+        "rationale": "Regulatory applicability must be confirmed by compliance.",
+        "mitigation": "Define a measurable control, test evidence, accountable owner, and approval gate.",
+        "owner_role": "Compliance officer",
+        "status": "Open"
+      },
+      {
+        "id": "RISK-005",
+        "requirement_id": "REQ-007",
+        "title": "Compliance risk for REQ-007",
+        "category": "Compliance",
+        "level": "High",
+        "rationale": "Regulatory applicability must be confirmed by compliance.",
+        "mitigation": "Define a measurable control, test evidence, accountable owner, and approval gate.",
+        "owner_role": "Compliance officer",
+        "status": "Open"
+      },
+      {
+        "id": "RISK-006",
+        "requirement_id": "REQ-008",
+        "title": "Compliance risk for REQ-008",
+        "category": "Compliance",
+        "level": "High",
+        "rationale": "Regulatory applicability must be confirmed by compliance.",
+        "mitigation": "Define a measurable control, test evidence, accountable owner, and approval gate.",
+        "owner_role": "Compliance officer",
+        "status": "Open"
+      },
+      {
+        "id": "RISK-007",
+        "requirement_id": "REQ-009",
+        "title": "Compliance risk for REQ-009",
+        "category": "Compliance",
+        "level": "Medium",
+        "rationale": "Auditability and retained evidence require control-owner review.",
+        "mitigation": "Define a measurable control, test evidence, accountable owner, and approval gate.",
+        "owner_role": "Compliance officer",
+        "status": "Open"
+      },
+      {
+        "id": "RISK-008",
+        "requirement_id": "REQ-010",
+        "title": "Compliance risk for REQ-010",
+        "category": "Compliance",
+        "level": "High",
+        "rationale": "Regulatory applicability must be confirmed by compliance.",
+        "mitigation": "Define a measurable control, test evidence, accountable owner, and approval gate.",
+        "owner_role": "Compliance officer",
+        "status": "Open"
+      },
+      {
+        "id": "RISK-009",
+        "requirement_id": "REQ-010",
+        "title": "Compliance risk for REQ-010",
+        "category": "Compliance",
+        "level": "Medium",
+        "rationale": "Auditability and retained evidence require control-owner review.",
+        "mitigation": "Define a measurable control, test evidence, accountable owner, and approval gate.",
+        "owner_role": "Compliance officer",
+        "status": "Open"
+      }
+    ],
+    "traceability_matrix": [
+      {
+        "requirement_id": "REQ-001",
+        "source_document": "Stakeholder interview",
+        "source_chunk_id": "chunk-002",
+        "control_ids": [],
+        "risk_ids": []
+      },
+      {
+        "requirement_id": "REQ-002",
+        "source_document": "Stakeholder interview",
+        "source_chunk_id": "chunk-002",
+        "control_ids": [],
+        "risk_ids": []
+      },
+      {
+        "requirement_id": "REQ-003",
+        "source_document": "Stakeholder interview",
+        "source_chunk_id": "chunk-002",
+        "control_ids": [],
+        "risk_ids": []
+      },
+      {
+        "requirement_id": "REQ-004",
+        "source_document": "Stakeholder interview",
+        "source_chunk_id": "chunk-002",
+        "control_ids": [
+          "RBI-ITG-2023"
+        ],
+        "risk_ids": [
+          "RISK-001",
+          "RISK-002"
+        ]
+      },
+      {
+        "requirement_id": "REQ-005",
+        "source_document": "Stakeholder interview",
+        "source_chunk_id": "chunk-002",
+        "control_ids": [
+          "RBI-ITG-2023"
+        ],
+        "risk_ids": [
+          "RISK-003"
+        ]
+      },
+      {
+        "requirement_id": "REQ-006",
+        "source_document": "Stakeholder interview",
+        "source_chunk_id": "chunk-005",
+        "control_ids": [
+          "RBI-KYC-CDD",
+          "RBI-DPSC-2021"
+        ],
+        "risk_ids": [
+          "RISK-004"
+        ]
+      },
+      {
+        "requirement_id": "REQ-007",
+        "source_document": "Stakeholder interview",
+        "source_chunk_id": "chunk-005",
+        "control_ids": [],
+        "risk_ids": [
+          "RISK-005"
+        ]
+      },
+      {
+        "requirement_id": "REQ-008",
+        "source_document": "Stakeholder interview",
+        "source_chunk_id": "chunk-001",
+        "control_ids": [],
+        "risk_ids": [
+          "RISK-006"
+        ]
+      },
+      {
+        "requirement_id": "REQ-009",
+        "source_document": "Stakeholder interview",
+        "source_chunk_id": "chunk-001",
+        "control_ids": [
+          "RBI-ITG-2023"
+        ],
+        "risk_ids": [
+          "RISK-007"
+        ]
+      },
+      {
+        "requirement_id": "REQ-010",
+        "source_document": "Stakeholder interview",
+        "source_chunk_id": "chunk-006",
+        "control_ids": [
+          "RBI-ITG-2023"
+        ],
+        "risk_ids": [
+          "RISK-008",
+          "RISK-009"
+        ]
+      }
+    ],
+    "assumptions_and_dependencies": [
+      {
+        "requirement_id": "REQ-001",
+        "assumptions": [],
+        "dependencies": []
+      },
+      {
+        "requirement_id": "REQ-002",
+        "assumptions": [],
+        "dependencies": []
+      },
+      {
+        "requirement_id": "REQ-003",
+        "assumptions": [],
+        "dependencies": []
+      },
+      {
+        "requirement_id": "REQ-004",
+        "assumptions": [],
+        "dependencies": []
+      },
+      {
+        "requirement_id": "REQ-005",
+        "assumptions": [],
+        "dependencies": []
+      },
+      {
+        "requirement_id": "REQ-006",
+        "assumptions": [],
+        "dependencies": []
+      },
+      {
+        "requirement_id": "REQ-007",
+        "assumptions": [],
+        "dependencies": []
+      },
+      {
+        "requirement_id": "REQ-008",
+        "assumptions": [],
+        "dependencies": []
+      },
+      {
+        "requirement_id": "REQ-009",
+        "assumptions": [],
+        "dependencies": []
+      },
+      {
+        "requirement_id": "REQ-010",
+        "assumptions": [],
+        "dependencies": []
+      }
+    ],
+    "open_issues": [
+      {
+        "id": "QI-001",
+        "requirement_id": "REQ-001",
+        "check": "Lack of testability",
+        "severity": "Medium",
+        "message": "Acceptance criteria are absent or not yet measurable.",
+        "recommendation": "Add pass/fail criteria, test data, and expected outcome."
+      },
+      {
+        "id": "QI-003",
+        "requirement_id": "REQ-002",
+        "check": "Lack of testability",
+        "severity": "Medium",
+        "message": "Acceptance criteria are absent or not yet measurable.",
+        "recommendation": "Add pass/fail criteria, test data, and expected outcome."
+      },
+      {
+        "id": "QI-005",
+        "requirement_id": "REQ-003",
+        "check": "Lack of testability",
+        "severity": "Medium",
+        "message": "Acceptance criteria are absent or not yet measurable.",
+        "recommendation": "Add pass/fail criteria, test data, and expected outcome."
+      },
+      {
+        "id": "QI-007",
+        "requirement_id": "REQ-004",
+        "check": "Lack of testability",
+        "severity": "Medium",
+        "message": "Acceptance criteria are absent or not yet measurable.",
+        "recommendation": "Add pass/fail criteria, test data, and expected outcome."
+      },
+      {
+        "id": "QI-008",
+        "requirement_id": "REQ-005",
+        "check": "Lack of testability",
+        "severity": "Medium",
+        "message": "Acceptance criteria are absent or not yet measurable.",
+        "recommendation": "Add pass/fail criteria, test data, and expected outcome."
+      },
+      {
+        "id": "QI-009",
+        "requirement_id": "REQ-006",
+        "check": "Lack of testability",
+        "severity": "Medium",
+        "message": "Acceptance criteria are absent or not yet measurable.",
+        "recommendation": "Add pass/fail criteria, test data, and expected outcome."
+      },
+      {
+        "id": "QI-010",
+        "requirement_id": "REQ-007",
+        "check": "Lack of testability",
+        "severity": "Medium",
+        "message": "Acceptance criteria are absent or not yet measurable.",
+        "recommendation": "Add pass/fail criteria, test data, and expected outcome."
+      },
+      {
+        "id": "QI-011",
+        "requirement_id": "REQ-008",
+        "check": "Ambiguity",
+        "severity": "Medium",
+        "message": "The requirement contains a qualitative term without a measurable threshold.",
+        "recommendation": "Define an observable metric, limit, or acceptance test."
+      },
+      {
+        "id": "QI-012",
+        "requirement_id": "REQ-008",
+        "check": "Lack of testability",
+        "severity": "Medium",
+        "message": "Acceptance criteria are absent or not yet measurable.",
+        "recommendation": "Add pass/fail criteria, test data, and expected outcome."
+      },
+      {
+        "id": "QI-013",
+        "requirement_id": "REQ-009",
+        "check": "Lack of testability",
+        "severity": "Medium",
+        "message": "Acceptance criteria are absent or not yet measurable.",
+        "recommendation": "Add pass/fail criteria, test data, and expected outcome."
+      },
+      {
+        "id": "QI-015",
+        "requirement_id": "REQ-010",
+        "check": "Lack of testability",
+        "severity": "Medium",
+        "message": "Acceptance criteria are absent or not yet measurable.",
+        "recommendation": "Add pass/fail criteria, test data, and expected outcome."
+      }
+    ],
+    "compliance_control_matrix": [
+      {
+        "requirement_id": "REQ-001",
+        "mappings": []
+      },
+      {
+        "requirement_id": "REQ-002",
+        "mappings": []
+      },
+      {
+        "requirement_id": "REQ-003",
+        "mappings": []
+      },
+      {
+        "requirement_id": "REQ-004",
+        "mappings": [
+          {
+            "control_id": "RBI-ITG-2023",
+            "source_title": "RBI IT Governance, Risk, Controls and Assurance Practices Directions, 2023 (Effective 1 April 2024)",
+            "source_url": "https://systemhealth.rbi.org.in/Scripts/BS_ViewMasDirections.aspx_id%3D12562%283%29.html",
+            "jurisdiction": "India",
+            "applicability": "Confirm regulated-entity scope and the system's materiality classification.",
+            "rationale": "IT governance, risk management, assurance, continuity, and audit evidence.",
+            "human_approval_required": true
+          }
+        ]
+      },
+      {
+        "requirement_id": "REQ-005",
+        "mappings": [
+          {
+            "control_id": "RBI-ITG-2023",
+            "source_title": "RBI IT Governance, Risk, Controls and Assurance Practices Directions, 2023 (Effective 1 April 2024)",
+            "source_url": "https://systemhealth.rbi.org.in/Scripts/BS_ViewMasDirections.aspx_id%3D12562%283%29.html",
+            "jurisdiction": "India",
+            "applicability": "Confirm regulated-entity scope and the system's materiality classification.",
+            "rationale": "IT governance, risk management, assurance, continuity, and audit evidence.",
+            "human_approval_required": true
+          }
+        ]
+      },
+      {
+        "requirement_id": "REQ-006",
+        "mappings": [
+          {
+            "control_id": "RBI-KYC-CDD",
+            "source_title": "RBI Master Direction – Know Your Customer (KYC), 2016 (Updated 6 November 2024)",
+            "source_url": "https://www.rbi.org.in/commonman/Upload/English/Notification/PDFs/MD18KYCF6E92C82E1E1419D87323E3869BC9F13.pdf",
+            "jurisdiction": "India",
+            "applicability": "Confirm applicability to the regulated entity and customer/onboarding flow.",
+            "rationale": "Customer due diligence, KYC record handling, and required review/approval checkpoints.",
+            "human_approval_required": true
+          },
+          {
+            "control_id": "RBI-DPSC-2021",
+            "source_title": "RBI Master Direction on Digital Payment Security Controls (18 February 2021)",
+            "source_url": "https://systemhealth.rbi.org.in/Scripts/BS_ViewMasDirections.aspx_id%3D12032%283%29.html",
+            "jurisdiction": "India",
+            "applicability": "Confirm that the product/channel is within the Direction's regulated-entity scope.",
+            "rationale": "Authentication, fraud-risk management, application security lifecycle, and reconciliation controls.",
+            "human_approval_required": true
+          }
+        ]
+      },
+      {
+        "requirement_id": "REQ-007",
+        "mappings": []
+      },
+      {
+        "requirement_id": "REQ-008",
+        "mappings": []
+      },
+      {
+        "requirement_id": "REQ-009",
+        "mappings": [
+          {
+            "control_id": "RBI-ITG-2023",
+            "source_title": "RBI IT Governance, Risk, Controls and Assurance Practices Directions, 2023 (Effective 1 April 2024)",
+            "source_url": "https://systemhealth.rbi.org.in/Scripts/BS_ViewMasDirections.aspx_id%3D12562%283%29.html",
+            "jurisdiction": "India",
+            "applicability": "Confirm regulated-entity scope and the system's materiality classification.",
+            "rationale": "IT governance, risk management, assurance, continuity, and audit evidence.",
+            "human_approval_required": true
+          }
+        ]
+      },
+      {
+        "requirement_id": "REQ-010",
+        "mappings": [
+          {
+            "control_id": "RBI-ITG-2023",
+            "source_title": "RBI IT Governance, Risk, Controls and Assurance Practices Directions, 2023 (Effective 1 April 2024)",
+            "source_url": "https://systemhealth.rbi.org.in/Scripts/BS_ViewMasDirections.aspx_id%3D12562%283%29.html",
+            "jurisdiction": "India",
+            "applicability": "Confirm regulated-entity scope and the system's materiality classification.",
+            "rationale": "IT governance, risk management, assurance, continuity, and audit evidence.",
+            "human_approval_required": true
+          }
+        ]
+      }
+    ],
+    "clarification_queue": [
+      "REQ-001: What pass/fail acceptance test, test data, and expected result will verify this requirement?",
+      "REQ-001: Has the security, privacy, and compliance applicability for this requirement been confirmed?",
+      "REQ-002: What pass/fail acceptance test, test data, and expected result will verify this requirement?",
+      "REQ-002: Has the security, privacy, and compliance applicability for this requirement been confirmed?",
+      "REQ-003: What pass/fail acceptance test, test data, and expected result will verify this requirement?",
+      "REQ-003: Has the security, privacy, and compliance applicability for this requirement been confirmed?",
+      "REQ-004: What pass/fail acceptance test, test data, and expected result will verify this requirement?",
+      "REQ-005: What pass/fail acceptance test, test data, and expected result will verify this requirement?",
+      "REQ-006: What pass/fail acceptance test, test data, and expected result will verify this requirement?",
+      "REQ-007: What pass/fail acceptance test, test data, and expected result will verify this requirement?",
+      "REQ-008: What measurable threshold or observable outcome should replace the qualitative wording?",
+      "REQ-008: What pass/fail acceptance test, test data, and expected result will verify this requirement?",
+      "REQ-009: What pass/fail acceptance test, test data, and expected result will verify this requirement?",
+      "REQ-009: Has the security, privacy, and compliance applicability for this requirement been confirmed?",
+      "REQ-010: What pass/fail acceptance test, test data, and expected result will verify this requirement?"
+    ],
+    "approval_register": [
+      {
+        "id": "APR-F2B539FB",
+        "subject_type": "SDLC",
+        "subject_id": "Spiral",
+        "decision": "Approved",
+        "reviewer": "Human reviewer (identity not recorded)",
+        "reviewer_role": "Not recorded",
+        "rationale": "SDLC decision recorded in the prototype interface.",
+        "at": "2026-10-05T15:59:01.442317Z"
+      },
+      {
+        "id": "APR-915416FF",
+        "subject_type": "SDLC",
+        "subject_id": "Spiral",
+        "decision": "Needs review",
+        "reviewer": "Human reviewer (identity not recorded)",
+        "reviewer_role": "Not recorded",
+        "rationale": "SDLC decision recorded in the prototype interface.",
+        "at": "2026-10-05T15:59:02.188225Z"
+      },
+      {
+        "id": "APR-46608171",
+        "subject_type": "SDLC",
+        "subject_id": "Spiral",
+        "decision": "Needs review",
+        "reviewer": "Human reviewer (identity not recorded)",
+        "reviewer_role": "Not recorded",
+        "rationale": "SDLC decision recorded in the prototype interface.",
+        "at": "2026-10-05T15:59:02.985211Z"
+      }
+    ],
+    "evaluation": {
+      "requirements_count": 10,
+      "citation_coverage": 1.0,
+      "measurable_acceptance_coverage": 0.0,
+      "rbi_control_coverage": 0.5,
+      "open_high_issues": 0,
+      "open_risks": 9,
+      "human_review_coverage": 0.0,
+      "notes": [
+        "Human review is incomplete."
+      ]
+    }
+  },
+  "clarification_questions": [
+    "REQ-001: What pass/fail acceptance test, test data, and expected result will verify this requirement?",
+    "REQ-001: Has the security, privacy, and compliance applicability for this requirement been confirmed?",
+    "REQ-002: What pass/fail acceptance test, test data, and expected result will verify this requirement?",
+    "REQ-002: Has the security, privacy, and compliance applicability for this requirement been confirmed?",
+    "REQ-003: What pass/fail acceptance test, test data, and expected result will verify this requirement?",
+    "REQ-003: Has the security, privacy, and compliance applicability for this requirement been confirmed?",
+    "REQ-004: What pass/fail acceptance test, test data, and expected result will verify this requirement?",
+    "REQ-005: What pass/fail acceptance test, test data, and expected result will verify this requirement?",
+    "REQ-006: What pass/fail acceptance test, test data, and expected result will verify this requirement?",
+    "REQ-007: What pass/fail acceptance test, test data, and expected result will verify this requirement?",
+    "REQ-008: What measurable threshold or observable outcome should replace the qualitative wording?",
+    "REQ-008: What pass/fail acceptance test, test data, and expected result will verify this requirement?",
+    "REQ-009: What pass/fail acceptance test, test data, and expected result will verify this requirement?",
+    "REQ-009: Has the security, privacy, and compliance applicability for this requirement been confirmed?",
+    "REQ-010: What pass/fail acceptance test, test data, and expected result will verify this requirement?"
+  ],
+  "approvals": [
+    {
+      "id": "APR-F2B539FB",
+      "subject_type": "SDLC",
+      "subject_id": "Spiral",
+      "decision": "Approved",
+      "reviewer": "Human reviewer (identity not recorded)",
+      "reviewer_role": "Not recorded",
+      "rationale": "SDLC decision recorded in the prototype interface.",
+      "at": "2026-10-05T15:59:01.442317Z"
+    },
+    {
+      "id": "APR-915416FF",
+      "subject_type": "SDLC",
+      "subject_id": "Spiral",
+      "decision": "Needs review",
+      "reviewer": "Human reviewer (identity not recorded)",
+      "reviewer_role": "Not recorded",
+      "rationale": "SDLC decision recorded in the prototype interface.",
+      "at": "2026-10-05T15:59:02.188225Z"
+    },
+    {
+      "id": "APR-46608171",
+      "subject_type": "SDLC",
+      "subject_id": "Spiral",
+      "decision": "Needs review",
+      "reviewer": "Human reviewer (identity not recorded)",
+      "reviewer_role": "Not recorded",
+      "rationale": "SDLC decision recorded in the prototype interface.",
+      "at": "2026-10-05T15:59:02.985211Z"
+    }
+  ],
+  "evaluation": {
+    "requirements_count": 10,
+    "citation_coverage": 1.0,
+    "measurable_acceptance_coverage": 0.0,
+    "rbi_control_coverage": 0.5,
+    "open_high_issues": 0,
+    "open_risks": 9,
+    "human_review_coverage": 0.0,
+    "notes": [
+      "Human review is incomplete."
+    ]
+  },
+  "sdlc": {
+    "recommended_sdlc": "Spiral",
+    "factors": [
+      {
+        "name": "Requirement stability",
+        "value": "Needs validation",
+        "score": 2,
+        "rationale": "Draft or unapproved requirements indicate that stability has not yet been demonstrated.",
+        "requirement_ids": [
+          "REQ-001",
+          "REQ-002",
+          "REQ-003",
+          "REQ-004",
+          "REQ-005",
+          "REQ-006",
+          "REQ-007",
+          "REQ-008",
+          "REQ-009",
+          "REQ-010"
+        ]
+      },
+      {
+        "name": "Requirement clarity",
+        "value": "Low",
+        "score": 2,
+        "rationale": "Measured from the presence of concrete, non-placeholder acceptance criteria.",
+        "requirement_ids": [
+          "REQ-001",
+          "REQ-002",
+          "REQ-003",
+          "REQ-004",
+          "REQ-005",
+          "REQ-006",
+          "REQ-007",
+          "REQ-008",
+          "REQ-009",
+          "REQ-010"
+        ]
+      },
+      {
+        "name": "Risk",
+        "value": "High",
+        "score": 5,
+        "rationale": "Derived from stated high risk and security, privacy, regulatory, or audit classifications.",
+        "requirement_ids": [
+          "REQ-004",
+          "REQ-005",
+          "REQ-006",
+          "REQ-007",
+          "REQ-008",
+          "REQ-009",
+          "REQ-010"
+        ]
+      },
+      {
+        "name": "Complexity",
+        "value": "High",
+        "score": 4,
+        "rationale": "Integration and data-management requirements increase coordination and technical complexity.",
+        "requirement_ids": [
+          "REQ-001",
+          "REQ-006"
+        ]
+      },
+      {
+        "name": "Need for early prototype",
+        "value": "Likely",
+        "score": 4,
+        "rationale": "Unclear requirements or integration complexity make early learning and validation valuable.",
+        "requirement_ids": []
+      },
+      {
+        "name": "Time constraints",
+        "value": "Not evidenced",
+        "score": 3,
+        "rationale": "No schedule or deadline evidence is available in the generated requirements; confirm this with the project sponsor.",
+        "requirement_ids": []
+      },
+      {
+        "name": "Customer involvement",
+        "value": "Not evidenced",
+        "score": 3,
+        "rationale": "Derived only from business, stakeholder, or usability requirements; otherwise this must be confirmed.",
+        "requirement_ids": []
+      },
+      {
+        "name": "Frequency of changes",
+        "value": "Not evidenced",
+        "score": 3,
+        "rationale": "Requirement documents do not establish the expected change rate; confirm with product and business stakeholders.",
+        "requirement_ids": []
+      },
+      {
+        "name": "Need for iterative development",
+        "value": "Likely",
+        "score": 4,
+        "rationale": "Unapproved or unclear requirements benefit from repeated review and validation cycles.",
+        "requirement_ids": []
+      },
+      {
+        "name": "Need for risk analysis",
+        "value": "High",
+        "score": 5,
+        "rationale": "Security/compliance concerns or complex integration warrant explicit risk analysis.",
+        "requirement_ids": [
+          "REQ-001",
+          "REQ-004",
+          "REQ-005",
+          "REQ-006",
+          "REQ-007",
+          "REQ-008",
+          "REQ-009",
+          "REQ-010"
+        ]
+      }
+    ],
+    "options": [
+      {
+        "name": "Spiral",
+        "score": 100,
+        "suitability": "Best when risk analysis, prototypes, and repeated risk-reduction cycles are central."
+      },
+      {
+        "name": "Prototyping",
+        "score": 97,
+        "suitability": "Best for validating uncertain user needs, workflows, and interfaces before committing to a full build."
+      },
+      {
+        "name": "Agile",
+        "score": 92,
+        "suitability": "Best for frequent feedback and evolving requirements, with planned governance for high-risk work."
+      },
+      {
+        "name": "DevSecOps",
+        "score": 92,
+        "suitability": "Best where iterative delivery is paired with automated security, assurance, and operational controls."
+      },
+      {
+        "name": "Incremental",
+        "score": 86,
+        "suitability": "Best when value can be divided into validated, independently testable increments."
+      },
+      {
+        "name": "Agile–V-Model hybrid",
+        "score": 86,
+        "suitability": "Best where evolving delivery needs formal verification and validation gates for regulated scope."
+      },
+      {
+        "name": "V-Shape",
+        "score": 44,
+        "suitability": "Best when each specification stage needs a linked verification and validation activity."
+      },
+      {
+        "name": "RAD",
+        "score": 37,
+        "suitability": "Best for time-boxed delivery with available users and modular, lower-risk scope."
+      },
+      {
+        "name": "Waterfall",
+        "score": 27,
+        "suitability": "Best when requirements are stable, fully specified, and changes are controlled."
+      }
+    ],
+    "justification": "Spiral has the highest transparent score because requirement stability is needs validation, requirement clarity is low, risk is high, complexity is high, need for early prototype is likely. Factors marked 'Not evidenced' are deliberately neutral and require stakeholder confirmation before the SDLC is approved.",
+    "workflow": [
+      {
+        "phase": "Validate requirements",
+        "activities": [
+          "Resolve quality issues",
+          "Confirm stability, time constraints, and expected changes",
+          "Prioritise requirement baseline"
+        ],
+        "roles": [
+          "Business analyst",
+          "Customer representative"
+        ],
+        "deliverables": [
+          "Validated requirements",
+          "SDLC factor assessment"
+        ],
+        "gate": "Stakeholder confirms project assumptions"
+      },
+      {
+        "phase": "Plan the model",
+        "activities": [
+          "Review ranked SDLC options",
+          "Plan risk analysis",
+          "Define iteration or stage gates"
+        ],
+        "roles": [
+          "Project manager",
+          "Architect",
+          "Risk owner"
+        ],
+        "deliverables": [
+          "Approved SDLC decision",
+          "Risk register"
+        ],
+        "gate": "Engineering and business approval"
+      },
+      {
+        "phase": "Develop and validate",
+        "activities": [
+          "Build planned scope",
+          "Test against acceptance criteria",
+          "Review feedback and risks"
+        ],
+        "roles": [
+          "Developers",
+          "QA",
+          "Customer representative"
+        ],
+        "deliverables": [
+          "Working increment or verified stage",
+          "Test evidence"
+        ],
+        "gate": "Quality and stakeholder acceptance"
+      },
+      {
+        "phase": "Release and learn",
+        "activities": [
+          "Release approved scope",
+          "Monitor outcomes",
+          "Reassess requirement changes and risks"
+        ],
+        "roles": [
+          "Operations",
+          "Product owner",
+          "Project manager"
+        ],
+        "deliverables": [
+          "Release record",
+          "Updated SDLC assessment"
+        ],
+        "gate": "Release and change-control approval"
+      }
+    ],
+    "human_approval_required": true
+  },
+  "agent_runs": [
+    {
+      "agent": "Requirements Agent",
+      "responsibility": "Requirement extraction, classification, traceability, and quality review",
+      "status": "Waiting for human review",
+      "output": "Generated 10 evidence-only RAG-grounded draft requirement(s) and found 15 quality issue(s).",
+      "at": "2026-10-05T15:58:50.565653Z"
+    },
+    {
+      "agent": "Compliance & Risk Agent",
+      "responsibility": "RBI control mapping, risk register generation, and traceability",
+      "status": "Waiting for human review",
+      "output": "Mapped 6 RBI control suggestion(s) and raised 9 reviewable risk entries.",
+      "at": "2026-10-05T15:58:50.566860Z"
+    },
+    {
+      "agent": "Documentation Agent",
+      "responsibility": "SRS, user-story, use-case, traceability, risk, and open-issue artefacts",
+      "status": "Waiting for human review",
+      "output": "Generated exportable SRS, user-story, use-case, risk, compliance, traceability, and open-issue artefacts.",
+      "at": "2026-10-05T15:58:50.570086Z"
+    },
+    {
+      "agent": "Governance & SDLC Agent",
+      "responsibility": "Risk and control assessment, SDLC ranking, and approval-gate planning",
+      "status": "Waiting for human review",
+      "output": "Recommended Spiral; human approval remains required.",
+      "at": "2026-10-05T15:58:56.322605Z"
+    }
+  ],
+  "audit_log": [
+    {
+      "at": "2026-10-05T15:58:30.858378+00:00",
+      "action": "sources_recorded",
+      "detail": "Indexed 3 allowlisted RBI reference summary source(s), plus 10 masked stakeholder response(s) and 0 uploaded document(s)."
+    },
+    {
+      "at": "2026-10-05T15:58:30.859002+00:00",
+      "action": "rag_indexed",
+      "detail": "Indexed 18 source chunk(s) in ChromaDB."
+    },
+    {
+      "at": "2026-10-05T15:58:50.559254+00:00",
+      "action": "llm_fallback",
+      "detail": "The configured LLM did not return usable structured JSON."
+    },
+    {
+      "at": "2026-10-05T15:58:50.565717+00:00",
+      "action": "agent_completed",
+      "detail": "Requirements Agent: Generated 10 evidence-only RAG-grounded draft requirement(s) and found 15 quality issue(s)."
+    },
+    {
+      "at": "2026-10-05T15:58:50.566869+00:00",
+      "action": "agent_completed",
+      "detail": "Compliance & Risk Agent: Mapped 6 RBI control suggestion(s) and raised 9 reviewable risk entries."
+    },
+    {
+      "at": "2026-10-05T15:58:50.570100+00:00",
+      "action": "agent_completed",
+      "detail": "Documentation Agent: Generated exportable SRS, user-story, use-case, risk, compliance, traceability, and open-issue artefacts."
+    },
+    {
+      "at": "2026-10-05T15:58:56.322633+00:00",
+      "action": "agent_completed",
+      "detail": "Governance & SDLC Agent: Recommended Spiral; human approval remains required."
+    },
+    {
+      "at": "2026-10-05T15:59:01.442504+00:00",
+      "action": "sdlc_approval_updated",
+      "detail": "Spiral marked Approved."
+    },
+    {
+      "at": "2026-10-05T15:59:02.188696+00:00",
+      "action": "sdlc_approval_updated",
+      "detail": "Spiral marked Needs review."
+    },
+    {
+      "at": "2026-10-05T15:59:02.985644+00:00",
+      "action": "sdlc_approval_updated",
+      "detail": "Spiral marked Needs review."
+    }
+  ]
+}

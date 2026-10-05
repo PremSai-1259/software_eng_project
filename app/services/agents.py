@@ -56,5 +56,14 @@ class GovernanceSdlcAgent:
     responsibility = "Risk and control assessment, SDLC ranking, and approval-gate planning"
 
     def run(self, project: Project) -> SdlcRecommendation:
-        project.sdlc = recommend(project.requirements)
+        # Requirements are retrieved from the most relevant chunks, while SDLC
+        # evidence (for example delivery gates and test strategy) can be in a
+        # different stakeholder-answer chunk. Include the complete masked
+        # project evidence without inventing any new project facts.
+        project_context = " ".join(
+            chunk.get("text", "")
+            for document in project.documents
+            for chunk in document.get("chunks", [])
+        )
+        project.sdlc = recommend(project.requirements, project_context)
         return project.sdlc

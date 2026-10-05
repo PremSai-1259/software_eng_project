@@ -23,6 +23,20 @@ class Category(StrEnum):
     OPERATIONAL = "Operational / maintenance"
 
 
+class InterviewQuestionRequest(BaseModel):
+    functionality: str = Field(min_length=3, max_length=500)
+    answers: dict[str, str] = Field(default_factory=dict)
+    asked_question_keys: list[str] = Field(default_factory=list)
+
+
+class InterviewQuestionResponse(BaseModel):
+    key: str | None = None
+    topic: str | None = None
+    prompt: str | None = None
+    mode: Literal["Groq adaptive agent", "Local fallback"]
+    completed: bool = False
+
+
 class Evidence(BaseModel):
     document_id: str
     document_name: str

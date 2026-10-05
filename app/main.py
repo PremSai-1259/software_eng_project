@@ -12,14 +12,14 @@ from fastapi import FastAPI, File, Form, HTTPException, UploadFile
 from fastapi.responses import FileResponse, JSONResponse
 from fastapi.staticfiles import StaticFiles
 
-from app.schemas import AgentRun, ApprovalDecision, Project
+from app.schemas import AgentRun, ApprovalDecision, InterviewQuestionRequest, InterviewQuestionResponse, Project
 from app.services.agents import ComplianceRiskAgent, DocumentationAgent, GovernanceSdlcAgent, RequirementsAgent
 from app.services.compliance import catalogue as rbi_catalogue
 from app.services.documents import chunk_text, extract_text, mask_sensitive
 from app.services.generator import generate_evidence_drafts
 from app.services.knowledge import approved_documents
-from app.services.llm import enabled as llm_enabled, generate_requirements as generate_llm_requirements
-from app.services.rag import RagConfigurationError, VectorStore, provider_configured
+from app.services.llm import enabled as llm_enabled, generate_requirements as generate_llm_requirements, select_interview_question
+from app.services.rag import RagConfigurationError, VectorStore, embedding_provider_configured, provider_configured
 from app.services.storage import ProjectStore
 
 ROOT = Path(__file__).resolve().parent
@@ -30,6 +30,17 @@ requirements_agent = RequirementsAgent()
 compliance_risk_agent = ComplianceRiskAgent()
 documentation_agent = DocumentationAgent()
 governance_sdlc_agent = GovernanceSdlcAgent()
+
+INTERVIEW_TOPICS = [
+    {"key": "workflow and outcomes", "topic": "Workflow and outcomes"},
+    {"key": "business rules", "topic": "Decision rules"},
+    {"key": "exceptions", "topic": "Exceptions and overrides"},
+    {"key": "data and integrations", "topic": "Data and integrations"},
+    {"key": "security and compliance", "topic": "Security and compliance"},
+    {"key": "service levels and scale", "topic": "Operational scale"},
+    {"key": "delivery constraints", "topic": "Delivery context"},
+    {"key": "validation and rollout", "topic": "Validation and rollout"},
+]
 
 
 @asynccontextmanager
@@ -67,11 +78,18 @@ def home() -> FileResponse:
     return FileResponse(ROOT / "templates" / "index.html")
 
 
+@app.get("/favicon.ico", include_in_schema=False)
+def favicon() -> FileResponse:
+    """Serve an icon so browsers do not report a harmless missing-favicon error."""
+    return FileResponse(ROOT / "static" / "favicon.svg", media_type="image/svg+xml")
+
+
 @app.get("/api/rag/status")
 def rag_status() -> JSONResponse:
     return JSONResponse({
         **vector_store.configuration(),
-        "embedding_provider_configured": provider_configured(),
+        "embedding_provider_configured": embedding_provider_configured(),
+        "generation_provider_configured": provider_configured(),
         "generation_mode": "LLM generation with citation validation" if llm_enabled() else "Evidence-only drafts until LLM_API_KEY is configured",
     })
 
@@ -80,6 +98,34 @@ def rag_status() -> JSONResponse:
 def rbi_knowledge_base() -> JSONResponse:
     """Return the reviewable source register, not legal advice or source text."""
     return JSONResponse({"jurisdiction": "India", "authority": "Reserve Bank of India", "sources": rbi_catalogue(), "notice": "Source applicability and legal interpretation require authorised compliance review."})
+
+
+@app.post("/api/interview/next-question", response_model=InterviewQuestionResponse)
+def next_interview_question(request: InterviewQuestionRequest) -> InterviewQuestionResponse:
+    """Use Groq to select the next missing stakeholder topic and formulate its question."""
+    asked = set(request.asked_question_keys)
+    candidates = [topic for topic in INTERVIEW_TOPICS if topic["key"] not in asked]
+    if not candidates:
+        return InterviewQuestionResponse(mode="Local fallback", completed=True)
+    answers = {key: value.strip()[:4_000] for key, value in request.answers.items() if value.strip()}
+    if llm_enabled():
+        try:
+            question = select_interview_question(request.functionality.strip(), answers, candidates)
+            return InterviewQuestionResponse(**question, mode="Groq adaptive agent")
+        except RuntimeError as exc:
+            print("========== GROQ ERROR ==========")
+            print(repr(exc))
+            print("================================")
+            raise HTTPException(
+                503,
+                f"Groq error: {str(exc)}",
+            ) from exc
+    fallback = candidates[0]
+    return InterviewQuestionResponse(
+        **fallback,
+        prompt=f"To complete the project picture, describe the {fallback['topic'].lower()} for this solution.",
+        mode="Local fallback",
+    )
 
 
 @app.post("/api/projects")

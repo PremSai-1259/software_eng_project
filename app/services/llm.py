@@ -2,41 +2,91 @@ from __future__ import annotations
 
 import json
 import os
+import ssl
 from pathlib import Path
 from urllib.error import URLError
 from urllib.request import Request, urlopen
+
+import certifi
 
 from app.schemas import Category, Evidence, Requirement
 from app.services.rag import _api_key, provider_configured
 
 
 PROMPTS = Path(__file__).resolve().parents[1] / "prompts"
+TLS_CONTEXT = ssl.create_default_context(cafile=certifi.where())
 
 
 def enabled() -> bool:
     return provider_configured()
 
-
 def _post_chat(prompt: str) -> dict:
     base_url = os.getenv("LLM_BASE_URL", "https://api.openai.com/v1").rstrip("/")
+    model = os.getenv("LLM_MODEL", "gpt-4o-mini")
+    api_key = _api_key()
+
     payload = {
-        "model": os.getenv("LLM_MODEL", "gpt-4o-mini"),
-        "messages": [{"role": "user", "content": prompt}],
+        "model": model,
+        "messages": [
+            {
+                "role": "user",
+                "content": prompt
+            }
+        ],
         "response_format": {"type": "json_object"},
         "temperature": 0.1,
     }
+
+    print("========== GROQ DEBUG ==========")
+    print("URL:", f"{base_url}/chat/completions")
+    print("MODEL:", model)
+    print("API KEY PRESENT:", bool(api_key))
+    print("API KEY PREFIX:", api_key[:8] if api_key else "NONE")
+    print("PROMPT TOKENS APPROX:", len(prompt) // 4)
+    print("================================")
+
     request = Request(
         f"{base_url}/chat/completions",
         data=json.dumps(payload).encode("utf-8"),
-        headers={"Authorization": f"Bearer {_api_key()}", "Content-Type": "application/json"},
+        headers={
+            "Authorization": f"Bearer {api_key}",
+            "Content-Type": "application/json",
+            "User-Agent": "FinReq-Studio/1.0",
+        },
         method="POST",
     )
+
     try:
-        with urlopen(request, timeout=35) as response:  # noqa: S310 - URL is explicit operator configuration
-            content = json.loads(response.read().decode("utf-8"))["choices"][0]["message"]["content"]
+        with urlopen(
+            request,
+            timeout=35,
+            context=TLS_CONTEXT
+        ) as response:
+            raw = response.read().decode("utf-8")
+
+        print("========== GROQ RESPONSE ==========")
+        print(raw)
+        print("===================================")
+
+        data = json.loads(raw)
+        content = data["choices"][0]["message"]["content"]
+
         return json.loads(content)
-    except (URLError, KeyError, IndexError, json.JSONDecodeError) as exc:
-        raise RuntimeError("The configured LLM did not return usable structured JSON.") from exc
+
+    except Exception as exc:
+        print("========== GROQ ACTUAL ERROR ==========")
+        print(repr(exc))
+
+        if hasattr(exc, "read"):
+            try:
+                print("BODY:", exc.read().decode("utf-8"))
+            except Exception:
+                pass
+
+        print("=======================================")
+
+        raise RuntimeError(f"Groq request failed: {exc}") from exc
+
 
 
 def generate_requirements(functionality: str, chunks: list[dict]) -> list[Requirement]:
@@ -71,3 +121,61 @@ def generate_requirements(functionality: str, chunks: list[dict]) -> list[Requir
     if not requirements:
         raise RuntimeError("The LLM response included no requirements with valid evidence references.")
     return requirements
+
+
+def select_interview_question(
+    functionality: str,
+    answers: dict[str, str],
+    candidates: list[dict[str, str]]
+) -> dict:
+    """Ask the configured LLM to select one unasked interview topic and question."""
+
+    prompt = (
+        "Choose the next stakeholder interview topic.\n"
+        "Return ONLY valid JSON with exactly these fields:\n"
+        '{"key":"candidate key","topic":"topic","prompt":"question"}\n'
+        "The key must exactly match a candidate key.\n"
+    )
+
+    recent_answer = ""
+
+    if answers:
+        recent_key = list(answers.keys())[-1]
+        recent_answer = answers[recent_key].strip()[:400]
+
+    candidate_info = [
+        {
+            "key": candidate["key"],
+            "topic": candidate["topic"]
+        }
+        for candidate in candidates
+    ]
+
+    response = _post_chat(
+        f"{prompt}"
+        f"Functionality: {functionality[:300]}\n"
+        f"Latest answer: {recent_answer}\n"
+        f"Candidates: {json.dumps(candidate_info)}"
+    )
+
+    allowed_keys = {candidate["key"] for candidate in candidates}
+
+    key = response.get("key")
+    topic = response.get("topic")
+    question = response.get("prompt")
+
+    if (
+        key not in allowed_keys
+        or not isinstance(topic, str)
+        or not isinstance(question, str)
+        or len(question.strip()) < 10
+    ):
+        raise RuntimeError(
+            "The configured LLM returned an invalid interview question."
+        )
+
+    return {
+        "key": key,
+        "topic": topic.strip()[:80],
+        "prompt": question.strip()[:500]
+    }

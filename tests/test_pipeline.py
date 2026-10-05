@@ -9,7 +9,7 @@ from app.services import rag
 from app.services.rag import RagConfigurationError, VectorStore, _api_key, _embed, provider_configured
 from app.services.sdlc import recommend
 from app.services.agents import ComplianceRiskAgent, DocumentationAgent, GovernanceSdlcAgent, RequirementsAgent
-from app.schemas import Project
+from app.schemas import Evidence, Project, Requirement
 from datetime import datetime
 
 
@@ -42,6 +42,44 @@ def test_two_agents_have_a_sequential_hand_off():
     assert requirements == project.requirements
     assert project.quality_issues is not None
     assert recommendation == project.sdlc
+
+
+def test_v_shape_wins_for_a_controlled_high_risk_project_with_formal_verification():
+    requirement = Requirement(
+        id="REQ-001",
+        statement="The approved baseline must follow controlled change management and traceability between requirements and test results.",
+        categories=[Category.SECURITY, Category.REGULATORY, Category.INTEGRATION],
+        evidence=[Evidence(document_id="DOC-001", document_name="plan", chunk_id="chunk-001", excerpt="Requirements and acceptance criteria are formally approved before development. Unit testing, integration testing, system testing and acceptance testing are required at each stage.", relevance=1)],
+        business_justification="Regulated lending delivery.",
+        acceptance_criteria=["Each approved requirement has linked verification evidence."],
+        risk_level="High",
+        confidence=0.9,
+        reasoning="Explicit staged verification evidence.",
+        approval_status="Needs review",
+    )
+
+    recommendation = recommend([requirement])
+
+    assert recommendation.recommended_sdlc == "V-Shape"
+
+
+def test_governance_agent_uses_full_project_evidence_for_sdlc_signals():
+    chunks = [chunk.__dict__ for chunk in chunk_text("Requirements and acceptance criteria are formally approved before development. Unit testing, integration testing, system testing and acceptance testing are required at each stage. Controlled change management is mandatory.")]
+    project = Project(
+        id="v-model-context",
+        functionality="Regulated lending",
+        created_at=datetime.now(),
+        documents=[{"id": "DOC-001", "name": "interview", "chunks": chunks}],
+    )
+    project.requirements = [Requirement(
+        id="REQ-001", statement="The system must apply regulated lending controls.", categories=[Category.REGULATORY, Category.SECURITY],
+        evidence=[], business_justification="Compliance", acceptance_criteria=[], risk_level="High", confidence=0.9,
+        reasoning="Stakeholder evidence", approval_status="Needs review",
+    )]
+
+    recommendation = GovernanceSdlcAgent().run(project)
+
+    assert recommendation.recommended_sdlc == "V-Shape"
 
 
 def test_rbi_compliance_risks_traceability_and_artefacts_are_reviewable():
@@ -141,3 +179,31 @@ def test_project_creation_works_without_provider_key(monkeypatch, tmp_path):
     assert response.json()["rag"]["vector_database"] == "ChromaDB"
     knowledge_sources = [item for item in response.json()["documents"] if item["source_type"] == "Allowlisted RBI reference"]
     assert len(knowledge_sources) == 3
+
+
+def test_interview_question_endpoint_uses_llm_agent(monkeypatch):
+    from fastapi.testclient import TestClient
+    from app import main
+
+    monkeypatch.setattr(main, "llm_enabled", lambda: True)
+    monkeypatch.setattr(
+        main,
+        "select_interview_question",
+        lambda functionality, answers, candidates: {
+            "key": "exceptions",
+            "topic": "Exceptions and overrides",
+            "prompt": "What happens when a loan application fails validation or needs an override?",
+        },
+    )
+    response = TestClient(main.app).post(
+        "/api/interview/next-question",
+        json={
+            "functionality": "Online loan approval",
+            "answers": {"business objective": "Process loan applications securely."},
+            "asked_question_keys": ["workflow and outcomes"],
+        },
+    )
+
+    assert response.status_code == 200
+    assert response.json()["mode"] == "Groq adaptive agent"
+    assert response.json()["key"] == "exceptions"

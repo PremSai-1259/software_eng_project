@@ -79,6 +79,15 @@ APP_DATA_DIR=data
 VECTOR_DB_PATH=data/chroma
 ```
 
+For Groq generation, use its OpenAI-compatible endpoint and a Groq chat model. Groq does not offer the OpenAI embeddings endpoint used by this app, so leave `EMBEDDING_MODEL` blank to use the built-in local embeddings:
+
+```text
+LLM_API_KEY=your_groq_api_key
+LLM_BASE_URL=https://api.groq.com/openai/v1
+LLM_MODEL=openai/gpt-oss-120b
+EMBEDDING_MODEL=
+```
+
 `OPENAI_API_KEY` is also supported as an alternative to `LLM_API_KEY`. Restart the server after changing `.env`.
 
 Keep API keys only in `.env`, which is ignored by Git. Never add a key to source code, JSON exports, screenshots, or documentation. If a key is exposed, revoke it and create a replacement immediately.

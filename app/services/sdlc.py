@@ -15,9 +15,13 @@ def _score(base: int, adjustments: list[tuple[bool, int]]) -> int:
     return max(0, min(100, base + sum(amount for applies, amount in adjustments if applies)))
 
 
-def recommend(requirements: list[Requirement]) -> SdlcRecommendation:
+def recommend(requirements: list[Requirement], project_context: str = "") -> SdlcRecommendation:
     """Rank requested SDLC models from requirement signals without inventing project facts."""
     categories = {category for requirement in requirements for category in requirement.categories}
+    source_text = " ".join([
+        project_context,
+        *(" ".join([requirement.statement, *(evidence.excerpt for evidence in requirement.evidence)]) for requirement in requirements),
+    ]).lower()
     needs_review = sum(requirement.approval_status != "Approved" for requirement in requirements)
     measurable = sum(bool(requirement.acceptance_criteria) and not any("reviewer" in item.lower() for item in requirement.acceptance_criteria) for requirement in requirements)
     high_risk = sum(requirement.risk_level == "High" for requirement in requirements)
@@ -25,9 +29,14 @@ def recommend(requirements: list[Requirement]) -> SdlcRecommendation:
     risk_ids = _requirement_ids(requirements, security_or_compliance)
     integration_ids = _requirement_ids(requirements, {Category.INTEGRATION, Category.DATA})
     stakeholder_ids = _requirement_ids(requirements, {Category.STAKEHOLDER, Category.USABILITY, Category.BUSINESS})
+    controlled_requirements = any(term in source_text for term in ("formally approved", "requirements approval", "controlled change", "change-management", "change management"))
+    formal_verification = any(term in source_text for term in ("verification and validation", "traceability between requirements", "unit testing", "integration testing", "system testing", "acceptance testing", "acceptance test"))
+    explicit_acceptance = "acceptance criteria" in source_text
 
-    stability_score = 2 if needs_review else 4
-    clarity_score = 4 if measurable == len(requirements) else 2 if measurable == 0 else 3
+    # A draft status means human approval remains outstanding; it does not erase
+    # stakeholder evidence of a controlled, stable baseline.
+    stability_score = 4 if controlled_requirements else 2 if needs_review else 4
+    clarity_score = 4 if measurable == len(requirements) or (formal_verification and explicit_acceptance) else 2 if measurable == 0 else 3
     risk_score = 5 if high_risk or risk_ids else 3
     complexity_score = 4 if integration_ids else 2
     early_prototype_score = 4 if clarity_score <= 2 or complexity_score >= 4 else 3
@@ -62,10 +71,10 @@ def recommend(requirements: list[Requirement]) -> SdlcRecommendation:
 
     options = [
         SdlcOption(name="Waterfall", score=_score(42, [(stable, 25), (clear, 20), (not iterative, 8), (high_risk_or_analysis, 5), (unclear, -20)]), suitability="Best when requirements are stable, fully specified, and changes are controlled."),
-        SdlcOption(name="V-Shape", score=_score(44, [(stable, 20), (clear, 18), (high_risk_or_analysis, 18), (unclear, -18)]), suitability="Best when each specification stage needs a linked verification and validation activity."),
+        SdlcOption(name="V-Shape", score=_score(44, [(stable, 15), (clear, 15), (high_risk_or_analysis, 20), (formal_verification, 24), (unclear, -15)]), suitability="Best when each specification stage needs a linked verification and validation activity."),
         SdlcOption(name="Prototyping", score=_score(45, [(prototype_helpful, 26), (unclear, 18), (customer_available, 10), (complex_project, 8)]), suitability="Best for validating uncertain user needs, workflows, and interfaces before committing to a full build."),
         SdlcOption(name="RAD", score=_score(40, [(time_pressure, 25), (customer_available, 20), (iterative, 15), (high_risk_or_analysis, -10), (complex_project, -8)]), suitability="Best for time-boxed delivery with available users and modular, lower-risk scope."),
-        SdlcOption(name="Spiral", score=_score(43, [(high_risk_or_analysis, 27), (complex_project, 18), (prototype_helpful, 12), (iterative, 8)]), suitability="Best when risk analysis, prototypes, and repeated risk-reduction cycles are central."),
+        SdlcOption(name="Spiral", score=_score(43, [(high_risk_or_analysis, 20), (complex_project, 12), (prototype_helpful, 12), (iterative, 8)]), suitability="Best when risk analysis, prototypes, and repeated risk-reduction cycles are central."),
         SdlcOption(name="Incremental", score=_score(46, [(iterative, 18), (complex_project, 12), (prototype_helpful, 10), (customer_available, 8), (time_pressure, 8)]), suitability="Best when value can be divided into validated, independently testable increments."),
         SdlcOption(name="Agile", score=_score(45, [(iterative, 22), (customer_available, 18), (prototype_helpful, 12), (unclear, 10), (high_risk_or_analysis, 3)]), suitability="Best for frequent feedback and evolving requirements, with planned governance for high-risk work."),
         SdlcOption(name="DevSecOps", score=_score(44, [(iterative, 18), (high_risk_or_analysis, 22), (complex_project, 8), (customer_available, 6)]), suitability="Best where iterative delivery is paired with automated security, assurance, and operational controls."),

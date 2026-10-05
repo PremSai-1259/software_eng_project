@@ -20,7 +20,7 @@
         </div>
         <div class="agent-summary" aria-label="Agent workflow"><span><strong>Requirements</strong> Extracts, classifies, and checks evidence-grounded requirements.</span><span><strong>Compliance &amp; risk</strong> Suggests reviewable RBI controls and traceability.</span><span><strong>Governance &amp; SDLC</strong> Assesses controls and ranks delivery models.</span></div>
         <form id="interviewStartForm" class="intake">
-          <div class="interview-heading"><p class="eyebrow">Adaptive stakeholder interview</p><p>Begin with the essentials. The next questions adapt to the financial workflow you describe.</p></div>
+          <div class="interview-heading"><p class="eyebrow">Groq adaptive stakeholder interview</p><p>Begin with the essentials. Groq selects each next question from the financial workflow you describe.</p></div>
           <div class="starter-grid">
             <label>Financial functionality<input id="functionality" placeholder="e.g. Digital customer onboarding and KYC" required minlength="3"></label>
             <label>Business objective<textarea id="businessObjective" placeholder="What problem should this solve, and why does it matter?" required></textarea></label>
@@ -72,6 +72,6 @@
       </section>
     </main>
     <div id="toast" role="status" aria-live="polite"></div>
-    <script src="/static/app.js"></script>
+    <script src="/static/app.js?v=groq-interview-v1"></script>
   </body>
 </html>
