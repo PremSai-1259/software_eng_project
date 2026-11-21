@@ -1,0 +1,549 @@
+{
+  "id": "4786fd74d9d8",
+  "functionality": "Online loan application and approval",
+  "created_at": "2026-11-21T18:35:11.634987Z",
+  "documents": [
+    {
+      "id": "KB-RBI-KYC-2024",
+      "name": "Approved RBI knowledge — KYC Directions",
+      "authority": "Reserve Bank of India",
+      "jurisdiction": "India",
+      "effective_date": "2016-02-25",
+      "version": "Updated 2024-11-06",
+      "source_url": "https://www.rbi.org.in/commonman/Upload/English/Notification/PDFs/MD18KYCF6E92C82E1E1419D87323E3869BC9F13.pdf",
+      "chunks": [
+        {
+          "id": "chunk-001",
+          "text": "Approved reference summary: Reserve Bank of India Know Your Customer (KYC) Directions, 2016, updated 6 November 2024. For applicable regulated entities, assess customer due diligence, identity verification, KYC record handling, Central KYC Records Registry obligations where applicable, and review or audit evidence. Confirm regulated-entity scope, product applicability, retention obligations, and the current direction with authorised compliance or legal reviewers before baselining requirements."
+        }
+      ]
+    },
+    {
+      "id": "KB-RBI-ITG-2023",
+      "name": "Approved RBI knowledge — IT Governance Directions",
+      "authority": "Reserve Bank of India",
+      "jurisdiction": "India",
+      "effective_date": "2024-04-01",
+      "version": "Directions issued 2023-11-07",
+      "source_url": "https://systemhealth.rbi.org.in/Scripts/BS_ViewMasDirections.aspx_id%3D12562%283%29.html",
+      "chunks": [
+        {
+          "id": "chunk-001",
+          "text": "Approved reference summary: RBI Information Technology Governance, Risk, Controls and Assurance Practices Directions, 2023, effective 1 April 2024. For applicable regulated entities, analyse IT governance, risk management, assurance, access controls, audit evidence, incident management, business continuity and disaster recovery. Confirm the entity's scope and materiality classification with authorised compliance and security owners."
+        }
+      ]
+    },
+    {
+      "id": "KB-RBI-DPSC-2021",
+      "name": "Approved RBI knowledge — Digital Payment Security Controls",
+      "authority": "Reserve Bank of India",
+      "jurisdiction": "India",
+      "effective_date": "2021-02-18",
+      "version": "Master Direction 2021",
+      "source_url": "https://systemhealth.rbi.org.in/Scripts/BS_ViewMasDirections.aspx_id%3D12032%283%29.html",
+      "chunks": [
+        {
+          "id": "chunk-001",
+          "text": "Approved reference summary: RBI Master Direction on Digital Payment Security Controls, 2021. For payment workflows, assess strong authentication, fraud-risk management, secure application lifecycle, transaction reconciliation, logging, incident handling and relevant security testing. Confirm whether this direction or a more specific RBI direction applies to the regulated entity, payment channel, and third parties."
+        }
+      ]
+    },
+    {
+      "id": "DOC-001",
+      "name": "Stakeholder interview",
+      "chunks": [
+        {
+          "id": "chunk-001",
+          "text": "business objective: dont know users and roles: dont know business rules: dont know exceptions: dont know data and integrations: dont know validation and rollout: dont know workflow and outcomes: dont know security and compliance: dont know service levels and scale: dont know delivery constraints: dont know"
+        }
+      ]
+    }
+  ],
+  "requirements": [
+    {
+      "id": "REQ-001",
+      "statement": "The system shall support the documented Online loan application and approval workflow.",
+      "categories": [
+        "Functional"
+      ],
+      "evidence": [
+        {
+          "document_id": "KB-RBI-ITG-2023",
+          "document_name": "Approved RBI knowledge — IT Governance Directions",
+          "chunk_id": "chunk-001",
+          "excerpt": "Approved reference summary: RBI Information Technology Governance, Risk, Controls and Assurance Practices Directions, 2023, effective 1 April 2024. For applicable regulated entities, analyse IT governance, risk management, assurance, access controls, audit evidence, incident management, business continuity and disaster recovery. Confirm the entity's scope and materiality classification with author",
+          "relevance": 0.6,
+          "source_url": "https://systemhealth.rbi.org.in/Scripts/BS_ViewMasDirections.aspx_id%3D12562%283%29.html",
+          "source_version": "Directions issued 2023-11-07",
+          "effective_date": "2024-04-01"
+        }
+      ],
+      "business_justification": "A draft was requested for the selected functionality.",
+      "priority": "Should",
+      "dependencies": [],
+      "assumptions": [
+        "The source excerpt describes the intended workflow."
+      ],
+      "acceptance_criteria": [
+        "Human reviewer defines measurable outcomes."
+      ],
+      "applicable_policy": null,
+      "compliance_mappings": [],
+      "risk_level": "Medium",
+      "confidence": 0.35,
+      "reasoning": "Conservative placeholder based on the highest-ranked source. It must be rewritten and approved by a human.",
+      "approval_status": "Approved"
+    }
+  ],
+  "quality_issues": [
+    {
+      "id": "QI-001",
+      "requirement_id": "REQ-001",
+      "check": "Lack of testability",
+      "severity": "Medium",
+      "message": "Acceptance criteria are absent or not yet measurable.",
+      "recommendation": "Add pass/fail criteria, test data, and expected outcome."
+    },
+    {
+      "id": "QI-002",
+      "requirement_id": "REQ-001",
+      "check": "Missing security or compliance requirements",
+      "severity": "Low",
+      "message": "This item has no linked security, privacy, or regulatory control.",
+      "recommendation": "Confirm whether a control is not applicable or add an evidence-backed control."
+    }
+  ],
+  "risks": [],
+  "traceability": [
+    {
+      "requirement_id": "REQ-001",
+      "source_document": "Approved RBI knowledge — IT Governance Directions",
+      "source_chunk_id": "chunk-001",
+      "control_ids": [],
+      "risk_ids": []
+    }
+  ],
+  "artefacts": {
+    "srs": {
+      "title": "Software Requirements Specification: Online loan application and approval",
+      "requirements": [
+        {
+          "id": "REQ-001",
+          "statement": "The system shall support the documented Online loan application and approval workflow.",
+          "categories": [
+            "Functional"
+          ],
+          "evidence": [
+            {
+              "document_id": "KB-RBI-ITG-2023",
+              "document_name": "Approved RBI knowledge — IT Governance Directions",
+              "chunk_id": "chunk-001",
+              "excerpt": "Approved reference summary: RBI Information Technology Governance, Risk, Controls and Assurance Practices Directions, 2023, effective 1 April 2024. For applicable regulated entities, analyse IT governance, risk management, assurance, access controls, audit evidence, incident management, business continuity and disaster recovery. Confirm the entity's scope and materiality classification with author",
+              "relevance": 0.6,
+              "source_url": "https://systemhealth.rbi.org.in/Scripts/BS_ViewMasDirections.aspx_id%3D12562%283%29.html",
+              "source_version": "Directions issued 2023-11-07",
+              "effective_date": "2024-04-01"
+            }
+          ],
+          "business_justification": "A draft was requested for the selected functionality.",
+          "priority": "Should",
+          "dependencies": [],
+          "assumptions": [
+            "The source excerpt describes the intended workflow."
+          ],
+          "acceptance_criteria": [
+            "Human reviewer defines measurable outcomes."
+          ],
+          "applicable_policy": null,
+          "compliance_mappings": [],
+          "risk_level": "Medium",
+          "confidence": 0.35,
+          "reasoning": "Conservative placeholder based on the highest-ranked source. It must be rewritten and approved by a human.",
+          "approval_status": "Approved"
+        }
+      ]
+    },
+    "user_stories": [
+      {
+        "id": "US-001",
+        "story": "As a relevant stakeholder, I want the system shall support the documented Online loan application and approval workflow. so that A draft was requested for the selected functionality.",
+        "acceptance_criteria": [
+          "Human reviewer defines measurable outcomes."
+        ],
+        "requirement_id": "REQ-001"
+      }
+    ],
+    "use_cases": [
+      {
+        "id": "UC-001",
+        "name": "The system shall support the documented Online loan application and approval workflow.",
+        "actors": "To be confirmed by stakeholder",
+        "preconditions": [
+          "The source excerpt describes the intended workflow."
+        ],
+        "success_criteria": [
+          "Human reviewer defines measurable outcomes."
+        ],
+        "requirement_id": "REQ-001"
+      }
+    ],
+    "risk_register": [],
+    "traceability_matrix": [
+      {
+        "requirement_id": "REQ-001",
+        "source_document": "Approved RBI knowledge — IT Governance Directions",
+        "source_chunk_id": "chunk-001",
+        "control_ids": [],
+        "risk_ids": []
+      }
+    ],
+    "assumptions_and_dependencies": [
+      {
+        "requirement_id": "REQ-001",
+        "assumptions": [
+          "The source excerpt describes the intended workflow."
+        ],
+        "dependencies": []
+      }
+    ],
+    "open_issues": [
+      {
+        "id": "QI-001",
+        "requirement_id": "REQ-001",
+        "check": "Lack of testability",
+        "severity": "Medium",
+        "message": "Acceptance criteria are absent or not yet measurable.",
+        "recommendation": "Add pass/fail criteria, test data, and expected outcome."
+      }
+    ],
+    "compliance_control_matrix": [
+      {
+        "requirement_id": "REQ-001",
+        "mappings": []
+      }
+    ],
+    "clarification_queue": [
+      "REQ-001: What pass/fail acceptance test, test data, and expected result will verify this requirement?",
+      "REQ-001: Has the security, privacy, and compliance applicability for this requirement been confirmed?"
+    ],
+    "approval_register": [
+      {
+        "id": "APR-C18555EA",
+        "subject_type": "Requirement",
+        "subject_id": "REQ-001",
+        "decision": "Approved",
+        "reviewer": "Human reviewer (identity not recorded)",
+        "reviewer_role": "Not recorded",
+        "rationale": "Requirement review status updated in the prototype interface.",
+        "at": "2026-11-21T18:35:22.893770Z"
+      }
+    ],
+    "evaluation": {
+      "requirements_count": 1,
+      "citation_coverage": 1.0,
+      "measurable_acceptance_coverage": 0.0,
+      "rbi_control_coverage": 0.0,
+      "open_high_issues": 0,
+      "open_risks": 0,
+      "human_review_coverage": 1.0,
+      "notes": []
+    }
+  },
+  "clarification_questions": [
+    "REQ-001: What pass/fail acceptance test, test data, and expected result will verify this requirement?",
+    "REQ-001: Has the security, privacy, and compliance applicability for this requirement been confirmed?"
+  ],
+  "approvals": [
+    {
+      "id": "APR-C18555EA",
+      "subject_type": "Requirement",
+      "subject_id": "REQ-001",
+      "decision": "Approved",
+      "reviewer": "Human reviewer (identity not recorded)",
+      "reviewer_role": "Not recorded",
+      "rationale": "Requirement review status updated in the prototype interface.",
+      "at": "2026-11-21T18:35:22.893770Z"
+    }
+  ],
+  "evaluation": {
+    "requirements_count": 1,
+    "citation_coverage": 1.0,
+    "measurable_acceptance_coverage": 0.0,
+    "rbi_control_coverage": 0.0,
+    "open_high_issues": 0,
+    "open_risks": 0,
+    "human_review_coverage": 1.0,
+    "notes": []
+  },
+  "sdlc": {
+    "recommended_sdlc": "Prototyping",
+    "factors": [
+      {
+        "name": "Requirement stability",
+        "value": "Baseline approved",
+        "score": 4,
+        "rationale": "All requirements have an explicit approval status.",
+        "requirement_ids": []
+      },
+      {
+        "name": "Requirement clarity",
+        "value": "Low",
+        "score": 2,
+        "rationale": "Measured from the presence of concrete, non-placeholder acceptance criteria.",
+        "requirement_ids": [
+          "REQ-001"
+        ]
+      },
+      {
+        "name": "Risk",
+        "value": "Medium",
+        "score": 3,
+        "rationale": "Derived from stated high risk and security, privacy, regulatory, or audit classifications.",
+        "requirement_ids": []
+      },
+      {
+        "name": "Complexity",
+        "value": "Low",
+        "score": 2,
+        "rationale": "Integration and data-management requirements increase coordination and technical complexity.",
+        "requirement_ids": []
+      },
+      {
+        "name": "Need for early prototype",
+        "value": "Likely",
+        "score": 4,
+        "rationale": "Unclear requirements or integration complexity make early learning and validation valuable.",
+        "requirement_ids": []
+      },
+      {
+        "name": "Time constraints",
+        "value": "Not evidenced",
+        "score": 3,
+        "rationale": "No schedule or deadline evidence is available in the generated requirements; confirm this with the project sponsor.",
+        "requirement_ids": []
+      },
+      {
+        "name": "Customer involvement",
+        "value": "Not evidenced",
+        "score": 3,
+        "rationale": "Derived only from business, stakeholder, or usability requirements; otherwise this must be confirmed.",
+        "requirement_ids": []
+      },
+      {
+        "name": "Frequency of changes",
+        "value": "Not evidenced",
+        "score": 3,
+        "rationale": "Requirement documents do not establish the expected change rate; confirm with product and business stakeholders.",
+        "requirement_ids": []
+      },
+      {
+        "name": "Need for iterative development",
+        "value": "Likely",
+        "score": 4,
+        "rationale": "Unapproved or unclear requirements benefit from repeated review and validation cycles.",
+        "requirement_ids": []
+      },
+      {
+        "name": "Need for risk analysis",
+        "value": "Medium",
+        "score": 3,
+        "rationale": "Security/compliance concerns or complex integration warrant explicit risk analysis.",
+        "requirement_ids": []
+      }
+    ],
+    "options": [
+      {
+        "name": "Prototyping",
+        "score": 89,
+        "suitability": "Best for validating uncertain user needs, workflows, and interfaces before committing to a full build."
+      },
+      {
+        "name": "Agile",
+        "score": 89,
+        "suitability": "Best for frequent feedback and evolving requirements, with planned governance for high-risk work."
+      },
+      {
+        "name": "Incremental",
+        "score": 74,
+        "suitability": "Best when value can be divided into validated, independently testable increments."
+      },
+      {
+        "name": "Spiral",
+        "score": 63,
+        "suitability": "Best when risk analysis, prototypes, and repeated risk-reduction cycles are central."
+      },
+      {
+        "name": "DevSecOps",
+        "score": 62,
+        "suitability": "Best where iterative delivery is paired with automated security, assurance, and operational controls."
+      },
+      {
+        "name": "Agile–V-Model hybrid",
+        "score": 58,
+        "suitability": "Best where evolving delivery needs formal verification and validation gates for regulated scope."
+      },
+      {
+        "name": "RAD",
+        "score": 55,
+        "suitability": "Best for time-boxed delivery with available users and modular, lower-risk scope."
+      },
+      {
+        "name": "Waterfall",
+        "score": 47,
+        "suitability": "Best when requirements are stable, fully specified, and changes are controlled."
+      },
+      {
+        "name": "V-Shape",
+        "score": 44,
+        "suitability": "Best when each specification stage needs a linked verification and validation activity."
+      }
+    ],
+    "justification": "Prototyping has the highest transparent score because requirement stability is baseline approved, requirement clarity is low, risk is medium, complexity is low, need for early prototype is likely. Factors marked 'Not evidenced' are deliberately neutral and require stakeholder confirmation before the SDLC is approved.",
+    "workflow": [
+      {
+        "phase": "Validate requirements",
+        "activities": [
+          "Resolve quality issues",
+          "Confirm stability, time constraints, and expected changes",
+          "Prioritise requirement baseline"
+        ],
+        "roles": [
+          "Business analyst",
+          "Customer representative"
+        ],
+        "deliverables": [
+          "Validated requirements",
+          "SDLC factor assessment"
+        ],
+        "gate": "Stakeholder confirms project assumptions"
+      },
+      {
+        "phase": "Plan the model",
+        "activities": [
+          "Review ranked SDLC options",
+          "Plan risk analysis",
+          "Define iteration or stage gates"
+        ],
+        "roles": [
+          "Project manager",
+          "Architect",
+          "Risk owner"
+        ],
+        "deliverables": [
+          "Approved SDLC decision",
+          "Risk register"
+        ],
+        "gate": "Engineering and business approval"
+      },
+      {
+        "phase": "Develop and validate",
+        "activities": [
+          "Build planned scope",
+          "Test against acceptance criteria",
+          "Review feedback and risks"
+        ],
+        "roles": [
+          "Developers",
+          "QA",
+          "Customer representative"
+        ],
+        "deliverables": [
+          "Working increment or verified stage",
+          "Test evidence"
+        ],
+        "gate": "Quality and stakeholder acceptance"
+      },
+      {
+        "phase": "Release and learn",
+        "activities": [
+          "Release approved scope",
+          "Monitor outcomes",
+          "Reassess requirement changes and risks"
+        ],
+        "roles": [
+          "Operations",
+          "Product owner",
+          "Project manager"
+        ],
+        "deliverables": [
+          "Release record",
+          "Updated SDLC assessment"
+        ],
+        "gate": "Release and change-control approval"
+      }
+    ],
+    "human_approval_required": true
+  },
+  "agent_runs": [
+    {
+      "agent": "Requirements Agent",
+      "responsibility": "Requirement extraction, classification, traceability, and quality review",
+      "status": "Waiting for human review",
+      "output": "Generated 1 evidence-only RAG-grounded draft requirement(s) and found 2 quality issue(s).",
+      "at": "2026-11-21T18:35:15.277933Z"
+    },
+    {
+      "agent": "Compliance & Risk Agent",
+      "responsibility": "RBI control mapping, risk register generation, and traceability",
+      "status": "Waiting for human review",
+      "output": "Mapped 0 RBI control suggestion(s) and raised 0 reviewable risk entries.",
+      "at": "2026-11-21T18:35:15.278141Z"
+    },
+    {
+      "agent": "Documentation Agent",
+      "responsibility": "SRS, user-story, use-case, traceability, risk, and open-issue artefacts",
+      "status": "Waiting for human review",
+      "output": "Generated exportable SRS, user-story, use-case, risk, compliance, traceability, and open-issue artefacts.",
+      "at": "2026-11-21T18:35:15.278989Z"
+    },
+    {
+      "agent": "Governance & SDLC Agent",
+      "responsibility": "Risk and control assessment, SDLC ranking, and approval-gate planning",
+      "status": "Waiting for human review",
+      "output": "Recommended Prototyping; human approval remains required.",
+      "at": "2026-11-21T18:35:25.954734Z"
+    }
+  ],
+  "audit_log": [
+    {
+      "at": "2026-11-21T18:35:11.923862+00:00",
+      "action": "sources_recorded",
+      "detail": "Indexed 3 allowlisted RBI reference summary source(s), plus 10 masked stakeholder response(s) and 0 uploaded document(s)."
+    },
+    {
+      "at": "2026-11-21T18:35:11.923894+00:00",
+      "action": "rag_indexed",
+      "detail": "Indexed 4 source chunk(s) in ChromaDB."
+    },
+    {
+      "at": "2026-11-21T18:35:15.277241+00:00",
+      "action": "llm_fallback",
+      "detail": "Groq request failed: HTTP Error 413: Payload Too Large"
+    },
+    {
+      "at": "2026-11-21T18:35:15.277958+00:00",
+      "action": "agent_completed",
+      "detail": "Requirements Agent: Generated 1 evidence-only RAG-grounded draft requirement(s) and found 2 quality issue(s)."
+    },
+    {
+      "at": "2026-11-21T18:35:15.278151+00:00",
+      "action": "agent_completed",
+      "detail": "Compliance & Risk Agent: Mapped 0 RBI control suggestion(s) and raised 0 reviewable risk entries."
+    },
+    {
+      "at": "2026-11-21T18:35:15.279004+00:00",
+      "action": "agent_completed",
+      "detail": "Documentation Agent: Generated exportable SRS, user-story, use-case, risk, compliance, traceability, and open-issue artefacts."
+    },
+    {
+      "at": "2026-11-21T18:35:22.894016+00:00",
+      "action": "requirement_approval_updated",
+      "detail": "REQ-001 marked Approved."
+    },
+    {
+      "at": "2026-11-21T18:35:25.954750+00:00",
+      "action": "agent_completed",
+      "detail": "Governance & SDLC Agent: Recommended Prototyping; human approval remains required."
+    }
+  ]
+}

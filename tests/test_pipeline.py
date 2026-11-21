@@ -1,15 +1,17 @@
 from app.schemas import Category
+from io import BytesIO
+from docx import Document
 from app.services.documents import chunk_text, mask_sensitive, retrieve
 from app.services.generator import generate_evidence_drafts
 from app.services.quality import analyse
-from io import BytesIO
 from urllib.error import HTTPError
 
 from app.services import rag
 from app.services.rag import RagConfigurationError, VectorStore, _api_key, _embed, provider_configured
 from app.services.sdlc import recommend
 from app.services.agents import ComplianceRiskAgent, DocumentationAgent, GovernanceSdlcAgent, RequirementsAgent
-from app.schemas import Evidence, Project, Requirement
+from app.schemas import Evidence, Project, Requirement, SdlcRecommendation
+from app.services.srs import create_ieee_830_document
 from datetime import datetime
 
 
@@ -98,6 +100,25 @@ def test_rbi_compliance_risks_traceability_and_artefacts_are_reviewable():
     assert project.clarification_questions
     assert project.evaluation is not None
     assert project.evaluation.citation_coverage == 1
+
+
+def test_ieee_830_srs_export_is_local_and_contains_saved_requirements():
+    project = Project(id="srs", functionality="Digital onboarding", created_at=datetime.now())
+    project.requirements = [Requirement(
+        id="REQ-001", statement="The system shall verify customer identity.", categories=[Category.FUNCTIONAL],
+        evidence=[Evidence(document_id="DOC-001", document_name="policy.txt", chunk_id="chunk-001", excerpt="Verify identity", relevance=1)],
+        business_justification="KYC onboarding", acceptance_criteria=["A verification outcome is recorded."],
+        risk_level="High", confidence=0.9, reasoning="Policy evidence", approval_status="Needs review",
+    )]
+    project.sdlc = SdlcRecommendation(recommended_sdlc="V-Shape", factors=[], options=[], justification="Controlled delivery", workflow=[])
+
+    document = create_ieee_830_document(project)
+
+    assert document.startswith(b"PK")
+    text = "\n".join(paragraph.text for paragraph in Document(BytesIO(document)).paragraphs)
+    assert "IEEE 830-1998 format" in text
+    assert "3. Specific Requirements" in text
+    assert "REQ-001" in text
 
 
 def test_masking_replaces_account_like_values():

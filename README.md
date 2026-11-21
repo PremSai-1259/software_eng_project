@@ -113,6 +113,7 @@ Try the included [digital onboarding policy](sample_data/digital_onboarding_poli
 | `POST` | `/api/projects/{project_id}/requirements` | Generate evidence-grounded draft requirements. |
 | `POST` | `/api/projects/{project_id}/sdlc` | Generate the SDLC recommendation. |
 | `POST` | `/api/projects/{project_id}/sdlc/approval` | Record the human approval, rejection, or return-for-review decision. |
+| `POST` | `/api/projects/{project_id}/srs` | Generate a local IEEE 830-1998 SRS Word document after SDLC analysis. |
 | `GET` | `/api/knowledge-base/rbi` | Inspect the RBI source register and applicability notices. |
 | `GET` | `/api/projects/{project_id}/artefacts` | Retrieve derived SRS, traceability, risk, and compliance artefacts. |
 | `GET` | `/api/projects/{project_id}/evaluation` | Retrieve transparent prototype evaluation metrics. |

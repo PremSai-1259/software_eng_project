@@ -283,6 +283,40 @@ def sdlc_analysis(project_id: str) -> JSONResponse:
     return JSONResponse(project.sdlc.model_dump(mode="json"))
 
 
+@app.post("/api/projects/{project_id}/srs")
+def generate_srs(project_id: str) -> JSONResponse:
+    """Generate a local IEEE 830-1998 SRS after SDLC analysis; no LLM call is made."""
+    try:
+        project = store.get(project_id)
+    except KeyError as exc:
+        raise HTTPException(404, "Project not found.") from exc
+    if not project.sdlc:
+        raise HTTPException(422, "Run SDLC analysis before generating the SRS.")
+    # Keep document generation isolated from application startup and the Groq
+    # interview path. This module is loaded only for an explicit export.
+    from app.services.srs import create_ieee_830_document
+
+    export_dir = Path(os.getenv("APP_DATA_DIR", "data")) / "exports" / project.id
+    export_dir.mkdir(parents=True, exist_ok=True)
+    output_path = export_dir / "ieee-830-1998-srs.docx"
+    output_path.write_bytes(create_ieee_830_document(project))
+    audit(project, "srs_generated", "Generated local IEEE 830-1998 SRS document without an LLM request.")
+    store.save(project)
+    return JSONResponse({"download_url": f"/api/projects/{project.id}/srs/download"})
+
+
+@app.get("/api/projects/{project_id}/srs/download")
+def download_srs(project_id: str) -> FileResponse:
+    try:
+        project = store.get(project_id)
+    except KeyError as exc:
+        raise HTTPException(404, "Project not found.") from exc
+    output_path = Path(os.getenv("APP_DATA_DIR", "data")) / "exports" / project.id / "ieee-830-1998-srs.docx"
+    if not output_path.is_file():
+        raise HTTPException(404, "Generate the SRS after SDLC analysis before downloading it.")
+    return FileResponse(output_path, media_type="application/vnd.openxmlformats-officedocument.wordprocessingml.document", filename=f"{project.id}-ieee-830-1998-srs.docx")
+
+
 @app.post("/api/projects/{project_id}/sdlc/approval")
 def update_sdlc_approval(project_id: str, status: str = Form(...), rationale: str = Form("")) -> JSONResponse:
     """Record the mandatory human decision on an advisory SDLC recommendation."""

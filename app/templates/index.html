@@ -4,23 +4,18 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>FinReq Studio</title>
-    <link rel="stylesheet" href="/static/styles.css">
+    <link rel="stylesheet" href="/static/styles.css?v=compact-form-v2">
   </head>
   <body>
     <header class="topbar">
       <div class="brand"><span class="brand-mark">F</span><span>FinReq Studio</span></div>
-      <p>RBI-aware financial requirements and SDLC advisory</p>
-      <a id="exportLink" class="icon-action is-hidden" title="Export project JSON" download>Export JSON</a>
     </header>
     <main>
       <section class="workspace" aria-labelledby="workspace-title">
         <div class="section-heading">
-          <div><p class="eyebrow">Project workspace</p><h1 id="workspace-title">Traceable requirement decisions</h1></div>
-          <span id="projectState" class="state">No project loaded</span>
+          <div><h1 id="workspace-title">Create project requirements</h1><p class="page-intro">Describe your project to generate clear, evidence-based requirements.</p></div>
         </div>
-        <div class="agent-summary" aria-label="Agent workflow"><span><strong>Requirements</strong> Extracts, classifies, and checks evidence-grounded requirements.</span><span><strong>Compliance &amp; risk</strong> Suggests reviewable RBI controls and traceability.</span><span><strong>Governance &amp; SDLC</strong> Assesses controls and ranks delivery models.</span></div>
         <form id="interviewStartForm" class="intake">
-          <div class="interview-heading"><p class="eyebrow">Groq adaptive stakeholder interview</p><p>Begin with the essentials. Groq selects each next question from the financial workflow you describe.</p></div>
           <div class="starter-grid">
             <label>Financial functionality<input id="functionality" placeholder="e.g. Digital customer onboarding and KYC" required minlength="3"></label>
             <label>Business objective<textarea id="businessObjective" placeholder="What problem should this solve, and why does it matter?" required></textarea></label>
@@ -41,19 +36,11 @@
           <p id="interviewSummary" class="muted"></p>
           <button id="createProject" type="button">Create project</button>
         </section>
-        <p class="quiet">Responses and optional documents are masked for common account, identity, and tax-ID patterns before local processing. Drafts are advisory and need human approval.</p>
       </section>
 
-      <nav class="steps" aria-label="Requirements pipeline stages">
-        <span class="active">1 Sources</span><span>2 Requirements</span><span>3 RBI controls &amp; review</span><span>4 Governance &amp; SDLC</span>
-      </nav>
-
       <section id="documentsPanel" class="panel is-hidden" aria-labelledby="documents-title">
-        <div class="panel-title"><div><p class="eyebrow">RAG knowledge base</p><h2 id="documents-title">Indexed source documents</h2></div><button id="generateButton" type="button">Generate requirements</button></div>
-        <div id="ragSummary" class="rag-summary" aria-label="RAG index status"></div>
+        <div class="panel-title"><div><p class="eyebrow">Sources</p><h2 id="documents-title">Project documents</h2></div><button id="generateButton" type="button">Generate requirements</button></div>
         <div id="documentList" class="document-list"></div>
-        <div class="retrieval-toolbar"><label>Search indexed evidence<input id="retrievalQuery" placeholder="Ask the vector index about a requirement or control"></label><button id="retrieveButton" type="button">Retrieve</button><span id="retrievalCount" class="count"></span></div>
-        <div id="retrievalResults" class="retrieval-results"></div>
       </section>
 
       <section id="requirementsPanel" class="panel is-hidden" aria-labelledby="requirements-title">
@@ -72,6 +59,6 @@
       </section>
     </main>
     <div id="toast" role="status" aria-live="polite"></div>
-    <script src="/static/app.js?v=groq-interview-v1"></script>
+    <script src="/static/app.js?v=isolated-srs-v1"></script>
   </body>
 </html>
