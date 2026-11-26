@@ -1,0 +1,1446 @@
+{
+  "id": "3b6f0cb9e844",
+  "functionality": "Digital customer onboarding and KYC verification",
+  "created_at": "2026-11-26T22:14:36.545606Z",
+  "documents": [
+    {
+      "id": "KB-RBI-KYC-2024",
+      "name": "Approved RBI knowledge — KYC Directions",
+      "authority": "Reserve Bank of India",
+      "jurisdiction": "India",
+      "effective_date": "2016-02-25",
+      "version": "Updated 2024-11-06",
+      "source_url": "https://www.rbi.org.in/commonman/Upload/English/Notification/PDFs/MD18KYCF6E92C82E1E1419D87323E3869BC9F13.pdf",
+      "chunks": [
+        {
+          "id": "chunk-001",
+          "text": "Approved reference summary: Reserve Bank of India Know Your Customer (KYC) Directions, 2016, updated 6 November 2024. For applicable regulated entities, assess customer due diligence, identity verification, KYC record handling, Central KYC Records Registry obligations where applicable, and review or audit evidence. Confirm regulated-entity scope, product applicability, retention obligations, and the current direction with authorised compliance or legal reviewers before baselining requirements."
+        }
+      ]
+    },
+    {
+      "id": "KB-RBI-ITG-2023",
+      "name": "Approved RBI knowledge — IT Governance Directions",
+      "authority": "Reserve Bank of India",
+      "jurisdiction": "India",
+      "effective_date": "2024-04-01",
+      "version": "Directions issued 2023-11-07",
+      "source_url": "https://systemhealth.rbi.org.in/Scripts/BS_ViewMasDirections.aspx_id%3D12562%283%29.html",
+      "chunks": [
+        {
+          "id": "chunk-001",
+          "text": "Approved reference summary: RBI Information Technology Governance, Risk, Controls and Assurance Practices Directions, 2023, effective 1 April 2024. For applicable regulated entities, analyse IT governance, risk management, assurance, access controls, audit evidence, incident management, business continuity and disaster recovery. Confirm the entity's scope and materiality classification with authorised compliance and security owners."
+        }
+      ]
+    },
+    {
+      "id": "KB-RBI-DPSC-2021",
+      "name": "Approved RBI knowledge — Digital Payment Security Controls",
+      "authority": "Reserve Bank of India",
+      "jurisdiction": "India",
+      "effective_date": "2021-02-18",
+      "version": "Master Direction 2021",
+      "source_url": "https://systemhealth.rbi.org.in/Scripts/BS_ViewMasDirections.aspx_id%3D12032%283%29.html",
+      "chunks": [
+        {
+          "id": "chunk-001",
+          "text": "Approved reference summary: RBI Master Direction on Digital Payment Security Controls, 2021. For payment workflows, assess strong authentication, fraud-risk management, secure application lifecycle, transaction reconciliation, logging, incident handling and relevant security testing. Confirm whether this direction or a more specific RBI direction applies to the regulated entity, payment channel, and third parties."
+        }
+      ]
+    },
+    {
+      "id": "DOC-001",
+      "name": "Stakeholder interview",
+      "chunks": [
+        {
+          "id": "chunk-001",
+          "text": "business objective: no idea users and roles: no idea security and compliance: no idea business rules: no idea workflow and outcomes: no idea validation and rollout: no idea exceptions: no idea data and integrations: no idea service levels and scale: no idea delivery constraints: no idea"
+        }
+      ]
+    }
+  ],
+  "requirements": [
+    {
+      "id": "REQ-001",
+      "statement": "The digital onboarding system shall verify the identity of each new customer by capturing government‑issued ID documents and performing biometric matching, in accordance with RBI Know Your Customer (KYC) Directions.",
+      "categories": [
+        "Functional"
+      ],
+      "evidence": [
+        {
+          "document_id": "KB-RBI-KYC-2024",
+          "document_name": "Approved RBI knowledge — KYC Directions",
+          "chunk_id": "chunk-001",
+          "excerpt": "Approved reference summary: Reserve Bank of India Know Your Customer (KYC) Directions, 2016, updated 6 November 2024. For applicable regulated entities, assess customer due diligence, identity verification, KYC record handling, Central KYC Records Registry obligations where applicable, and review or audit evidence. Confirm regulated-entity scope, product applicability, retention obligations, and the current direction with authorised compliance or legal reviewers before baselining requirements.",
+          "relevance": 0.68,
+          "source_url": "https://www.rbi.org.in/commonman/Upload/English/Notification/PDFs/MD18KYCF6E92C82E1E1419D87323E3869BC9F13.pdf",
+          "source_version": "Updated 2024-11-06",
+          "effective_date": "2016-02-25"
+        }
+      ],
+      "business_justification": "Ensures regulatory compliance with RBI KYC obligations and reduces fraud risk.",
+      "priority": "Must",
+      "dependencies": [
+        "Biometric verification service",
+        "Document capture module"
+      ],
+      "assumptions": [
+        "Regulated entity is subject to RBI KYC Directions",
+        "Customers possess valid government‑issued IDs"
+      ],
+      "acceptance_criteria": [
+        "System accepts and validates at least 95% of authentic ID documents",
+        "Biometric match confidence ≥ 98% for successful verification",
+        "Verification outcome is recorded in audit log"
+      ],
+      "applicable_policy": "RBI-KYC-CDD",
+      "compliance_mappings": [
+        {
+          "control_id": "RBI-KYC-CDD",
+          "source_title": "RBI Master Direction – Know Your Customer (KYC), 2016 (Updated 6 November 2024)",
+          "source_url": "https://www.rbi.org.in/commonman/Upload/English/Notification/PDFs/MD18KYCF6E92C82E1E1419D87323E3869BC9F13.pdf",
+          "jurisdiction": "India",
+          "applicability": "Confirm applicability to the regulated entity and customer/onboarding flow.",
+          "rationale": "Customer due diligence, KYC record handling, and required review/approval checkpoints.",
+          "human_approval_required": true
+        }
+      ],
+      "risk_level": "High",
+      "confidence": 0.95,
+      "reasoning": "Explicitly derived from RBI KYC Directions that require identity verification; biometric and document capture are reasonable methods to satisfy that requirement.",
+      "approval_status": "Needs review"
+    },
+    {
+      "id": "REQ-002",
+      "statement": "The system shall store all KYC records in an immutable repository and retain them for the period prescribed by RBI KYC Directions, providing searchable retrieval for audit purposes.",
+      "categories": [
+        "Functional"
+      ],
+      "evidence": [
+        {
+          "document_id": "KB-RBI-KYC-2024",
+          "document_name": "Approved RBI knowledge — KYC Directions",
+          "chunk_id": "chunk-001",
+          "excerpt": "Approved reference summary: Reserve Bank of India Know Your Customer (KYC) Directions, 2016, updated 6 November 2024. For applicable regulated entities, assess customer due diligence, identity verification, KYC record handling, Central KYC Records Registry obligations where applicable, and review or audit evidence. Confirm regulated-entity scope, product applicability, retention obligations, and the current direction with authorised compliance or legal reviewers before baselining requirements.",
+          "relevance": 0.68,
+          "source_url": "https://www.rbi.org.in/commonman/Upload/English/Notification/PDFs/MD18KYCF6E92C82E1E1419D87323E3869BC9F13.pdf",
+          "source_version": "Updated 2024-11-06",
+          "effective_date": "2016-02-25"
+        }
+      ],
+      "business_justification": "Supports regulatory audit and record‑keeping obligations.",
+      "priority": "Must",
+      "dependencies": [
+        "Secure storage service",
+        "Search index"
+      ],
+      "assumptions": [
+        "Retention period defined by RBI is known to the entity"
+      ],
+      "acceptance_criteria": [
+        "Records cannot be altered after creation",
+        "Retention period can be configured and enforced",
+        "Audit query returns complete record within 5 seconds"
+      ],
+      "applicable_policy": "RBI-KYC-CDD; RBI-ITG-2023",
+      "compliance_mappings": [
+        {
+          "control_id": "RBI-KYC-CDD",
+          "source_title": "RBI Master Direction – Know Your Customer (KYC), 2016 (Updated 6 November 2024)",
+          "source_url": "https://www.rbi.org.in/commonman/Upload/English/Notification/PDFs/MD18KYCF6E92C82E1E1419D87323E3869BC9F13.pdf",
+          "jurisdiction": "India",
+          "applicability": "Confirm applicability to the regulated entity and customer/onboarding flow.",
+          "rationale": "Customer due diligence, KYC record handling, and required review/approval checkpoints.",
+          "human_approval_required": true
+        },
+        {
+          "control_id": "RBI-ITG-2023",
+          "source_title": "RBI IT Governance, Risk, Controls and Assurance Practices Directions, 2023 (Effective 1 April 2024)",
+          "source_url": "https://systemhealth.rbi.org.in/Scripts/BS_ViewMasDirections.aspx_id%3D12562%283%29.html",
+          "jurisdiction": "India",
+          "applicability": "Confirm regulated-entity scope and the system's materiality classification.",
+          "rationale": "IT governance, risk management, assurance, continuity, and audit evidence.",
+          "human_approval_required": true
+        }
+      ],
+      "risk_level": "Medium",
+      "confidence": 0.9,
+      "reasoning": "KYC Directions explicitly mention record handling and retention; immutable storage and searchable retrieval are reasonable implementations of that mandate.",
+      "approval_status": "Needs review"
+    },
+    {
+      "id": "REQ-003",
+      "statement": "The onboarding platform shall interface with the RBI Central KYC Records Registry to fetch existing customer KYC data and to push newly verified records, where applicable.",
+      "categories": [
+        "Functional"
+      ],
+      "evidence": [
+        {
+          "document_id": "KB-RBI-KYC-2024",
+          "document_name": "Approved RBI knowledge — KYC Directions",
+          "chunk_id": "chunk-001",
+          "excerpt": "Approved reference summary: Reserve Bank of India Know Your Customer (KYC) Directions, 2016, updated 6 November 2024. For applicable regulated entities, assess customer due diligence, identity verification, KYC record handling, Central KYC Records Registry obligations where applicable, and review or audit evidence. Confirm regulated-entity scope, product applicability, retention obligations, and the current direction with authorised compliance or legal reviewers before baselining requirements.",
+          "relevance": 0.68,
+          "source_url": "https://www.rbi.org.in/commonman/Upload/English/Notification/PDFs/MD18KYCF6E92C82E1E1419D87323E3869BC9F13.pdf",
+          "source_version": "Updated 2024-11-06",
+          "effective_date": "2016-02-25"
+        }
+      ],
+      "business_justification": "Avoids duplicate data collection and ensures consistency with regulator’s master records.",
+      "priority": "Should",
+      "dependencies": [
+        "Central KYC Registry API",
+        "Network connectivity"
+      ],
+      "assumptions": [
+        "Entity is required to use the Central KYC Registry per RBI direction"
+      ],
+      "acceptance_criteria": [
+        "Successful API call returns matching record for 99% of existing customers",
+        "New records are posted within 2 minutes of verification"
+      ],
+      "applicable_policy": "RBI-KYC-CDD",
+      "compliance_mappings": [
+        {
+          "control_id": "RBI-KYC-CDD",
+          "source_title": "RBI Master Direction – Know Your Customer (KYC), 2016 (Updated 6 November 2024)",
+          "source_url": "https://www.rbi.org.in/commonman/Upload/English/Notification/PDFs/MD18KYCF6E92C82E1E1419D87323E3869BC9F13.pdf",
+          "jurisdiction": "India",
+          "applicability": "Confirm applicability to the regulated entity and customer/onboarding flow.",
+          "rationale": "Customer due diligence, KYC record handling, and required review/approval checkpoints.",
+          "human_approval_required": true
+        }
+      ],
+      "risk_level": "Medium",
+      "confidence": 0.85,
+      "reasoning": "KYC Directions reference Central KYC Records Registry obligations; integrating with the registry is a logical way to meet that requirement.",
+      "approval_status": "Needs review"
+    },
+    {
+      "id": "REQ-004",
+      "statement": "The system shall enforce multi‑factor authentication (MFA) for all customers during the onboarding flow, complying with RBI Digital Payment Security Controls.",
+      "categories": [
+        "Functional"
+      ],
+      "evidence": [
+        {
+          "document_id": "KB-RBI-DPSC-2021",
+          "document_name": "Approved RBI knowledge — Digital Payment Security Controls",
+          "chunk_id": "chunk-001",
+          "excerpt": "Approved reference summary: RBI Master Direction on Digital Payment Security Controls, 2021. For payment workflows, assess strong authentication, fraud-risk management, secure application lifecycle, transaction reconciliation, logging, incident handling and relevant security testing. Confirm whether this direction or a more specific RBI direction applies to the regulated entity, payment channel, and third parties.",
+          "relevance": 0.57,
+          "source_url": "https://systemhealth.rbi.org.in/Scripts/BS_ViewMasDirections.aspx_id%3D12032%283%29.html",
+          "source_version": "Master Direction 2021",
+          "effective_date": "2021-02-18"
+        }
+      ],
+      "business_justification": "Mitigates unauthorized account creation and aligns with security controls mandated by RBI.",
+      "priority": "Must",
+      "dependencies": [
+        "MFA provider",
+        "User device"
+      ],
+      "assumptions": [
+        "MFA methods such as OTP or biometrics are acceptable to the regulator"
+      ],
+      "acceptance_criteria": [
+        "MFA challenge is presented for 100% of new accounts",
+        "Authentication success rate ≥ 98% for legitimate users"
+      ],
+      "applicable_policy": "RBI-KYC-CDD; RBI-ITG-2023; RBI-DPSC-2021",
+      "compliance_mappings": [
+        {
+          "control_id": "RBI-KYC-CDD",
+          "source_title": "RBI Master Direction – Know Your Customer (KYC), 2016 (Updated 6 November 2024)",
+          "source_url": "https://www.rbi.org.in/commonman/Upload/English/Notification/PDFs/MD18KYCF6E92C82E1E1419D87323E3869BC9F13.pdf",
+          "jurisdiction": "India",
+          "applicability": "Confirm applicability to the regulated entity and customer/onboarding flow.",
+          "rationale": "Customer due diligence, KYC record handling, and required review/approval checkpoints.",
+          "human_approval_required": true
+        },
+        {
+          "control_id": "RBI-ITG-2023",
+          "source_title": "RBI IT Governance, Risk, Controls and Assurance Practices Directions, 2023 (Effective 1 April 2024)",
+          "source_url": "https://systemhealth.rbi.org.in/Scripts/BS_ViewMasDirections.aspx_id%3D12562%283%29.html",
+          "jurisdiction": "India",
+          "applicability": "Confirm regulated-entity scope and the system's materiality classification.",
+          "rationale": "IT governance, risk management, assurance, continuity, and audit evidence.",
+          "human_approval_required": true
+        },
+        {
+          "control_id": "RBI-DPSC-2021",
+          "source_title": "RBI Master Direction on Digital Payment Security Controls (18 February 2021)",
+          "source_url": "https://systemhealth.rbi.org.in/Scripts/BS_ViewMasDirections.aspx_id%3D12032%283%29.html",
+          "jurisdiction": "India",
+          "applicability": "Confirm that the product/channel is within the Direction's regulated-entity scope.",
+          "rationale": "Authentication, fraud-risk management, application security lifecycle, and reconciliation controls.",
+          "human_approval_required": true
+        }
+      ],
+      "risk_level": "High",
+      "confidence": 0.9,
+      "reasoning": "Digital Payment Security Controls explicitly require strong authentication; applying MFA to onboarding directly satisfies that control.",
+      "approval_status": "Needs review"
+    },
+    {
+      "id": "REQ-005",
+      "statement": "All onboarding activities, including identity verification steps, data uploads, and registry interactions, shall be logged with tamper‑evident entries to support audit and incident response as required by RBI IT Governance and Digital Payment Security Controls.",
+      "categories": [
+        "Functional"
+      ],
+      "evidence": [
+        {
+          "document_id": "KB-RBI-ITG-2023",
+          "document_name": "Approved RBI knowledge — IT Governance Directions",
+          "chunk_id": "chunk-001",
+          "excerpt": "Approved reference summary: RBI Information Technology Governance, Risk, Controls and Assurance Practices Directions, 2023, effective 1 April 2024. For applicable regulated entities, analyse IT governance, risk management, assurance, access controls, audit evidence, incident management, business continuity and disaster recovery. Confirm the entity's scope and materiality classification with authorised compliance and security owners.",
+          "relevance": 0.59,
+          "source_url": "https://systemhealth.rbi.org.in/Scripts/BS_ViewMasDirections.aspx_id%3D12562%283%29.html",
+          "source_version": "Directions issued 2023-11-07",
+          "effective_date": "2024-04-01"
+        },
+        {
+          "document_id": "KB-RBI-DPSC-2021",
+          "document_name": "Approved RBI knowledge — Digital Payment Security Controls",
+          "chunk_id": "chunk-001",
+          "excerpt": "Approved reference summary: RBI Master Direction on Digital Payment Security Controls, 2021. For payment workflows, assess strong authentication, fraud-risk management, secure application lifecycle, transaction reconciliation, logging, incident handling and relevant security testing. Confirm whether this direction or a more specific RBI direction applies to the regulated entity, payment channel, and third parties.",
+          "relevance": 0.57,
+          "source_url": "https://systemhealth.rbi.org.in/Scripts/BS_ViewMasDirections.aspx_id%3D12032%283%29.html",
+          "source_version": "Master Direction 2021",
+          "effective_date": "2021-02-18"
+        }
+      ],
+      "business_justification": "Provides evidence for compliance audits and enables rapid incident investigation.",
+      "priority": "Must",
+      "dependencies": [
+        "Logging infrastructure",
+        "Log retention service"
+      ],
+      "assumptions": [
+        "Logs can be stored securely for the required retention period"
+      ],
+      "acceptance_criteria": [
+        "Each onboarding transaction generates a log entry with timestamp, user ID, operation type, and outcome",
+        "Logs are immutable and retained for the same period as KYC records"
+      ],
+      "applicable_policy": "RBI-KYC-CDD; RBI-ITG-2023; RBI-DPSC-2021",
+      "compliance_mappings": [
+        {
+          "control_id": "RBI-KYC-CDD",
+          "source_title": "RBI Master Direction – Know Your Customer (KYC), 2016 (Updated 6 November 2024)",
+          "source_url": "https://www.rbi.org.in/commonman/Upload/English/Notification/PDFs/MD18KYCF6E92C82E1E1419D87323E3869BC9F13.pdf",
+          "jurisdiction": "India",
+          "applicability": "Confirm applicability to the regulated entity and customer/onboarding flow.",
+          "rationale": "Customer due diligence, KYC record handling, and required review/approval checkpoints.",
+          "human_approval_required": true
+        },
+        {
+          "control_id": "RBI-ITG-2023",
+          "source_title": "RBI IT Governance, Risk, Controls and Assurance Practices Directions, 2023 (Effective 1 April 2024)",
+          "source_url": "https://systemhealth.rbi.org.in/Scripts/BS_ViewMasDirections.aspx_id%3D12562%283%29.html",
+          "jurisdiction": "India",
+          "applicability": "Confirm regulated-entity scope and the system's materiality classification.",
+          "rationale": "IT governance, risk management, assurance, continuity, and audit evidence.",
+          "human_approval_required": true
+        },
+        {
+          "control_id": "RBI-DPSC-2021",
+          "source_title": "RBI Master Direction on Digital Payment Security Controls (18 February 2021)",
+          "source_url": "https://systemhealth.rbi.org.in/Scripts/BS_ViewMasDirections.aspx_id%3D12032%283%29.html",
+          "jurisdiction": "India",
+          "applicability": "Confirm that the product/channel is within the Direction's regulated-entity scope.",
+          "rationale": "Authentication, fraud-risk management, application security lifecycle, and reconciliation controls.",
+          "human_approval_required": true
+        }
+      ],
+      "risk_level": "Medium",
+      "confidence": 0.9,
+      "reasoning": "Both IT Governance and Digital Payment Security Controls explicitly call for audit evidence and logging; this requirement consolidates those mandates into a concrete logging specification.",
+      "approval_status": "Needs review"
+    }
+  ],
+  "quality_issues": [
+    {
+      "id": "QI-001",
+      "requirement_id": "REQ-001",
+      "check": "Missing security or compliance requirements",
+      "severity": "Low",
+      "message": "This item has no linked security, privacy, or regulatory control.",
+      "recommendation": "Confirm whether a control is not applicable or add an evidence-backed control."
+    },
+    {
+      "id": "QI-002",
+      "requirement_id": "REQ-002",
+      "check": "Missing security or compliance requirements",
+      "severity": "Low",
+      "message": "This item has no linked security, privacy, or regulatory control.",
+      "recommendation": "Confirm whether a control is not applicable or add an evidence-backed control."
+    },
+    {
+      "id": "QI-003",
+      "requirement_id": "REQ-003",
+      "check": "Missing security or compliance requirements",
+      "severity": "Low",
+      "message": "This item has no linked security, privacy, or regulatory control.",
+      "recommendation": "Confirm whether a control is not applicable or add an evidence-backed control."
+    },
+    {
+      "id": "QI-004",
+      "requirement_id": "REQ-003",
+      "check": "Undefined terminology",
+      "severity": "Medium",
+      "message": "The requirement contains a term whose meaning or boundary is not defined.",
+      "recommendation": "Define the term in a glossary or replace it with an observable condition."
+    },
+    {
+      "id": "QI-005",
+      "requirement_id": "REQ-004",
+      "check": "Missing security or compliance requirements",
+      "severity": "Low",
+      "message": "This item has no linked security, privacy, or regulatory control.",
+      "recommendation": "Confirm whether a control is not applicable or add an evidence-backed control."
+    },
+    {
+      "id": "QI-006",
+      "requirement_id": "REQ-005",
+      "check": "Missing security or compliance requirements",
+      "severity": "Low",
+      "message": "This item has no linked security, privacy, or regulatory control.",
+      "recommendation": "Confirm whether a control is not applicable or add an evidence-backed control."
+    }
+  ],
+  "risks": [],
+  "traceability": [
+    {
+      "requirement_id": "REQ-001",
+      "source_document": "Approved RBI knowledge — KYC Directions",
+      "source_chunk_id": "chunk-001",
+      "control_ids": [
+        "RBI-KYC-CDD"
+      ],
+      "risk_ids": []
+    },
+    {
+      "requirement_id": "REQ-002",
+      "source_document": "Approved RBI knowledge — KYC Directions",
+      "source_chunk_id": "chunk-001",
+      "control_ids": [
+        "RBI-KYC-CDD",
+        "RBI-ITG-2023"
+      ],
+      "risk_ids": []
+    },
+    {
+      "requirement_id": "REQ-003",
+      "source_document": "Approved RBI knowledge — KYC Directions",
+      "source_chunk_id": "chunk-001",
+      "control_ids": [
+        "RBI-KYC-CDD"
+      ],
+      "risk_ids": []
+    },
+    {
+      "requirement_id": "REQ-004",
+      "source_document": "Approved RBI knowledge — Digital Payment Security Controls",
+      "source_chunk_id": "chunk-001",
+      "control_ids": [
+        "RBI-KYC-CDD",
+        "RBI-ITG-2023",
+        "RBI-DPSC-2021"
+      ],
+      "risk_ids": []
+    },
+    {
+      "requirement_id": "REQ-005",
+      "source_document": "Approved RBI knowledge — IT Governance Directions",
+      "source_chunk_id": "chunk-001",
+      "control_ids": [
+        "RBI-KYC-CDD",
+        "RBI-ITG-2023",
+        "RBI-DPSC-2021"
+      ],
+      "risk_ids": []
+    },
+    {
+      "requirement_id": "REQ-005",
+      "source_document": "Approved RBI knowledge — Digital Payment Security Controls",
+      "source_chunk_id": "chunk-001",
+      "control_ids": [
+        "RBI-KYC-CDD",
+        "RBI-ITG-2023",
+        "RBI-DPSC-2021"
+      ],
+      "risk_ids": []
+    }
+  ],
+  "artefacts": {
+    "srs": {
+      "title": "Software Requirements Specification: Digital customer onboarding and KYC verification",
+      "requirements": [
+        {
+          "id": "REQ-001",
+          "statement": "The digital onboarding system shall verify the identity of each new customer by capturing government‑issued ID documents and performing biometric matching, in accordance with RBI Know Your Customer (KYC) Directions.",
+          "categories": [
+            "Functional"
+          ],
+          "evidence": [
+            {
+              "document_id": "KB-RBI-KYC-2024",
+              "document_name": "Approved RBI knowledge — KYC Directions",
+              "chunk_id": "chunk-001",
+              "excerpt": "Approved reference summary: Reserve Bank of India Know Your Customer (KYC) Directions, 2016, updated 6 November 2024. For applicable regulated entities, assess customer due diligence, identity verification, KYC record handling, Central KYC Records Registry obligations where applicable, and review or audit evidence. Confirm regulated-entity scope, product applicability, retention obligations, and the current direction with authorised compliance or legal reviewers before baselining requirements.",
+              "relevance": 0.68,
+              "source_url": "https://www.rbi.org.in/commonman/Upload/English/Notification/PDFs/MD18KYCF6E92C82E1E1419D87323E3869BC9F13.pdf",
+              "source_version": "Updated 2024-11-06",
+              "effective_date": "2016-02-25"
+            }
+          ],
+          "business_justification": "Ensures regulatory compliance with RBI KYC obligations and reduces fraud risk.",
+          "priority": "Must",
+          "dependencies": [
+            "Biometric verification service",
+            "Document capture module"
+          ],
+          "assumptions": [
+            "Regulated entity is subject to RBI KYC Directions",
+            "Customers possess valid government‑issued IDs"
+          ],
+          "acceptance_criteria": [
+            "System accepts and validates at least 95% of authentic ID documents",
+            "Biometric match confidence ≥ 98% for successful verification",
+            "Verification outcome is recorded in audit log"
+          ],
+          "applicable_policy": "RBI-KYC-CDD",
+          "compliance_mappings": [
+            {
+              "control_id": "RBI-KYC-CDD",
+              "source_title": "RBI Master Direction – Know Your Customer (KYC), 2016 (Updated 6 November 2024)",
+              "source_url": "https://www.rbi.org.in/commonman/Upload/English/Notification/PDFs/MD18KYCF6E92C82E1E1419D87323E3869BC9F13.pdf",
+              "jurisdiction": "India",
+              "applicability": "Confirm applicability to the regulated entity and customer/onboarding flow.",
+              "rationale": "Customer due diligence, KYC record handling, and required review/approval checkpoints.",
+              "human_approval_required": true
+            }
+          ],
+          "risk_level": "High",
+          "confidence": 0.95,
+          "reasoning": "Explicitly derived from RBI KYC Directions that require identity verification; biometric and document capture are reasonable methods to satisfy that requirement.",
+          "approval_status": "Needs review"
+        },
+        {
+          "id": "REQ-002",
+          "statement": "The system shall store all KYC records in an immutable repository and retain them for the period prescribed by RBI KYC Directions, providing searchable retrieval for audit purposes.",
+          "categories": [
+            "Functional"
+          ],
+          "evidence": [
+            {
+              "document_id": "KB-RBI-KYC-2024",
+              "document_name": "Approved RBI knowledge — KYC Directions",
+              "chunk_id": "chunk-001",
+              "excerpt": "Approved reference summary: Reserve Bank of India Know Your Customer (KYC) Directions, 2016, updated 6 November 2024. For applicable regulated entities, assess customer due diligence, identity verification, KYC record handling, Central KYC Records Registry obligations where applicable, and review or audit evidence. Confirm regulated-entity scope, product applicability, retention obligations, and the current direction with authorised compliance or legal reviewers before baselining requirements.",
+              "relevance": 0.68,
+              "source_url": "https://www.rbi.org.in/commonman/Upload/English/Notification/PDFs/MD18KYCF6E92C82E1E1419D87323E3869BC9F13.pdf",
+              "source_version": "Updated 2024-11-06",
+              "effective_date": "2016-02-25"
+            }
+          ],
+          "business_justification": "Supports regulatory audit and record‑keeping obligations.",
+          "priority": "Must",
+          "dependencies": [
+            "Secure storage service",
+            "Search index"
+          ],
+          "assumptions": [
+            "Retention period defined by RBI is known to the entity"
+          ],
+          "acceptance_criteria": [
+            "Records cannot be altered after creation",
+            "Retention period can be configured and enforced",
+            "Audit query returns complete record within 5 seconds"
+          ],
+          "applicable_policy": "RBI-KYC-CDD; RBI-ITG-2023",
+          "compliance_mappings": [
+            {
+              "control_id": "RBI-KYC-CDD",
+              "source_title": "RBI Master Direction – Know Your Customer (KYC), 2016 (Updated 6 November 2024)",
+              "source_url": "https://www.rbi.org.in/commonman/Upload/English/Notification/PDFs/MD18KYCF6E92C82E1E1419D87323E3869BC9F13.pdf",
+              "jurisdiction": "India",
+              "applicability": "Confirm applicability to the regulated entity and customer/onboarding flow.",
+              "rationale": "Customer due diligence, KYC record handling, and required review/approval checkpoints.",
+              "human_approval_required": true
+            },
+            {
+              "control_id": "RBI-ITG-2023",
+              "source_title": "RBI IT Governance, Risk, Controls and Assurance Practices Directions, 2023 (Effective 1 April 2024)",
+              "source_url": "https://systemhealth.rbi.org.in/Scripts/BS_ViewMasDirections.aspx_id%3D12562%283%29.html",
+              "jurisdiction": "India",
+              "applicability": "Confirm regulated-entity scope and the system's materiality classification.",
+              "rationale": "IT governance, risk management, assurance, continuity, and audit evidence.",
+              "human_approval_required": true
+            }
+          ],
+          "risk_level": "Medium",
+          "confidence": 0.9,
+          "reasoning": "KYC Directions explicitly mention record handling and retention; immutable storage and searchable retrieval are reasonable implementations of that mandate.",
+          "approval_status": "Needs review"
+        },
+        {
+          "id": "REQ-003",
+          "statement": "The onboarding platform shall interface with the RBI Central KYC Records Registry to fetch existing customer KYC data and to push newly verified records, where applicable.",
+          "categories": [
+            "Functional"
+          ],
+          "evidence": [
+            {
+              "document_id": "KB-RBI-KYC-2024",
+              "document_name": "Approved RBI knowledge — KYC Directions",
+              "chunk_id": "chunk-001",
+              "excerpt": "Approved reference summary: Reserve Bank of India Know Your Customer (KYC) Directions, 2016, updated 6 November 2024. For applicable regulated entities, assess customer due diligence, identity verification, KYC record handling, Central KYC Records Registry obligations where applicable, and review or audit evidence. Confirm regulated-entity scope, product applicability, retention obligations, and the current direction with authorised compliance or legal reviewers before baselining requirements.",
+              "relevance": 0.68,
+              "source_url": "https://www.rbi.org.in/commonman/Upload/English/Notification/PDFs/MD18KYCF6E92C82E1E1419D87323E3869BC9F13.pdf",
+              "source_version": "Updated 2024-11-06",
+              "effective_date": "2016-02-25"
+            }
+          ],
+          "business_justification": "Avoids duplicate data collection and ensures consistency with regulator’s master records.",
+          "priority": "Should",
+          "dependencies": [
+            "Central KYC Registry API",
+            "Network connectivity"
+          ],
+          "assumptions": [
+            "Entity is required to use the Central KYC Registry per RBI direction"
+          ],
+          "acceptance_criteria": [
+            "Successful API call returns matching record for 99% of existing customers",
+            "New records are posted within 2 minutes of verification"
+          ],
+          "applicable_policy": "RBI-KYC-CDD",
+          "compliance_mappings": [
+            {
+              "control_id": "RBI-KYC-CDD",
+              "source_title": "RBI Master Direction – Know Your Customer (KYC), 2016 (Updated 6 November 2024)",
+              "source_url": "https://www.rbi.org.in/commonman/Upload/English/Notification/PDFs/MD18KYCF6E92C82E1E1419D87323E3869BC9F13.pdf",
+              "jurisdiction": "India",
+              "applicability": "Confirm applicability to the regulated entity and customer/onboarding flow.",
+              "rationale": "Customer due diligence, KYC record handling, and required review/approval checkpoints.",
+              "human_approval_required": true
+            }
+          ],
+          "risk_level": "Medium",
+          "confidence": 0.85,
+          "reasoning": "KYC Directions reference Central KYC Records Registry obligations; integrating with the registry is a logical way to meet that requirement.",
+          "approval_status": "Needs review"
+        },
+        {
+          "id": "REQ-004",
+          "statement": "The system shall enforce multi‑factor authentication (MFA) for all customers during the onboarding flow, complying with RBI Digital Payment Security Controls.",
+          "categories": [
+            "Functional"
+          ],
+          "evidence": [
+            {
+              "document_id": "KB-RBI-DPSC-2021",
+              "document_name": "Approved RBI knowledge — Digital Payment Security Controls",
+              "chunk_id": "chunk-001",
+              "excerpt": "Approved reference summary: RBI Master Direction on Digital Payment Security Controls, 2021. For payment workflows, assess strong authentication, fraud-risk management, secure application lifecycle, transaction reconciliation, logging, incident handling and relevant security testing. Confirm whether this direction or a more specific RBI direction applies to the regulated entity, payment channel, and third parties.",
+              "relevance": 0.57,
+              "source_url": "https://systemhealth.rbi.org.in/Scripts/BS_ViewMasDirections.aspx_id%3D12032%283%29.html",
+              "source_version": "Master Direction 2021",
+              "effective_date": "2021-02-18"
+            }
+          ],
+          "business_justification": "Mitigates unauthorized account creation and aligns with security controls mandated by RBI.",
+          "priority": "Must",
+          "dependencies": [
+            "MFA provider",
+            "User device"
+          ],
+          "assumptions": [
+            "MFA methods such as OTP or biometrics are acceptable to the regulator"
+          ],
+          "acceptance_criteria": [
+            "MFA challenge is presented for 100% of new accounts",
+            "Authentication success rate ≥ 98% for legitimate users"
+          ],
+          "applicable_policy": "RBI-KYC-CDD; RBI-ITG-2023; RBI-DPSC-2021",
+          "compliance_mappings": [
+            {
+              "control_id": "RBI-KYC-CDD",
+              "source_title": "RBI Master Direction – Know Your Customer (KYC), 2016 (Updated 6 November 2024)",
+              "source_url": "https://www.rbi.org.in/commonman/Upload/English/Notification/PDFs/MD18KYCF6E92C82E1E1419D87323E3869BC9F13.pdf",
+              "jurisdiction": "India",
+              "applicability": "Confirm applicability to the regulated entity and customer/onboarding flow.",
+              "rationale": "Customer due diligence, KYC record handling, and required review/approval checkpoints.",
+              "human_approval_required": true
+            },
+            {
+              "control_id": "RBI-ITG-2023",
+              "source_title": "RBI IT Governance, Risk, Controls and Assurance Practices Directions, 2023 (Effective 1 April 2024)",
+              "source_url": "https://systemhealth.rbi.org.in/Scripts/BS_ViewMasDirections.aspx_id%3D12562%283%29.html",
+              "jurisdiction": "India",
+              "applicability": "Confirm regulated-entity scope and the system's materiality classification.",
+              "rationale": "IT governance, risk management, assurance, continuity, and audit evidence.",
+              "human_approval_required": true
+            },
+            {
+              "control_id": "RBI-DPSC-2021",
+              "source_title": "RBI Master Direction on Digital Payment Security Controls (18 February 2021)",
+              "source_url": "https://systemhealth.rbi.org.in/Scripts/BS_ViewMasDirections.aspx_id%3D12032%283%29.html",
+              "jurisdiction": "India",
+              "applicability": "Confirm that the product/channel is within the Direction's regulated-entity scope.",
+              "rationale": "Authentication, fraud-risk management, application security lifecycle, and reconciliation controls.",
+              "human_approval_required": true
+            }
+          ],
+          "risk_level": "High",
+          "confidence": 0.9,
+          "reasoning": "Digital Payment Security Controls explicitly require strong authentication; applying MFA to onboarding directly satisfies that control.",
+          "approval_status": "Needs review"
+        },
+        {
+          "id": "REQ-005",
+          "statement": "All onboarding activities, including identity verification steps, data uploads, and registry interactions, shall be logged with tamper‑evident entries to support audit and incident response as required by RBI IT Governance and Digital Payment Security Controls.",
+          "categories": [
+            "Functional"
+          ],
+          "evidence": [
+            {
+              "document_id": "KB-RBI-ITG-2023",
+              "document_name": "Approved RBI knowledge — IT Governance Directions",
+              "chunk_id": "chunk-001",
+              "excerpt": "Approved reference summary: RBI Information Technology Governance, Risk, Controls and Assurance Practices Directions, 2023, effective 1 April 2024. For applicable regulated entities, analyse IT governance, risk management, assurance, access controls, audit evidence, incident management, business continuity and disaster recovery. Confirm the entity's scope and materiality classification with authorised compliance and security owners.",
+              "relevance": 0.59,
+              "source_url": "https://systemhealth.rbi.org.in/Scripts/BS_ViewMasDirections.aspx_id%3D12562%283%29.html",
+              "source_version": "Directions issued 2023-11-07",
+              "effective_date": "2024-04-01"
+            },
+            {
+              "document_id": "KB-RBI-DPSC-2021",
+              "document_name": "Approved RBI knowledge — Digital Payment Security Controls",
+              "chunk_id": "chunk-001",
+              "excerpt": "Approved reference summary: RBI Master Direction on Digital Payment Security Controls, 2021. For payment workflows, assess strong authentication, fraud-risk management, secure application lifecycle, transaction reconciliation, logging, incident handling and relevant security testing. Confirm whether this direction or a more specific RBI direction applies to the regulated entity, payment channel, and third parties.",
+              "relevance": 0.57,
+              "source_url": "https://systemhealth.rbi.org.in/Scripts/BS_ViewMasDirections.aspx_id%3D12032%283%29.html",
+              "source_version": "Master Direction 2021",
+              "effective_date": "2021-02-18"
+            }
+          ],
+          "business_justification": "Provides evidence for compliance audits and enables rapid incident investigation.",
+          "priority": "Must",
+          "dependencies": [
+            "Logging infrastructure",
+            "Log retention service"
+          ],
+          "assumptions": [
+            "Logs can be stored securely for the required retention period"
+          ],
+          "acceptance_criteria": [
+            "Each onboarding transaction generates a log entry with timestamp, user ID, operation type, and outcome",
+            "Logs are immutable and retained for the same period as KYC records"
+          ],
+          "applicable_policy": "RBI-KYC-CDD; RBI-ITG-2023; RBI-DPSC-2021",
+          "compliance_mappings": [
+            {
+              "control_id": "RBI-KYC-CDD",
+              "source_title": "RBI Master Direction – Know Your Customer (KYC), 2016 (Updated 6 November 2024)",
+              "source_url": "https://www.rbi.org.in/commonman/Upload/English/Notification/PDFs/MD18KYCF6E92C82E1E1419D87323E3869BC9F13.pdf",
+              "jurisdiction": "India",
+              "applicability": "Confirm applicability to the regulated entity and customer/onboarding flow.",
+              "rationale": "Customer due diligence, KYC record handling, and required review/approval checkpoints.",
+              "human_approval_required": true
+            },
+            {
+              "control_id": "RBI-ITG-2023",
+              "source_title": "RBI IT Governance, Risk, Controls and Assurance Practices Directions, 2023 (Effective 1 April 2024)",
+              "source_url": "https://systemhealth.rbi.org.in/Scripts/BS_ViewMasDirections.aspx_id%3D12562%283%29.html",
+              "jurisdiction": "India",
+              "applicability": "Confirm regulated-entity scope and the system's materiality classification.",
+              "rationale": "IT governance, risk management, assurance, continuity, and audit evidence.",
+              "human_approval_required": true
+            },
+            {
+              "control_id": "RBI-DPSC-2021",
+              "source_title": "RBI Master Direction on Digital Payment Security Controls (18 February 2021)",
+              "source_url": "https://systemhealth.rbi.org.in/Scripts/BS_ViewMasDirections.aspx_id%3D12032%283%29.html",
+              "jurisdiction": "India",
+              "applicability": "Confirm that the product/channel is within the Direction's regulated-entity scope.",
+              "rationale": "Authentication, fraud-risk management, application security lifecycle, and reconciliation controls.",
+              "human_approval_required": true
+            }
+          ],
+          "risk_level": "Medium",
+          "confidence": 0.9,
+          "reasoning": "Both IT Governance and Digital Payment Security Controls explicitly call for audit evidence and logging; this requirement consolidates those mandates into a concrete logging specification.",
+          "approval_status": "Needs review"
+        }
+      ]
+    },
+    "user_stories": [
+      {
+        "id": "US-001",
+        "story": "As a relevant stakeholder, I want the digital onboarding system shall verify the identity of each new customer by capturing government‑issued ID documents and performing biometric matching, in accordance with RBI Know Your Customer (KYC) Directions. so that Ensures regulatory compliance with RBI KYC obligations and reduces fraud risk.",
+        "acceptance_criteria": [
+          "System accepts and validates at least 95% of authentic ID documents",
+          "Biometric match confidence ≥ 98% for successful verification",
+          "Verification outcome is recorded in audit log"
+        ],
+        "requirement_id": "REQ-001"
+      },
+      {
+        "id": "US-002",
+        "story": "As a relevant stakeholder, I want the system shall store all KYC records in an immutable repository and retain them for the period prescribed by RBI KYC Directions, providing searchable retrieval for audit purposes. so that Supports regulatory audit and record‑keeping obligations.",
+        "acceptance_criteria": [
+          "Records cannot be altered after creation",
+          "Retention period can be configured and enforced",
+          "Audit query returns complete record within 5 seconds"
+        ],
+        "requirement_id": "REQ-002"
+      },
+      {
+        "id": "US-003",
+        "story": "As a relevant stakeholder, I want the onboarding platform shall interface with the RBI Central KYC Records Registry to fetch existing customer KYC data and to push newly verified records, where applicable. so that Avoids duplicate data collection and ensures consistency with regulator’s master records.",
+        "acceptance_criteria": [
+          "Successful API call returns matching record for 99% of existing customers",
+          "New records are posted within 2 minutes of verification"
+        ],
+        "requirement_id": "REQ-003"
+      },
+      {
+        "id": "US-004",
+        "story": "As a relevant stakeholder, I want the system shall enforce multi‑factor authentication (MFA) for all customers during the onboarding flow, complying with RBI Digital Payment Security Controls. so that Mitigates unauthorized account creation and aligns with security controls mandated by RBI.",
+        "acceptance_criteria": [
+          "MFA challenge is presented for 100% of new accounts",
+          "Authentication success rate ≥ 98% for legitimate users"
+        ],
+        "requirement_id": "REQ-004"
+      },
+      {
+        "id": "US-005",
+        "story": "As a relevant stakeholder, I want all onboarding activities, including identity verification steps, data uploads, and registry interactions, shall be logged with tamper‑evident entries to support audit and incident response as required by RBI IT Governance and Digital Payment Security Controls. so that Provides evidence for compliance audits and enables rapid incident investigation.",
+        "acceptance_criteria": [
+          "Each onboarding transaction generates a log entry with timestamp, user ID, operation type, and outcome",
+          "Logs are immutable and retained for the same period as KYC records"
+        ],
+        "requirement_id": "REQ-005"
+      }
+    ],
+    "use_cases": [
+      {
+        "id": "UC-001",
+        "name": "The digital onboarding system shall verify the identity of each new customer by capturing government",
+        "actors": "To be confirmed by stakeholder",
+        "preconditions": [
+          "Regulated entity is subject to RBI KYC Directions",
+          "Customers possess valid government‑issued IDs"
+        ],
+        "success_criteria": [
+          "System accepts and validates at least 95% of authentic ID documents",
+          "Biometric match confidence ≥ 98% for successful verification",
+          "Verification outcome is recorded in audit log"
+        ],
+        "requirement_id": "REQ-001"
+      },
+      {
+        "id": "UC-002",
+        "name": "The system shall store all KYC records in an immutable repository and retain them for the period pre",
+        "actors": "To be confirmed by stakeholder",
+        "preconditions": [
+          "Retention period defined by RBI is known to the entity"
+        ],
+        "success_criteria": [
+          "Records cannot be altered after creation",
+          "Retention period can be configured and enforced",
+          "Audit query returns complete record within 5 seconds"
+        ],
+        "requirement_id": "REQ-002"
+      },
+      {
+        "id": "UC-003",
+        "name": "The onboarding platform shall interface with the RBI Central KYC Records Registry to fetch existing ",
+        "actors": "To be confirmed by stakeholder",
+        "preconditions": [
+          "Entity is required to use the Central KYC Registry per RBI direction"
+        ],
+        "success_criteria": [
+          "Successful API call returns matching record for 99% of existing customers",
+          "New records are posted within 2 minutes of verification"
+        ],
+        "requirement_id": "REQ-003"
+      },
+      {
+        "id": "UC-004",
+        "name": "The system shall enforce multi‑factor authentication (MFA) for all customers during the onboarding f",
+        "actors": "To be confirmed by stakeholder",
+        "preconditions": [
+          "MFA methods such as OTP or biometrics are acceptable to the regulator"
+        ],
+        "success_criteria": [
+          "MFA challenge is presented for 100% of new accounts",
+          "Authentication success rate ≥ 98% for legitimate users"
+        ],
+        "requirement_id": "REQ-004"
+      },
+      {
+        "id": "UC-005",
+        "name": "All onboarding activities, including identity verification steps, data uploads, and registry interac",
+        "actors": "To be confirmed by stakeholder",
+        "preconditions": [
+          "Logs can be stored securely for the required retention period"
+        ],
+        "success_criteria": [
+          "Each onboarding transaction generates a log entry with timestamp, user ID, operation type, and outcome",
+          "Logs are immutable and retained for the same period as KYC records"
+        ],
+        "requirement_id": "REQ-005"
+      }
+    ],
+    "risk_register": [],
+    "traceability_matrix": [
+      {
+        "requirement_id": "REQ-001",
+        "source_document": "Approved RBI knowledge — KYC Directions",
+        "source_chunk_id": "chunk-001",
+        "control_ids": [
+          "RBI-KYC-CDD"
+        ],
+        "risk_ids": []
+      },
+      {
+        "requirement_id": "REQ-002",
+        "source_document": "Approved RBI knowledge — KYC Directions",
+        "source_chunk_id": "chunk-001",
+        "control_ids": [
+          "RBI-KYC-CDD",
+          "RBI-ITG-2023"
+        ],
+        "risk_ids": []
+      },
+      {
+        "requirement_id": "REQ-003",
+        "source_document": "Approved RBI knowledge — KYC Directions",
+        "source_chunk_id": "chunk-001",
+        "control_ids": [
+          "RBI-KYC-CDD"
+        ],
+        "risk_ids": []
+      },
+      {
+        "requirement_id": "REQ-004",
+        "source_document": "Approved RBI knowledge — Digital Payment Security Controls",
+        "source_chunk_id": "chunk-001",
+        "control_ids": [
+          "RBI-KYC-CDD",
+          "RBI-ITG-2023",
+          "RBI-DPSC-2021"
+        ],
+        "risk_ids": []
+      },
+      {
+        "requirement_id": "REQ-005",
+        "source_document": "Approved RBI knowledge — IT Governance Directions",
+        "source_chunk_id": "chunk-001",
+        "control_ids": [
+          "RBI-KYC-CDD",
+          "RBI-ITG-2023",
+          "RBI-DPSC-2021"
+        ],
+        "risk_ids": []
+      },
+      {
+        "requirement_id": "REQ-005",
+        "source_document": "Approved RBI knowledge — Digital Payment Security Controls",
+        "source_chunk_id": "chunk-001",
+        "control_ids": [
+          "RBI-KYC-CDD",
+          "RBI-ITG-2023",
+          "RBI-DPSC-2021"
+        ],
+        "risk_ids": []
+      }
+    ],
+    "assumptions_and_dependencies": [
+      {
+        "requirement_id": "REQ-001",
+        "assumptions": [
+          "Regulated entity is subject to RBI KYC Directions",
+          "Customers possess valid government‑issued IDs"
+        ],
+        "dependencies": [
+          "Biometric verification service",
+          "Document capture module"
+        ]
+      },
+      {
+        "requirement_id": "REQ-002",
+        "assumptions": [
+          "Retention period defined by RBI is known to the entity"
+        ],
+        "dependencies": [
+          "Secure storage service",
+          "Search index"
+        ]
+      },
+      {
+        "requirement_id": "REQ-003",
+        "assumptions": [
+          "Entity is required to use the Central KYC Registry per RBI direction"
+        ],
+        "dependencies": [
+          "Central KYC Registry API",
+          "Network connectivity"
+        ]
+      },
+      {
+        "requirement_id": "REQ-004",
+        "assumptions": [
+          "MFA methods such as OTP or biometrics are acceptable to the regulator"
+        ],
+        "dependencies": [
+          "MFA provider",
+          "User device"
+        ]
+      },
+      {
+        "requirement_id": "REQ-005",
+        "assumptions": [
+          "Logs can be stored securely for the required retention period"
+        ],
+        "dependencies": [
+          "Logging infrastructure",
+          "Log retention service"
+        ]
+      }
+    ],
+    "open_issues": [
+      {
+        "id": "QI-004",
+        "requirement_id": "REQ-003",
+        "check": "Undefined terminology",
+        "severity": "Medium",
+        "message": "The requirement contains a term whose meaning or boundary is not defined.",
+        "recommendation": "Define the term in a glossary or replace it with an observable condition."
+      }
+    ],
+    "compliance_control_matrix": [
+      {
+        "requirement_id": "REQ-001",
+        "mappings": [
+          {
+            "control_id": "RBI-KYC-CDD",
+            "source_title": "RBI Master Direction – Know Your Customer (KYC), 2016 (Updated 6 November 2024)",
+            "source_url": "https://www.rbi.org.in/commonman/Upload/English/Notification/PDFs/MD18KYCF6E92C82E1E1419D87323E3869BC9F13.pdf",
+            "jurisdiction": "India",
+            "applicability": "Confirm applicability to the regulated entity and customer/onboarding flow.",
+            "rationale": "Customer due diligence, KYC record handling, and required review/approval checkpoints.",
+            "human_approval_required": true
+          }
+        ]
+      },
+      {
+        "requirement_id": "REQ-002",
+        "mappings": [
+          {
+            "control_id": "RBI-KYC-CDD",
+            "source_title": "RBI Master Direction – Know Your Customer (KYC), 2016 (Updated 6 November 2024)",
+            "source_url": "https://www.rbi.org.in/commonman/Upload/English/Notification/PDFs/MD18KYCF6E92C82E1E1419D87323E3869BC9F13.pdf",
+            "jurisdiction": "India",
+            "applicability": "Confirm applicability to the regulated entity and customer/onboarding flow.",
+            "rationale": "Customer due diligence, KYC record handling, and required review/approval checkpoints.",
+            "human_approval_required": true
+          },
+          {
+            "control_id": "RBI-ITG-2023",
+            "source_title": "RBI IT Governance, Risk, Controls and Assurance Practices Directions, 2023 (Effective 1 April 2024)",
+            "source_url": "https://systemhealth.rbi.org.in/Scripts/BS_ViewMasDirections.aspx_id%3D12562%283%29.html",
+            "jurisdiction": "India",
+            "applicability": "Confirm regulated-entity scope and the system's materiality classification.",
+            "rationale": "IT governance, risk management, assurance, continuity, and audit evidence.",
+            "human_approval_required": true
+          }
+        ]
+      },
+      {
+        "requirement_id": "REQ-003",
+        "mappings": [
+          {
+            "control_id": "RBI-KYC-CDD",
+            "source_title": "RBI Master Direction – Know Your Customer (KYC), 2016 (Updated 6 November 2024)",
+            "source_url": "https://www.rbi.org.in/commonman/Upload/English/Notification/PDFs/MD18KYCF6E92C82E1E1419D87323E3869BC9F13.pdf",
+            "jurisdiction": "India",
+            "applicability": "Confirm applicability to the regulated entity and customer/onboarding flow.",
+            "rationale": "Customer due diligence, KYC record handling, and required review/approval checkpoints.",
+            "human_approval_required": true
+          }
+        ]
+      },
+      {
+        "requirement_id": "REQ-004",
+        "mappings": [
+          {
+            "control_id": "RBI-KYC-CDD",
+            "source_title": "RBI Master Direction – Know Your Customer (KYC), 2016 (Updated 6 November 2024)",
+            "source_url": "https://www.rbi.org.in/commonman/Upload/English/Notification/PDFs/MD18KYCF6E92C82E1E1419D87323E3869BC9F13.pdf",
+            "jurisdiction": "India",
+            "applicability": "Confirm applicability to the regulated entity and customer/onboarding flow.",
+            "rationale": "Customer due diligence, KYC record handling, and required review/approval checkpoints.",
+            "human_approval_required": true
+          },
+          {
+            "control_id": "RBI-ITG-2023",
+            "source_title": "RBI IT Governance, Risk, Controls and Assurance Practices Directions, 2023 (Effective 1 April 2024)",
+            "source_url": "https://systemhealth.rbi.org.in/Scripts/BS_ViewMasDirections.aspx_id%3D12562%283%29.html",
+            "jurisdiction": "India",
+            "applicability": "Confirm regulated-entity scope and the system's materiality classification.",
+            "rationale": "IT governance, risk management, assurance, continuity, and audit evidence.",
+            "human_approval_required": true
+          },
+          {
+            "control_id": "RBI-DPSC-2021",
+            "source_title": "RBI Master Direction on Digital Payment Security Controls (18 February 2021)",
+            "source_url": "https://systemhealth.rbi.org.in/Scripts/BS_ViewMasDirections.aspx_id%3D12032%283%29.html",
+            "jurisdiction": "India",
+            "applicability": "Confirm that the product/channel is within the Direction's regulated-entity scope.",
+            "rationale": "Authentication, fraud-risk management, application security lifecycle, and reconciliation controls.",
+            "human_approval_required": true
+          }
+        ]
+      },
+      {
+        "requirement_id": "REQ-005",
+        "mappings": [
+          {
+            "control_id": "RBI-KYC-CDD",
+            "source_title": "RBI Master Direction – Know Your Customer (KYC), 2016 (Updated 6 November 2024)",
+            "source_url": "https://www.rbi.org.in/commonman/Upload/English/Notification/PDFs/MD18KYCF6E92C82E1E1419D87323E3869BC9F13.pdf",
+            "jurisdiction": "India",
+            "applicability": "Confirm applicability to the regulated entity and customer/onboarding flow.",
+            "rationale": "Customer due diligence, KYC record handling, and required review/approval checkpoints.",
+            "human_approval_required": true
+          },
+          {
+            "control_id": "RBI-ITG-2023",
+            "source_title": "RBI IT Governance, Risk, Controls and Assurance Practices Directions, 2023 (Effective 1 April 2024)",
+            "source_url": "https://systemhealth.rbi.org.in/Scripts/BS_ViewMasDirections.aspx_id%3D12562%283%29.html",
+            "jurisdiction": "India",
+            "applicability": "Confirm regulated-entity scope and the system's materiality classification.",
+            "rationale": "IT governance, risk management, assurance, continuity, and audit evidence.",
+            "human_approval_required": true
+          },
+          {
+            "control_id": "RBI-DPSC-2021",
+            "source_title": "RBI Master Direction on Digital Payment Security Controls (18 February 2021)",
+            "source_url": "https://systemhealth.rbi.org.in/Scripts/BS_ViewMasDirections.aspx_id%3D12032%283%29.html",
+            "jurisdiction": "India",
+            "applicability": "Confirm that the product/channel is within the Direction's regulated-entity scope.",
+            "rationale": "Authentication, fraud-risk management, application security lifecycle, and reconciliation controls.",
+            "human_approval_required": true
+          }
+        ]
+      }
+    ],
+    "clarification_queue": [
+      "REQ-001: Has the security, privacy, and compliance applicability for this requirement been confirmed?",
+      "REQ-002: Has the security, privacy, and compliance applicability for this requirement been confirmed?",
+      "REQ-003: Has the security, privacy, and compliance applicability for this requirement been confirmed?",
+      "REQ-003: How should the undefined term be defined in the project glossary or business rules?",
+      "REQ-004: Has the security, privacy, and compliance applicability for this requirement been confirmed?",
+      "REQ-005: Has the security, privacy, and compliance applicability for this requirement been confirmed?"
+    ],
+    "approval_register": [],
+    "evaluation": {
+      "requirements_count": 5,
+      "citation_coverage": 1.0,
+      "measurable_acceptance_coverage": 1.0,
+      "rbi_control_coverage": 1.0,
+      "open_high_issues": 0,
+      "open_risks": 0,
+      "human_review_coverage": 0.0,
+      "notes": [
+        "Human review is incomplete."
+      ]
+    }
+  },
+  "clarification_questions": [
+    "REQ-001: Has the security, privacy, and compliance applicability for this requirement been confirmed?",
+    "REQ-002: Has the security, privacy, and compliance applicability for this requirement been confirmed?",
+    "REQ-003: Has the security, privacy, and compliance applicability for this requirement been confirmed?",
+    "REQ-003: How should the undefined term be defined in the project glossary or business rules?",
+    "REQ-004: Has the security, privacy, and compliance applicability for this requirement been confirmed?",
+    "REQ-005: Has the security, privacy, and compliance applicability for this requirement been confirmed?"
+  ],
+  "approvals": [],
+  "evaluation": {
+    "requirements_count": 5,
+    "citation_coverage": 1.0,
+    "measurable_acceptance_coverage": 1.0,
+    "rbi_control_coverage": 1.0,
+    "open_high_issues": 0,
+    "open_risks": 0,
+    "human_review_coverage": 0.0,
+    "notes": [
+      "Human review is incomplete."
+    ]
+  },
+  "sdlc": {
+    "recommended_sdlc": "Agile–V-Model hybrid",
+    "factors": [
+      {
+        "name": "Requirement stability",
+        "value": "Needs validation",
+        "score": 2,
+        "rationale": "Draft or unapproved requirements indicate that stability has not yet been demonstrated.",
+        "requirement_ids": [
+          "REQ-001",
+          "REQ-002",
+          "REQ-003",
+          "REQ-004",
+          "REQ-005"
+        ]
+      },
+      {
+        "name": "Requirement clarity",
+        "value": "High",
+        "score": 4,
+        "rationale": "Measured from the presence of concrete, non-placeholder acceptance criteria.",
+        "requirement_ids": []
+      },
+      {
+        "name": "Risk",
+        "value": "High",
+        "score": 5,
+        "rationale": "Derived from stated high risk and security, privacy, regulatory, or audit classifications.",
+        "requirement_ids": []
+      },
+      {
+        "name": "Complexity",
+        "value": "Low",
+        "score": 2,
+        "rationale": "Integration and data-management requirements increase coordination and technical complexity.",
+        "requirement_ids": []
+      },
+      {
+        "name": "Need for early prototype",
+        "value": "Confirm with stakeholders",
+        "score": 3,
+        "rationale": "Unclear requirements or integration complexity make early learning and validation valuable.",
+        "requirement_ids": []
+      },
+      {
+        "name": "Time constraints",
+        "value": "Not evidenced",
+        "score": 3,
+        "rationale": "No schedule or deadline evidence is available in the generated requirements; confirm this with the project sponsor.",
+        "requirement_ids": []
+      },
+      {
+        "name": "Customer involvement",
+        "value": "Not evidenced",
+        "score": 3,
+        "rationale": "Derived only from business, stakeholder, or usability requirements; otherwise this must be confirmed.",
+        "requirement_ids": []
+      },
+      {
+        "name": "Frequency of changes",
+        "value": "Not evidenced",
+        "score": 3,
+        "rationale": "Requirement documents do not establish the expected change rate; confirm with product and business stakeholders.",
+        "requirement_ids": []
+      },
+      {
+        "name": "Need for iterative development",
+        "value": "Likely",
+        "score": 4,
+        "rationale": "Unapproved or unclear requirements benefit from repeated review and validation cycles.",
+        "requirement_ids": []
+      },
+      {
+        "name": "Need for risk analysis",
+        "value": "High",
+        "score": 5,
+        "rationale": "Security/compliance concerns or complex integration warrant explicit risk analysis.",
+        "requirement_ids": []
+      }
+    ],
+    "options": [
+      {
+        "name": "Agile–V-Model hybrid",
+        "score": 86,
+        "suitability": "Best where evolving delivery needs formal verification and validation gates for regulated scope."
+      },
+      {
+        "name": "V-Shape",
+        "score": 79,
+        "suitability": "Best when each specification stage needs a linked verification and validation activity."
+      },
+      {
+        "name": "Spiral",
+        "score": 71,
+        "suitability": "Best when risk analysis, prototypes, and repeated risk-reduction cycles are central."
+      },
+      {
+        "name": "Agile",
+        "score": 70,
+        "suitability": "Best for frequent feedback and evolving requirements, with planned governance for high-risk work."
+      },
+      {
+        "name": "Waterfall",
+        "score": 67,
+        "suitability": "Best when requirements are stable, fully specified, and changes are controlled."
+      },
+      {
+        "name": "Incremental",
+        "score": 64,
+        "suitability": "Best when value can be divided into validated, independently testable increments."
+      },
+      {
+        "name": "Prototyping",
+        "score": 45,
+        "suitability": "Best for validating uncertain user needs, workflows, and interfaces before committing to a full build."
+      },
+      {
+        "name": "RAD",
+        "score": 45,
+        "suitability": "Best for time-boxed delivery with available users and modular, lower-risk scope."
+      }
+    ],
+    "justification": "Agile–V-Model hybrid has the highest transparent score because requirement stability is needs validation, requirement clarity is high, risk is high, complexity is low, need for early prototype is confirm with stakeholders. Factors marked 'Not evidenced' are deliberately neutral and require stakeholder confirmation before the SDLC is approved.",
+    "workflow": [
+      {
+        "phase": "Validate requirements",
+        "activities": [
+          "Resolve quality issues",
+          "Confirm stability, time constraints, and expected changes",
+          "Prioritise requirement baseline"
+        ],
+        "roles": [
+          "Business analyst",
+          "Customer representative"
+        ],
+        "deliverables": [
+          "Validated requirements",
+          "SDLC factor assessment"
+        ],
+        "gate": "Stakeholder confirms project assumptions"
+      },
+      {
+        "phase": "Plan the model",
+        "activities": [
+          "Review ranked SDLC options",
+          "Plan risk analysis",
+          "Define iteration or stage gates"
+        ],
+        "roles": [
+          "Project manager",
+          "Architect",
+          "Risk owner"
+        ],
+        "deliverables": [
+          "Approved SDLC decision",
+          "Risk register"
+        ],
+        "gate": "Engineering and business approval"
+      },
+      {
+        "phase": "Develop and validate",
+        "activities": [
+          "Build planned scope",
+          "Test against acceptance criteria",
+          "Review feedback and risks"
+        ],
+        "roles": [
+          "Developers",
+          "QA",
+          "Customer representative"
+        ],
+        "deliverables": [
+          "Working increment or verified stage",
+          "Test evidence"
+        ],
+        "gate": "Quality and stakeholder acceptance"
+      },
+      {
+        "phase": "Release and learn",
+        "activities": [
+          "Release approved scope",
+          "Monitor outcomes",
+          "Reassess requirement changes and risks"
+        ],
+        "roles": [
+          "Operations",
+          "Product owner",
+          "Project manager"
+        ],
+        "deliverables": [
+          "Release record",
+          "Updated SDLC assessment"
+        ],
+        "gate": "Release and change-control approval"
+      }
+    ],
+    "human_approval_required": true
+  },
+  "agent_runs": [
+    {
+      "agent": "Requirements Agent",
+      "responsibility": "Requirement extraction, classification, traceability, and quality review",
+      "status": "Waiting for human review",
+      "output": "Generated 5 LLM-assisted RAG-grounded draft requirement(s) and found 6 quality issue(s).",
+      "at": "2026-11-26T22:14:44.590640Z"
+    },
+    {
+      "agent": "Compliance & Risk Agent",
+      "responsibility": "RBI control mapping, risk register generation, and traceability",
+      "status": "Waiting for human review",
+      "output": "Mapped 10 RBI control suggestion(s) and raised 0 reviewable risk entries.",
+      "at": "2026-11-26T22:14:44.591022Z"
+    },
+    {
+      "agent": "Documentation Agent",
+      "responsibility": "SRS, user-story, use-case, traceability, risk, and open-issue artefacts",
+      "status": "Waiting for human review",
+      "output": "Generated exportable SRS, user-story, use-case, risk, compliance, traceability, and open-issue artefacts.",
+      "at": "2026-11-26T22:14:44.591518Z"
+    },
+    {
+      "agent": "Governance & SDLC Agent",
+      "responsibility": "Risk and control assessment, SDLC ranking, and approval-gate planning",
+      "status": "Waiting for human review",
+      "output": "Recommended Agile–V-Model hybrid; human approval remains required.",
+      "at": "2026-11-26T22:14:52.661873Z"
+    }
+  ],
+  "audit_log": [
+    {
+      "at": "2026-11-26T22:14:36.657771+00:00",
+      "action": "sources_recorded",
+      "detail": "Indexed 3 allowlisted RBI reference summary source(s), plus 10 masked stakeholder response(s) and 0 uploaded document(s)."
+    },
+    {
+      "at": "2026-11-26T22:14:36.657792+00:00",
+      "action": "rag_indexed",
+      "detail": "Indexed 4 source chunk(s) in ChromaDB."
+    },
+    {
+      "at": "2026-11-26T22:14:44.590666+00:00",
+      "action": "agent_completed",
+      "detail": "Requirements Agent: Generated 5 LLM-assisted RAG-grounded draft requirement(s) and found 6 quality issue(s)."
+    },
+    {
+      "at": "2026-11-26T22:14:44.591031+00:00",
+      "action": "agent_completed",
+      "detail": "Compliance & Risk Agent: Mapped 10 RBI control suggestion(s) and raised 0 reviewable risk entries."
+    },
+    {
+      "at": "2026-11-26T22:14:44.591528+00:00",
+      "action": "agent_completed",
+      "detail": "Documentation Agent: Generated exportable SRS, user-story, use-case, risk, compliance, traceability, and open-issue artefacts."
+    },
+    {
+      "at": "2026-11-26T22:14:52.661891+00:00",
+      "action": "agent_completed",
+      "detail": "Governance & SDLC Agent: Recommended Agile–V-Model hybrid; human approval remains required."
+    }
+  ]
+}

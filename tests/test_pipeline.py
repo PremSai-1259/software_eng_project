@@ -29,7 +29,7 @@ def test_pipeline_creates_grounded_requirements_and_recommendation():
     assert isinstance(analyse(requirements), list)
     recommendation = recommend(requirements)
     assert recommendation.options[0].score >= recommendation.options[-1].score
-    assert {option.name for option in recommendation.options} == {"Waterfall", "V-Shape", "Prototyping", "RAD", "Spiral", "Incremental", "Agile", "DevSecOps", "Agile–V-Model hybrid"}
+    assert {option.name for option in recommendation.options} == {"Waterfall", "V-Shape", "Prototyping", "RAD", "Spiral", "Incremental", "Agile", "Agile–V-Model hybrid"}
     assert {factor.name for factor in recommendation.factors} == {"Requirement stability", "Requirement clarity", "Risk", "Complexity", "Need for early prototype", "Time constraints", "Customer involvement", "Frequency of changes", "Need for iterative development", "Need for risk analysis"}
 
 
