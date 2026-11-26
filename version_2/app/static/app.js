@@ -143,12 +143,13 @@ $("#projectBriefForm").addEventListener("submit", async (event) => {
     $("#srsDownloadLink").href = srs.download_url; $("#srsDownloadLink").classList.remove("is-hidden");
     $("#projectState").innerHTML = `<span class="status-dot"></span> Requirements and SRS ready`;
     await refreshDashboard();
+    openTab("requirements");
     toast("Requirements, SDLC analysis, and SRS are ready for review.");
   } catch (error) {
     toast(error.message);
   } finally {
     button.disabled = false;
-    button.innerHTML = 'Generate requirements and SRS <span>→</span>';
+    button.innerHTML = 'Generate requirements <span>→</span>';
   }
 });
 $("#retrieveButton").addEventListener("click", async () => {
@@ -166,22 +167,26 @@ $("#sdlcButton").addEventListener("click", async () => {
   try { displaySdlc(await request(`/api/projects/${projectId}/sdlc`, { method: "POST" })); const project = await request(`/api/projects/${projectId}`);  toast("SDLC recommendation generated. Human approval remains required."); }
   catch (error) { toast(error.message); } finally { button.disabled = false; }
 });
-const sectionLinks = [...document.querySelectorAll(".nav-link")];
-sectionLinks.forEach((link) => link.addEventListener("click", (event) => {
-  const target = document.querySelector(link.getAttribute("href"));
-  if (!target) return;
-  event.preventDefault();
-  sectionLinks.forEach((item) => item.classList.toggle("active", item === link));
-  const mobileBarHeight = window.matchMedia("(max-width: 720px)").matches
-    ? document.querySelector(".sidebar").getBoundingClientRect().height + 12
-    : 16;
-  const top = window.scrollY + target.getBoundingClientRect().top - mobileBarHeight;
-  window.scrollTo({ top: Math.max(0, top), behavior: "smooth" });
-}));
-$("#newProject").addEventListener("click", (event) => { event.preventDefault(); startNewProject(); });
-$("#heroNew").addEventListener("click", (event) => { event.preventDefault(); startNewProject(); });
+const tabMeta = {
+  dashboard: ["OVERVIEW", "Workspace overview"],
+  workspace: ["PROJECT INTAKE", "Create a project"],
+  knowledge: ["EVIDENCE LIBRARY", "Sources & retrieval"],
+  requirements: ["REQUIREMENT BASELINE", "Generated requirements"],
+  sdlc: ["DELIVERY INTELLIGENCE", "SDLC recommendation"],
+};
+function openTab(tab) {
+  document.querySelectorAll("[data-panel]").forEach((panel) => panel.classList.toggle("active", panel.dataset.panel === tab));
+  document.querySelectorAll("[data-tab]").forEach((button) => button.classList.toggle("active", button.dataset.tab === tab));
+  const [crumb, title] = tabMeta[tab] || tabMeta.dashboard;
+  $("#activeCrumb").textContent = crumb;
+  $("#pageTitle").textContent = title;
+  window.scrollTo({ top: 0, behavior: "smooth" });
+}
+document.querySelectorAll("[data-tab]").forEach((button) => button.addEventListener("click", () => openTab(button.dataset.tab)));
+$("#newProject").addEventListener("click", () => { startNewProject(); openTab("workspace"); });
+$("#heroNew").addEventListener("click", () => { startNewProject(); openTab("workspace"); });
 document.querySelector(".brand").addEventListener("click", (event) => {
   event.preventDefault();
-  window.scrollTo({ top: 0, behavior: "smooth" });
+  openTab("dashboard");
 });
 refreshDashboard().catch((error) => { $("#projectList").innerHTML = `<p class="empty-state">Unable to load portfolio: ${escapeHtml(error.message)}</p>`; toast(error.message); });
