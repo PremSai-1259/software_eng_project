@@ -1,0 +1,16 @@
+.venv/
+.tmp/
+__pycache__/
+.pytest_cache/
+data/chroma/
+data/*.json
+*.pyc
+.env
+.env.*
+!.env.example
+.DS_Store
+_incoming/
+
+data/exports/
+_zip_merge_backup_20261123/
+

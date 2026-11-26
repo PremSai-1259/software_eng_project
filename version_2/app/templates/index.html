@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#172b2a"><link rel="icon" href="data:,">
+  <title>Finance Helper</title><link rel="stylesheet" href="/static/styles.css">
+</head>
+<body>
+  <aside class="sidebar">
+    <a class="brand" href="#workspace" aria-label="Finance Helper home"><span class="brand-mark">F</span><span>Finance <span class="brand-light">Helper</span></span></a>
+    <div class="workspace-label"><i></i> REQUIREMENTS WORKSPACE</div>
+    <nav class="primary-nav" aria-label="Main navigation">
+      <a class="nav-link active" href="#workspace"><span>＋</span> Create project</a>
+      <a class="nav-link" href="#knowledge"><span>▤</span> Sources</a>
+      <a class="nav-link" href="#requirements"><span>✓</span> Generated requirements</a>
+      <a class="nav-link" href="#sdlc"><span>↗</span> SDLC analysis</a>
+    </nav>
+  </aside>
+  <main class="main-area">
+    <header class="topbar">
+      <div><div class="breadcrumb">FINANCE HELPER <span>/</span> <b>WORKSPACE</b></div><h1>Finance Helper</h1></div>
+      <div class="top-actions"><span class="environment-pill"><i></i> Local workspace</span><a id="artifactLink" class="button button-outline is-hidden" title="Download requirements pack" download>Download project pack</a><a id="srsDownloadLink" class="button button-outline is-hidden" title="Download generated SRS" download>Download SRS</a><a id="exportLink" class="button button-outline is-hidden" title="Export project data" download>Export project</a><a id="newProject" class="button" href="#workspace">＋ New project</a></div>
+    </header>
+    <section id="overview" class="page-section overview-section">
+      <div class="hero">
+        <div class="hero-copy"><span class="hero-kicker">FINANCIAL SERVICES REQUIREMENTS</span><h2>Make finance workflows<br>clear from the start.</h2><p>Capture the business need, bring in your own source material, and create requirement drafts your team can review with confidence.</p><a id="heroNew" class="button button-light" href="#workspace">Create a finance project <span>→</span></a></div></div>
+      <div class="metric-grid">
+        <article class="metric-card"><span class="metric-icon blue">▦</span><div><small>Finance projects</small><strong id="projectMetric">0</strong></div><span>In this workspace</span></article>
+        <article class="metric-card"><span class="metric-icon green">✓</span><div><small>Draft requirements</small><strong id="requirementMetric">0</strong></div><span>Across your projects</span></article>
+      </div>
+      <div class="overview-grid">
+        <section class="surface-card portfolio-card"><div class="card-heading"><div><span class="eyebrow">YOUR WORKSPACE</span><h3>Recent finance projects</h3></div><span id="portfolioCount" class="count">0 projects</span></div><div id="projectList" class="project-list"><p class="empty-state">Loading your workspace…</p></div></section>
+        <aside class="welcome-card"><span class="eyebrow">A SIMPLE WORKFLOW</span><h3>From business need<br>to reviewed draft.</h3><ol><li><b>01</b><span><strong>Describe</strong><small>Explain the financial workflow.</small></span></li><li><b>02</b><span><strong>Ground</strong><small>Use your own source documents.</small></span></li><li><b>03</b><span><strong>Review</strong><small>Refine requirements with your team.</small></span></li></ol><div class="privacy-note">◆ Your sources stay in this local project workspace.</div></aside>
+      </div>
+      <div class="health-strip"><span class="health-indicator"></span><div><b>Finance evidence workspace</b><small id="knowledgeHealth">Checking local source index…</small></div><span>Private local mode</span></div>
+    </section>
+    <section id="workspace" class="page-section">
+      <div class="section-heading"><div><span class="eyebrow">ONE PROJECT BRIEF</span><h2 id="workspace-title">Create project requirements</h2><p id="workspaceDescription" class="muted">Describe the project once. Separate agents will gather requirements, run quality and SDLC analysis, and generate the SRS document.</p></div><span id="projectState" class="state"><i></i> No project selected</span></div>
+      <form id="projectBriefForm" class="surface-card intake-form">
+        <div class="form-top"><span class="form-icon">F</span><div><h3>Project brief</h3><p>Include the purpose, users, key workflows, rules, and expected outcomes in one description.</p></div></div>
+        <label class="wide">Describe your finance project<textarea id="functionality" rows="8" required minlength="20" maxlength="20000" placeholder="Example: Build a digital loan application platform for retail customers and loan officers. Applicants submit identity and income information, the system checks eligibility and documents, reviewers resolve exceptions, and approved applications proceed to disbursement. Include relevant workflows, controls, integrations, and expected outcomes."></textarea></label>
+        <label class="upload-label">Supporting documents <span class="muted">(optional evidence for RAG)</span><input id="files" type="file" accept=".txt,.md,.csv,.pdf,.docx" multiple></label>
+        <div class="form-footer"><span><b>One submission, full workflow</b><small>Requirements, SDLC guidance, and an IEEE 830 SRS are generated automatically.</small></span><button class="button" type="submit">Generate requirements and SRS <span>→</span></button></div>
+      </form>
+    </section>
+    <section id="knowledge" class="page-section">
+      <div class="section-heading"><div><span class="eyebrow">SOURCES</span><h2>Project documents</h2></div><button id="generateButton" type="button" disabled class="button">Draft requirements →</button></div>
+      <div id="documentsPanel" class="surface-card evidence-library is-hidden"><div id="ragSummary" class="rag-summary"></div><div id="documentList" class="document-list"></div><div class="retrieval-toolbar"><label>Search your sources<input id="retrievalQuery" placeholder="Search a finance term or workflow"></label><button id="retrieveButton" class="button button-outline" type="button">Find evidence</button><span id="retrievalCount" class="count"></span></div><div id="evidenceNotice" class="evidence-notice is-hidden"></div><div id="retrievalResults" class="retrieval-results"><p class="empty-state">Add finance source material to get started.</p></div></div><div id="knowledgeEmpty" class="surface-card empty-state">Create a finance project to add your own financial source material.</div>
+    </section>
+    <section id="requirements" class="page-section">
+      <div class="section-heading"><div><span class="eyebrow">AGENT 1 · REQUIREMENT GATHERING</span><h2>Generated requirements</h2></div><span id="requirementCount" class="count">No requirements</span></div>
+      <div id="requirementsPanel" class="requirements-list is-hidden"></div><div id="requirementsEmpty" class="surface-card empty-state">Generate finance requirements from your source evidence to begin review.</div>
+    </section>
+    <section id="sdlc" class="page-section">
+      <div class="section-heading"><div><span class="eyebrow">SDLC GOVERNANCE ADVISORY</span><h2>SDLC analysis</h2></div><div class="interview-actions"><button id="sdlcButton" type="button" disabled class="button">Run governance &amp; SDLC analysis</button></div></div><div id="sdlcPanel" class="is-hidden"><div id="sdlcResult"></div></div><div id="sdlcEmpty" class="surface-card empty-state">Generate requirements before running the SDLC analysis.</div>
+    </section>
+    <footer><span>FINANCE HELPER</span><span>Human review required</span></footer>
+  </main>
+  <div id="toast" role="status" aria-live="polite"></div><script src="/static/app.js"></script>
+</body></html>
