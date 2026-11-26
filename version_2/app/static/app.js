@@ -90,6 +90,7 @@ async function loadProject(id) {
   showEmpty("#requirementsEmpty", !project.requirements.length);
   $("#generateButton").disabled = false;
   $("#sdlcButton").disabled = !project.requirements.length;
+  openTab(project.requirements.length ? "requirements" : "workspace");
 }
 function startNewProject() {
   projectId = null;
@@ -109,13 +110,16 @@ function startNewProject() {
 }
 async function refreshDashboard() {
   const projects = await request("/api/projects");
-  $("#projectMetric").textContent = projects.length;
-  $("#requirementMetric").textContent = projects.reduce((sum, item) => sum + item.requirements, 0);
+  const projectMetric = $("#projectMetric");
+  const requirementMetric = $("#requirementMetric");
+  if (projectMetric) projectMetric.textContent = projects.length;
+  if (requirementMetric) requirementMetric.textContent = projects.reduce((sum, item) => sum + item.requirements, 0);
   $("#portfolioCount").textContent = `${projects.length} project${projects.length === 1 ? "" : "s"}`;
   $("#projectList").innerHTML = projects.length ? projects.map((item) => `<button class="project-row" data-project="${escapeHtml(item.id)}"><span class="project-avatar">${escapeHtml(item.functionality.slice(0, 1).toUpperCase())}</span><span class="project-info"><strong>${escapeHtml(item.functionality)}</strong><small>${item.documents} source(s) · ${item.requirements} requirement(s) · ${escapeHtml(new Date(item.created_at).toLocaleDateString())}</small></span><span class="project-arrow">→</span></button>`).join("") : `<p class="empty-state">No projects yet. Start a new project intake to build your first evidence library.</p>`;
   $("#projectList").querySelectorAll("[data-project]").forEach((button) => button.addEventListener("click", () => loadProject(button.dataset.project).catch((error) => toast(error.message))));
   const rag = await request("/api/rag/status");
-  $("#knowledgeHealth").innerHTML = `<span class="health-indicator"></span><span>${escapeHtml(rag.vector_database)} ready · ${escapeHtml(rag.embedding_model)} · ${escapeHtml(rag.generation_mode)}</span>`;
+  const health = $("#knowledgeHealth");
+  if (health) health.innerHTML = `<span class="health-indicator"></span><span>${escapeHtml(rag.vector_database)} ready · ${escapeHtml(rag.embedding_model)} · ${escapeHtml(rag.generation_mode)}</span>`;
 }
 $("#projectBriefForm").addEventListener("submit", async (event) => {
   event.preventDefault();
